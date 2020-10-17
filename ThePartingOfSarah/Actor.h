@@ -6,6 +6,7 @@ class Actor
 {
 public:
 	Actor(string filename, float x, float y, int width, int height, Game* game);
+	Actor(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game);
 	~Actor();
 
 	virtual void draw(float scrollX = 0, float scrollY = 0);

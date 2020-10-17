@@ -12,6 +12,19 @@ Actor::Actor(string filename, float x, float y, int width, int height, Game* gam
 	texture = SDL_CreateTextureFromSurface(game->renderer, surface);
 }
 
+Actor::Actor(string filename, float x, float y, int width, int height, 
+	int fileWidth, int fileHeight, Game* game) :
+	game(game),
+	x(x),
+	y(y),
+	fileWidth(fileWidth),
+	fileHeight(fileHeight),
+	width(width),
+	height(height) {
+	SDL_Surface* surface = IMG_Load(filename.c_str());
+	texture = SDL_CreateTextureFromSurface(game->renderer, surface);
+}
+
 Actor::~Actor() {
 	SDL_DestroyTexture(texture);
 }

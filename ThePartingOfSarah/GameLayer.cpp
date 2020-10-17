@@ -6,7 +6,9 @@ GameLayer::GameLayer(Game* game) :
 }
 
 GameLayer::~GameLayer() {
+	delete background;
 	delete player;
+	delete crosshair;
 }
 
 void GameLayer::init() {
@@ -17,9 +19,12 @@ void GameLayer::init() {
 	background = new Background(game);
 	delete player;
 	player = new Player(WIDTH/2, HEIGHT/2, game);
+	delete crosshair;
+	crosshair = new Crosshair(game);
 }
 
 void GameLayer::processControls() {
+	SDL_GetMouseState(&mouseX, &mouseY);
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		keysToControl(event);
@@ -27,7 +32,8 @@ void GameLayer::processControls() {
 }
 
 void GameLayer::update() {
-	player->update();
+	player->update(mouseX + scrollX, mouseY + scrollY);
+	crosshair->update(mouseX, mouseY);
 }
 
 void GameLayer::draw() {
@@ -35,8 +41,14 @@ void GameLayer::draw() {
 
 	background->draw();
 	player->draw(scrollX, scrollY);
+	crosshair->draw();
 }
 
+
+void GameLayer::calculateScroll() {
+	scrollX = player->x - 200;
+	scrollY = player->y - 200;
+}
 
 void GameLayer::keysToControl(SDL_Event event) {
 	int code = event.key.keysym.sym;
@@ -50,9 +62,4 @@ void GameLayer::keysToControl(SDL_Event event) {
 	if (event.type == SDL_KEYUP) {
 		player->stop(code);
 	}
-}
-
-void GameLayer::calculateScroll() {
-	scrollX = player->x - 200;
-	scrollY = player->y - 200;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Background.h"
+#include "Crosshair.h"
 #include "Layer.h"
 #include "Player.h"
 
@@ -18,6 +19,7 @@ public:
 
 	Background* background;
 	Player* player;
+	Crosshair* crosshair;
 
 private:
 	void calculateScroll();
@@ -25,5 +27,8 @@ private:
 
 	float scrollX = 0;
 	float scrollY = 0;
+
+	int mouseX = 0;
+	int mouseY = 0;
 
 };
