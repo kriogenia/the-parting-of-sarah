@@ -27,7 +27,5 @@ public:
 	SDL_Renderer* renderer;
 	bool loopActive; 
 
-	list<Layer*> layers;
-	Layer* levelLayer;
 	Layer* gameLayer;
 };
