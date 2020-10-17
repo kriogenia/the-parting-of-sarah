@@ -36,6 +36,10 @@ void GameLayer::draw() {
 void GameLayer::keysToControl(SDL_Event event) {
 	int code = event.key.keysym.sym;
 	if (event.type == SDL_KEYDOWN) {
+		if (code == SDLK_ESCAPE) {
+			game->loopActive = false;
+			return;
+		}
 		player->move(code);
 	}
 	if (event.type == SDL_KEYUP) {

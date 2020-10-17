@@ -14,7 +14,7 @@ using namespace std;
 
 // Screen size constants
 #define WIDTH 960
-#define HEIGHT 480
+#define HEIGHT 960
 
 class Game
 {

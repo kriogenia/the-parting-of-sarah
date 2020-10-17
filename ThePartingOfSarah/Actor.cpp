@@ -12,6 +12,10 @@ Actor::Actor(string filename, float x, float y, int width, int height, Game* gam
 	texture = SDL_CreateTextureFromSurface(game->renderer, surface);
 }
 
+Actor::~Actor() {
+	SDL_DestroyTexture(texture);
+}
+
 void Actor::draw() {
 	SDL_Rect source;
 	source.x = 0;
