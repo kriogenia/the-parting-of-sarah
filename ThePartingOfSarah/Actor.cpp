@@ -16,7 +16,7 @@ Actor::~Actor() {
 	SDL_DestroyTexture(texture);
 }
 
-void Actor::draw() {
+void Actor::draw(float scrollX, float scrollY) {
 	SDL_Rect source;
 	source.x = 0;
 	source.y = 0;
@@ -24,8 +24,8 @@ void Actor::draw() {
 	source.h = fileHeight;	// texture.height;
 
 	SDL_Rect destination;
-	destination.x = x - width / 2;
-	destination.y = y - height / 2;
+	destination.x = x - width / 2 - scrollX;
+	destination.y = y - height / 2 - scrollY;
 	destination.w = width;
 	destination.h = height;
 

@@ -20,6 +20,10 @@ public:
 	Player* player;
 
 private:
+	void calculateScroll();
 	void keysToControl(SDL_Event event);
+
+	float scrollX = 0;
+	float scrollY = 0;
 
 };

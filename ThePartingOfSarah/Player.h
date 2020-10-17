@@ -11,7 +11,7 @@ public:
     Player(float x, float y, Game* game);
 
     void update();
-    void draw() override;
+    void draw(float scrollX = 0, float scrollY = 0) override;
     void move(int code);
     void stop(int code);
 

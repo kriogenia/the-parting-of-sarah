@@ -1,10 +1,10 @@
 #include "Player.h"
 
 Player::Player(float x, float y, Game* game) : 
-	Actor("res/sprites/mc_right.png", x, y, 35, 35, game) {
+	Actor("res/sprites/character/Character_Down.png", x, y, 64, 64, game) {
 	this->speed = STARTING_SPEED;
-	this->animation = new Animation("res/sprites/mc_right.png", width, height,
-		320, 40, 6, 8, game);
+	this->animation = new Animation("res/sprites/character/Character_Down.png", width, height,
+		128, 32, 6, 4, game);
 }
 
 void Player::update() {
@@ -30,8 +30,8 @@ void Player::move(int code) {
 	}
 }
 
-void Player::draw() {
-	animation->draw(x, y);
+void Player::draw(float scrollX, float scrollY) {
+	animation->draw(x - scrollX, y - scrollY);
 }
 
 void Player::stop(int code) {

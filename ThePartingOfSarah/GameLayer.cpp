@@ -10,6 +10,9 @@ GameLayer::~GameLayer() {
 }
 
 void GameLayer::init() {
+	this->scrollX = 0;
+	this->scrollY = 0;
+
 	delete background;
 	background = new Background(game);
 	delete player;
@@ -28,8 +31,10 @@ void GameLayer::update() {
 }
 
 void GameLayer::draw() {
+	calculateScroll();
+
 	background->draw();
-	player->draw();
+	player->draw(scrollX, scrollY);
 }
 
 
@@ -45,4 +50,9 @@ void GameLayer::keysToControl(SDL_Event event) {
 	if (event.type == SDL_KEYUP) {
 		player->stop(code);
 	}
+}
+
+void GameLayer::calculateScroll() {
+	scrollX = player->x - 200;
+	scrollY = player->y - 200;
 }
