@@ -16,5 +16,10 @@ public:
 	void update() override;
 	void draw() override;
 
+	Background* background;
 	Player* player;
+
+private:
+	void keysToControl(SDL_Event event);
+
 };
