@@ -1,8 +1,11 @@
 #pragma once
 
+#include <fstream>
+#include <sstream>
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 #include <time.h>
 #include <stdlib.h>
 #include <SDL.h>
@@ -15,8 +18,8 @@ class Layer;
 using namespace std;
 
 // Screen size constants
-#define WIDTH 960
-#define HEIGHT 960
+constexpr auto WIDTH = 480;
+constexpr auto HEIGHT = 480;
 
 class Game
 {

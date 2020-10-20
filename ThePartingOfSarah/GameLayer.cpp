@@ -6,7 +6,6 @@ GameLayer::GameLayer(Game* game) :
 }
 
 GameLayer::~GameLayer() {
-	delete background;
 	delete crosshair;
 	delete level;
 	delete player;
@@ -16,14 +15,15 @@ void GameLayer::init() {
 	this->scrollX = 0;
 	this->scrollY = 0;
 
-	delete background;
-	background = new Background(game);
 	delete crosshair;
 	crosshair = new Crosshair(game);
 	delete level;
-	level = new Level(floor);
+	level = new Level(floor, game);
 	delete player;
-	player = new Player(WIDTH/2, HEIGHT/2, game);
+	player = new Player(
+		level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
+		level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2, 
+		game);
 }
 
 void GameLayer::processControls() {
@@ -42,15 +42,15 @@ void GameLayer::update() {
 void GameLayer::draw() {
 	calculateScroll();
 
-	background->draw();
+	level->draw(scrollX, scrollY);
 	player->draw(scrollX, scrollY);
 	crosshair->draw();
 }
 
 
 void GameLayer::calculateScroll() {
-	scrollX = player->x - 200;
-	scrollY = player->y - 200;
+	scrollX = player->x - WIDTH / 2;
+	scrollY = player->y - HEIGHT / 2;
 }
 
 void GameLayer::keysToControl(SDL_Event event) {

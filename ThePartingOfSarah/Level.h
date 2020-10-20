@@ -1,18 +1,21 @@
 #pragma once
 
 #include <queue>
+#include "Background.h"
 #include "Game.h"
 #include "Room.h"
 
-#define FLOOR_SIZE 5
-#define FLOORS_POOL_SIZE 25
+constexpr auto FLOOR_SIZE = 5;
+constexpr auto FLOORS_POOL_SIZE = 25;
 
 using namespace std;
 
 class Level {
 public:
-	Level(int floor);
+	Level(int floor, Game* game);
 	~Level();
+
+	void draw(int scrollX, int scrollY);
 
 	Room* currentRoom;
 
@@ -25,9 +28,13 @@ private:
 	void generateCommonRooms(queue<int> codes);
 	void printFloor();
 
+	Game* game;
+
 	list<Room*> rooms;
 	Room* startingRoom;
 	Room* bossRoom;
 	Room* treasureRoom;
+
+	Background* background;
 };
 

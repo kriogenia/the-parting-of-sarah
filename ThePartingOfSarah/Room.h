@@ -1,7 +1,10 @@
 #pragma once
 
-#include <vector>
-using namespace std;
+#include "Game.h"
+#include "Tile.h"
+
+constexpr auto TILES_PER_ROOM = 30;
+constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
 
 enum eType {
 	NO_ROOM,
@@ -13,8 +16,10 @@ enum eType {
 
 class Room {
 public:
-	Room(eType type, int x, int y, int number = -1);
+	Room(eType type, int x, int y, int number, Game* game);
 	~Room();
+
+	void draw(int scrollX, int scrollY);
 
 	bool isNeighbour(Room* room);
 	void append(Room* room);
@@ -23,6 +28,7 @@ public:
 	eType type;
 	int x;
 	int y;
+	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
 
 	Room* top = nullptr;
 	Room* left = nullptr;
@@ -30,6 +36,13 @@ public:
 	Room* right = nullptr;
 
 private:
-	int code;
+	void loadMap();
+	void loadMapObject(char character, float x, float y);
+
+	Game* game;
+	list<Tile*> tiles;
+	string filename;
+	
+	int code = -1;
 };
 
