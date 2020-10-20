@@ -5,8 +5,8 @@ using namespace std;
 
 enum eType {
 	NO_ROOM,
-	STARTING_ROOM,
 	COMMON_ROOM,
+	STARTING_ROOM,
 	TREASURE_ROOM,
 	BOSS_ROOM
 };

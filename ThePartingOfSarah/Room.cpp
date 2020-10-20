@@ -3,10 +3,8 @@
 Room::Room(eType type, int x, int y, int number) :
 	type(type),
 	x(x),
-	y(y) {
-	if (number != -1) {
-		code = number;
-	}
+	y(y),
+	code(code){
 }
 
 Room::~Room() {
