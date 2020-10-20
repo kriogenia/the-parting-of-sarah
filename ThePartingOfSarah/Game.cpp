@@ -1,7 +1,8 @@
 #include "Game.h"
 #include "GameLayer.h"
 
-Game::Game() {
+Game::Game(int seed) :
+	seed(seed) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		cout << "Error SDL_Init" << SDL_GetError() << endl;
 	}
@@ -11,6 +12,13 @@ Game::Game() {
 	}
 	SDL_SetWindowTitle(window, "The Parting of Sarah");
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
+	if (seed < 0 || seed >= 10000) {
+		cout << "No valid seed provided. Generating..." << endl;
+		seed = (unsigned)time(NULL) % 10000;
+	}
+	cout << "SEED: " << seed << endl;
+	srand(seed);
 
 	gameLayer = new GameLayer(this);
 

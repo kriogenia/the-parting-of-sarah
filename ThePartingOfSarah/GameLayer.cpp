@@ -7,8 +7,9 @@ GameLayer::GameLayer(Game* game) :
 
 GameLayer::~GameLayer() {
 	delete background;
-	delete player;
 	delete crosshair;
+	delete level;
+	delete player;
 }
 
 void GameLayer::init() {
@@ -17,10 +18,12 @@ void GameLayer::init() {
 
 	delete background;
 	background = new Background(game);
-	delete player;
-	player = new Player(WIDTH/2, HEIGHT/2, game);
 	delete crosshair;
 	crosshair = new Crosshair(game);
+	delete level;
+	level = new Level(floor);
+	delete player;
+	player = new Player(WIDTH/2, HEIGHT/2, game);
 }
 
 void GameLayer::processControls() {

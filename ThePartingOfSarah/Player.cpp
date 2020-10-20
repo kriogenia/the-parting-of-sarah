@@ -100,4 +100,5 @@ Animation* Player::getAnimation() {
 	if (action == MOVING)
 		return movingAnimations[orientation];
 	//if (action == SHOOTING)
+	return nullptr;
 }

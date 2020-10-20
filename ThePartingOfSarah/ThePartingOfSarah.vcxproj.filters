@@ -25,6 +25,12 @@
     <Filter Include="Archivos de origen\Actors">
       <UniqueIdentifier>{ee01cd2d-e532-4c59-838e-e1c3db26d031}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Levels">
+      <UniqueIdentifier>{eb010db8-5e14-4fa1-8a14-bfbda145f84f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Levels">
+      <UniqueIdentifier>{03f9e53d-52f8-4e5e-bc19-fff1b9d26e79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,6 +60,12 @@
     <ClCompile Include="Crosshair.cpp">
       <Filter>Archivos de origen\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Archivos de origen\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -79,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="Crosshair.h">
       <Filter>Archivos de encabezado\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

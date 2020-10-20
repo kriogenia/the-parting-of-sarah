@@ -3,6 +3,7 @@
 #include "Background.h"
 #include "Crosshair.h"
 #include "Layer.h"
+#include "Level.h"
 #include "Player.h"
 
 class GameLayer : 
@@ -17,13 +18,17 @@ public:
 	void update() override;
 	void draw() override;
 
-	Background* background;
-	Player* player;
-	Crosshair* crosshair;
 
 private:
 	void calculateScroll();
 	void keysToControl(SDL_Event event);
+
+	Background* background;
+	Crosshair* crosshair;
+	Player* player;
+	Level* level;
+
+	int floor = 0;
 
 	float scrollX = 0;
 	float scrollY = 0;

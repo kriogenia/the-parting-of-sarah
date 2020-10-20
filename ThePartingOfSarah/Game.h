@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <time.h>
+#include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -19,7 +21,7 @@ using namespace std;
 class Game
 {
 public:
-	Game();
+	Game(int seed = -1);
 
 	void loop();
 
@@ -28,4 +30,6 @@ public:
 	bool loopActive; 
 
 	Layer* gameLayer;
+
+	int seed;
 };

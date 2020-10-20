@@ -8,16 +8,16 @@
 #define STARTING_SPEED 3;
 
 enum eAction {
-	IDLE,
-	MOVING,
-	SHOOTING
+    IDLE,
+    MOVING,
+    SHOOTING
 };
 
 enum eOrientation {
-	UP_LEFT,
-	UP_RIGHT,
-	DOWN_LEFT,
-	DOWN_RIGHT
+    UP_LEFT,
+    UP_RIGHT,
+    DOWN_LEFT,
+    DOWN_RIGHT
 };
 
 class Player :
