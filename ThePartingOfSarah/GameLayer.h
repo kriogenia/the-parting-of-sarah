@@ -17,11 +17,10 @@ public:
 	void update() override;
 	void draw() override;
 
-	float scrollX = 0;
-	float scrollY = 0;
+	int scrollX = 0;
+	int scrollY = 0;
 
 private:
-	void calculateScroll();
 	void keysToControl(SDL_Event event);
 
 	Crosshair* crosshair;

@@ -20,6 +20,17 @@ void Room::draw(int scrollX, int scrollY) {
 	}
 }
 
+bool Room::hasPlayerInside(int playerX, int playerY) {
+	int topLimit = this->y * TILES_PER_ROOM * TILE_SIZE + FLOOR_OFFSET;
+	int leftLimit = this->x * TILES_PER_ROOM * TILE_SIZE + FLOOR_OFFSET;
+	int rightLimit = (this->x + 1) * TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
+	int bottomLimit = (this->y + 1) * TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
+	if (playerX > leftLimit && playerX < rightLimit && playerY > topLimit && playerY < bottomLimit) {
+		return true;
+	}
+	return false;
+}
+
 void Room::loadMap() {
 	char character;
 	string line;

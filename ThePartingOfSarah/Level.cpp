@@ -24,6 +24,37 @@ void Level::draw(int scrollX, int scrollY) {
 	}
 }
 
+void Level::update(int playerX, int playerY) {
+	// Out of room player, check if they entered a new room
+	if (currentRoom == nullptr) {
+		for (auto const& room : rooms) {
+			if (room->hasPlayerInside(playerX, playerY)) {
+				currentRoom = room;
+				// room.playerEntered();
+			}
+		}
+		return;
+	}
+	// Check if player is still in room
+	if (currentRoom->hasPlayerInside(playerX, playerY)) {
+		return;
+	}
+	// Otherwise it exited
+	currentRoom = nullptr;
+}
+
+void Level::calculateScroll(int playerX, int playerY, int* scrollX, int* scrollY) {
+	if (currentRoom != nullptr) {
+		int roomDimension = TILES_PER_ROOM * TILE_SIZE;
+		*scrollX = currentRoom->x * roomDimension + roomDimension / 2 - HEIGHT / 2;
+		*scrollY = currentRoom->y * roomDimension + roomDimension / 2 - WIDTH / 2;
+	}
+	else {
+		*scrollX = playerX - HEIGHT / 2;
+		*scrollY = playerY - WIDTH / 2;
+	}
+}
+
 void Level::generateRooms() {
 	queue<int> codes = getCodes();
 	setStartingRoom(codes);

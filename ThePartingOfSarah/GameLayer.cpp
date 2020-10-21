@@ -36,21 +36,17 @@ void GameLayer::processControls() {
 
 void GameLayer::update() {
 	player->update(mouseX + scrollX, mouseY + scrollY);
+	level->update(player->x, player->y);
 	crosshair->update(mouseX, mouseY);
 }
 
 void GameLayer::draw() {
-	calculateScroll();
-
+	// Calculates the scroll
+	level->calculateScroll(player->x, player->y, &scrollX, &scrollY);
+	// Draws the actors
 	level->draw(scrollX, scrollY);
 	player->draw(scrollX, scrollY);
 	crosshair->draw();
-}
-
-
-void GameLayer::calculateScroll() {
-	scrollX = player->x - WIDTH / 2;
-	scrollY = player->y - HEIGHT / 2;
 }
 
 void GameLayer::keysToControl(SDL_Event event) {

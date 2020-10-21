@@ -20,6 +20,7 @@ public:
 	~Room();
 
 	void draw(int scrollX, int scrollY);
+	bool hasPlayerInside(int playerX, int playerY);
 
 	bool isNeighbour(Room* room);
 	void append(Room* room);
