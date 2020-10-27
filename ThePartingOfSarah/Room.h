@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Game.h"
-#include "Tile.h"
+#include "FloorTile.h"
 
 constexpr auto TILES_PER_ROOM = 30;
+constexpr auto TILES_PER_FILE = 24;
 constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
 
 enum eType {
@@ -39,6 +40,7 @@ public:
 private:
 	void loadMap();
 	void loadMapObject(char character, float x, float y);
+	void generateWalls();
 
 	Game* game;
 	list<Tile*> tiles;

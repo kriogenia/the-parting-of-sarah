@@ -37,6 +37,15 @@ void Room::loadMap() {
 	int offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	int offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	ifstream streamFile(filename.c_str());
+	// Floor mapping
+	for (int i = 0; i < TILES_PER_FILE; i++) {
+		for (int j = 0; j < TILES_PER_FILE; j++) {
+			tiles.push_back(new FloorTile(
+				j * TILE_SIZE + offsetRoomX + FLOOR_OFFSET + TILE_SIZE / 2, 
+				i * TILE_SIZE + offsetRoomY + FLOOR_OFFSET + TILE_SIZE / 2,
+				rand() % 10, game));
+		}
+	}
 	if (!streamFile.is_open()) {
 		cout << "Error loading file " << filename << endl;
 		return;
@@ -55,13 +64,14 @@ void Room::loadMap() {
 		}
 	}
 	streamFile.close();
+	//generateWalls();
 }
 
 void Room::loadMapObject(char character, float x, float y) {
 	Tile* tile = nullptr;
 	switch (character) {
 	case 'B': {
-		tile = new Tile("res/tiles/room_base.png", x+48, y+48, 96, 96, game);
+		//tile = new Tile("res/tiles/room_base.png", x+48, y+48, 96, 96, game);
 		break;
 	}
 	case 'x': {
@@ -74,7 +84,18 @@ void Room::loadMapObject(char character, float x, float y) {
 	}
 	}
 	if (tile != nullptr) {
-		tiles.push_back(tile);
+		//tiles.push_back(tile);
+	}
+}
+
+void Room::generateWalls() {
+	int offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
+	int offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
+	for (int i = 3; i < TILES_PER_ROOM - 3; i++) {
+		tiles.push_back(new Tile("res/tiles/wall_top.png", TILE_SIZE*i + offsetRoomX + TILE_SIZE / 2,
+			TILE_SIZE + TILE_SIZE/2 + offsetRoomY, 16, 16, game));
+		tiles.push_back(new Tile("res/tiles/wall_side_right.png", TILE_SIZE*i + offsetRoomX + TILE_SIZE / 2,
+			TILE_SIZE*2 + TILE_SIZE/2 + offsetRoomY, 16, 16, game));
 	}
 }
 

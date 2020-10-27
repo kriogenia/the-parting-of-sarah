@@ -31,6 +31,12 @@
     <Filter Include="Archivos de encabezado\Levels">
       <UniqueIdentifier>{03f9e53d-52f8-4e5e-bc19-fff1b9d26e79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Actors\Tiles">
+      <UniqueIdentifier>{ceeb2771-8c58-4209-9c27-f2124e166180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\Tiles">
+      <UniqueIdentifier>{35ef8b3c-c1f0-46af-8eed-8ac8685d1fb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -67,7 +73,10 @@
       <Filter>Archivos de origen\Levels</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>Archivos de origen\Actors</Filter>
+      <Filter>Archivos de origen\Actors\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorTile.cpp">
+      <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +111,10 @@
       <Filter>Archivos de encabezado\Levels</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Archivos de encabezado\Actors</Filter>
+      <Filter>Archivos de encabezado\Actors\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorTile.h">
+      <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
