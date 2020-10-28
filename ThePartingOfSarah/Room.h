@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game.h"
-#include "FloorTile.h"
+#include "MappedTile.h"
 
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;

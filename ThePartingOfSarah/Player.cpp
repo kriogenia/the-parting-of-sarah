@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(float x, float y, Game* game) : 
-	Actor("res/sprites/character/Character_Idle_Down.png", x, y, 64, 64, game) {
+	Actor("res/sprites/character/Character_Idle_Down.png", x, y, 32, 32, game) {
 	this->speed = STARTING_SPEED;
 
 	movingAnimations.clear();

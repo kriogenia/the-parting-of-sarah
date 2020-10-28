@@ -1,11 +1,11 @@
-#include "FloorTile.h"
+#include "MappedTile.h"
 
-FloorTile::FloorTile(int x, int y, int pos, Game* game) :
-	Tile("res/tiles/floor.png", x, y, 16, 16, 160, 16, game) {
+MappedTile::MappedTile(string filename, int x, int y, int width, int pos, Game* game) :
+	Tile(filename, x, y, 16, 16, width, 16, game) {
 	this->position = pos;
 }
 
-void FloorTile::draw(float scrollX, float scrollY) {
+void MappedTile::draw(float scrollX, float scrollY) {
 	SDL_Rect source;
 	source.x = TILE_SIZE * position;
 	source.y = 0;

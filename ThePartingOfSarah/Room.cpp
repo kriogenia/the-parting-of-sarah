@@ -40,10 +40,10 @@ void Room::loadMap() {
 	// Floor mapping
 	for (int i = 0; i < TILES_PER_FILE; i++) {
 		for (int j = 0; j < TILES_PER_FILE; j++) {
-			tiles.push_back(new FloorTile(
+			tiles.push_back(new MappedTile("res/tiles/floor.png",
 				j * TILE_SIZE + offsetRoomX + FLOOR_OFFSET + TILE_SIZE / 2, 
 				i * TILE_SIZE + offsetRoomY + FLOOR_OFFSET + TILE_SIZE / 2,
-				rand() % 10, game));
+				160, rand() % 10, game));
 		}
 	}
 	if (!streamFile.is_open()) {
@@ -64,7 +64,7 @@ void Room::loadMap() {
 		}
 	}
 	streamFile.close();
-	//generateWalls();
+	generateWalls();
 }
 
 void Room::loadMapObject(char character, float x, float y) {
@@ -91,11 +91,45 @@ void Room::loadMapObject(char character, float x, float y) {
 void Room::generateWalls() {
 	int offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	int offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
+	// Corners
+	tiles.push_back(new MappedTile("res/tiles/wall.png",
+		offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
+		offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
+		160, 0, game));
+	tiles.push_back(new MappedTile("res/tiles/wall.png",
+		offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
+		offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+		160, 1, game));
+	tiles.push_back(new MappedTile("res/tiles/wall.png",
+		offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+		offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+		160, 2, game));
+	tiles.push_back(new MappedTile("res/tiles/wall.png",
+		offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+		offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
+		160, 3, game));
+	// Sides
 	for (int i = 3; i < TILES_PER_ROOM - 3; i++) {
-		tiles.push_back(new Tile("res/tiles/wall_top.png", TILE_SIZE*i + offsetRoomX + TILE_SIZE / 2,
-			TILE_SIZE + TILE_SIZE/2 + offsetRoomY, 16, 16, game));
-		tiles.push_back(new Tile("res/tiles/wall_side_right.png", TILE_SIZE*i + offsetRoomX + TILE_SIZE / 2,
-			TILE_SIZE*2 + TILE_SIZE/2 + offsetRoomY, 16, 16, game));
+		// TOP
+		tiles.push_back(new MappedTile("res/tiles/wall.png",
+			offsetRoomX + TILE_SIZE * i + TILE_SIZE / 2,
+			offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
+			160, 4 + rand() % 2, game));
+		// LEFT
+		tiles.push_back(new MappedTile("res/tiles/wall.png",
+			offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
+			offsetRoomY + TILE_SIZE * i + TILE_SIZE / 2,
+			160, 6 + i % 2, game));
+		// RIGHT
+		tiles.push_back(new MappedTile("res/tiles/wall.png",
+			offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+			offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * i + TILE_SIZE / 2),
+			160, 8 + i % 2, game));
+		// BOT
+		tiles.push_back(new MappedTile("res/tiles/wall.png",
+			offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * i + TILE_SIZE / 2),
+			offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
+			160, 10 + rand() % 2, game));
 	}
 }
 

@@ -75,7 +75,7 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
-    <ClCompile Include="FloorTile.cpp">
+    <ClCompile Include="MappedTile.cpp">
       <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +113,7 @@
     <ClInclude Include="Tile.h">
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
-    <ClInclude Include="FloorTile.h">
+    <ClInclude Include="MappedTile.h">
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
   </ItemGroup>

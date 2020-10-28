@@ -2,9 +2,9 @@
 
 #include "Tile.h"
 
-class FloorTile : public Tile {
+class MappedTile : public Tile {
 public:
-	FloorTile(int x, int y, int number, Game* game);
+	MappedTile(string filename, int x, int y, int width, int number, Game* game);
 
 	void draw(float scrollX, float scrollY = 0) override;
 private:
