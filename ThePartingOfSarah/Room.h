@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "MappedTile.h"
+#include "Rock.h"
 
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;

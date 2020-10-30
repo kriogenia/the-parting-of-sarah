@@ -163,6 +163,7 @@ void Room::generateTiles() {
 			loadMapObject(grid[j][i], i, j);
 		}
 	}
+	// TODO spawn chest if it is a treasure room
 }
 
 void Room::loadMapObject(char character, int i, int j) {
@@ -208,10 +209,16 @@ void Room::loadMapObject(char character, int i, int j) {
 	case HORIZONTAL_DOOR: {
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x + TILE_SIZE, y, 160, rand() % 10, game));
+		break;
 	}
 	case VERTICAL_DOOR: {
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y + TILE_SIZE, 160, rand() % 10, game));
+		break;
+	}
+	case ROCK: {
+		tiles.push_back(new Rock(x, y, game));
+		break;
 	}
 	}
 }

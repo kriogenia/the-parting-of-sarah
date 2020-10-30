@@ -78,6 +78,9 @@
     <ClCompile Include="MappedTile.cpp">
       <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Archivos de origen\Actors\Tiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -114,6 +117,9 @@
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="MappedTile.h">
+      <Filter>Archivos de encabezado\Actors\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
   </ItemGroup>
