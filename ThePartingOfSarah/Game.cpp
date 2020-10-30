@@ -12,6 +12,7 @@ Game::Game(int seed) :
 	}
 	SDL_SetWindowTitle(window, "The Parting of Sarah");
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+	SDL_ShowCursor(SDL_DISABLE);
 
 	if (seed < 0 || seed >= 10000) {
 		cout << "No valid seed provided. Generating..." << endl;
