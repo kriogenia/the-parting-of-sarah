@@ -53,3 +53,13 @@ void Game::loop() {
 	}
 
 }
+
+SDL_Texture* Game::getTexture(string filename) {
+	if (mapTextures.find(filename) == mapTextures.end()) {
+		SDL_Surface* surface = IMG_Load(filename.c_str());
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+		mapTextures[filename] = texture;
+	}
+	return mapTextures[filename];
+}
+

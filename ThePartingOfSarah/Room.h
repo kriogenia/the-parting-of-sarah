@@ -27,7 +27,10 @@ enum eTileType {
 	RIGHT_WALL = 'R',
 	BOTTOM_WALL = 'B',
 	HORIZONTAL_DOOR = '-',
-	VERTICAL_DOOR = '|'
+	VERTICAL_DOOR = '|',
+	ROCK = 'X',
+	WATER = '~',
+	BARREL = 'M'
 };
 
 class Room {

@@ -1,16 +1,7 @@
 #include "Actor.h"
 
-Actor::Actor(string filename, float x, float y, int width, int height, Game* game) : 
-	game(game), 
-	x(x), 
-	y(y), 
-	fileWidth(width), 
-	fileHeight(height), 
-	width(width), 
-	height(height) {
-	SDL_Surface* surface = IMG_Load(filename.c_str());
-	texture = SDL_CreateTextureFromSurface(game->renderer, surface);
-}
+Actor::Actor(string filename, float x, float y, int width, int height, Game* game)
+	: Actor(filename, x, y, width, height, width, height, game) { }
 
 Actor::Actor(string filename, float x, float y, int width, int height, 
 	int fileWidth, int fileHeight, Game* game) :
@@ -20,9 +11,9 @@ Actor::Actor(string filename, float x, float y, int width, int height,
 	fileWidth(fileWidth),
 	fileHeight(fileHeight),
 	width(width),
-	height(height) {
-	SDL_Surface* surface = IMG_Load(filename.c_str());
-	texture = SDL_CreateTextureFromSurface(game->renderer, surface);
+	height(height)
+{
+	texture = game->getTexture(filename);
 }
 
 Actor::~Actor() {

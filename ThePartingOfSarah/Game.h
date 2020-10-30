@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <map>
 #include <vector>
 #include <time.h>
 #include <stdlib.h>
@@ -28,6 +29,8 @@ public:
 
 	void loop();
 
+	SDL_Texture* getTexture(string filename);
+
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	bool loopActive; 
@@ -35,4 +38,7 @@ public:
 	Layer* gameLayer;
 
 	int seed;
+
+private:
+	map<string, SDL_Texture*> mapTextures;
 };
