@@ -30,7 +30,8 @@ enum eTileType {
 	HORIZONTAL_DOOR = '-',
 	VERTICAL_DOOR = '|',
 	ROCK = 'X',
-	WATER = '~',
+	POND_TOP = 'P',
+	POND_BASE = '~',
 	BARREL = 'M'
 };
 
@@ -63,7 +64,6 @@ public:
 private:
 	void loadMapObject(char character, int x, int y);
 
-	void generateFloor();
 	void generateWalls();
 	void generateCorridors();
 	void readFile();

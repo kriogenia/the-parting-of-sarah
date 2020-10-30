@@ -7,7 +7,7 @@ Room::Room(eType type, int x, int y, int number, Game* game) :
 	code(number),
 	game(game) {
 
-	this->filename = "res/rooms/room_2.txt";	// <- Code / type
+	this->filename = "res/rooms/room_1.txt";	// <- Code / type
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	for (int i = 0; i < TILES_PER_ROOM; i++) {
@@ -209,15 +209,26 @@ void Room::loadMapObject(char character, int i, int j) {
 	case HORIZONTAL_DOOR: {
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x + TILE_SIZE, y, 160, rand() % 10, game));
+		// TODO add door
 		break;
 	}
 	case VERTICAL_DOOR: {
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y + TILE_SIZE, 160, rand() % 10, game));
+		// TODO add door
 		break;
 	}
 	case ROCK: {
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new Rock(x, y, game));
+		break;
+	}
+	case POND_TOP: {
+		tiles.push_back(new MappedTile("res/tiles/water.png", x, y, 64, 0, game));
+		break;
+	}
+	case POND_BASE: {
+		tiles.push_back(new MappedTile("res/tiles/water.png", x, y, 64, 1 + rand() % 3, game));
 		break;
 	}
 	}
