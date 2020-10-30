@@ -15,10 +15,27 @@ enum eType {
 	BOSS_ROOM
 };
 
+enum eTileType {
+	NO_TILE = ' ',
+	FLOOR = '.',
+	TOP_LEFT_WALL = '/',
+	TOP_RIGHT_WALL = '\\',
+	BOTTOM_LEFT_WALL = '{',
+	BOTTOM_RIGHT_WALL = '}',
+	TOP_WALL = 'T',
+	LEFT_WALL = 'L',
+	RIGHT_WALL = 'R',
+	BOTTOM_WALL = 'B',
+	HORIZONTAL_DOOR = '-',
+	VERTICAL_DOOR = '|'
+};
+
 class Room {
 public:
 	Room(eType type, int x, int y, int number, Game* game);
 	~Room();
+
+	void loadMap();
 
 	void draw(int scrollX, int scrollY);
 	bool hasPlayerInside(int playerX, int playerY);
@@ -26,6 +43,8 @@ public:
 	bool isNeighbour(Room* room);
 	void append(Room* room);
 	Room* expand(int code, int floorSize);
+
+	void printGrid();
 
 	eType type;
 	int x;
@@ -38,14 +57,24 @@ public:
 	Room* right = nullptr;
 
 private:
-	void loadMap();
-	void loadMapObject(char character, float x, float y);
+	void loadMapObject(char character, int x, int y);
+
+	void generateFloor();
 	void generateWalls();
+	void generateCorridors();
+	void readFile();
+	void generateTiles();
 
 	Game* game;
-	list<Tile*> tiles;
 	string filename;
+
+	list<Tile*> tiles;
+	list<Tile*> doors;
+	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 	
 	int code = -1;
+
+	int offsetRoomX;
+	int offsetRoomY;
 };
 

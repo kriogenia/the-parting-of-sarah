@@ -6,8 +6,15 @@ Room::Room(eType type, int x, int y, int number, Game* game) :
 	y(y),
 	code(number),
 	game(game) {
+
 	this->filename = "res/rooms/room_2.txt";	// <- Code / type
-	loadMap();
+	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
+	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
+	for (int i = 0; i < TILES_PER_ROOM; i++) {
+		for (int j = 0; j < TILES_PER_ROOM; j++) {
+			grid[i][j] = NO_TILE;
+		}
+	}
 }
 
 Room::~Room() {
@@ -21,10 +28,10 @@ void Room::draw(int scrollX, int scrollY) {
 }
 
 bool Room::hasPlayerInside(int playerX, int playerY) {
-	int topLimit = this->y * TILES_PER_ROOM * TILE_SIZE + FLOOR_OFFSET;
-	int leftLimit = this->x * TILES_PER_ROOM * TILE_SIZE + FLOOR_OFFSET;
-	int rightLimit = (this->x + 1) * TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
-	int bottomLimit = (this->y + 1) * TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
+	int topLimit = offsetRoomY + FLOOR_OFFSET;
+	int leftLimit = offsetRoomX + FLOOR_OFFSET;
+	int rightLimit = offsetRoomX + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
+	int bottomLimit = offsetRoomY + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
 	if (playerX > leftLimit && playerX < rightLimit && playerY > topLimit && playerY < bottomLimit) {
 		return true;
 	}
@@ -32,20 +39,17 @@ bool Room::hasPlayerInside(int playerX, int playerY) {
 }
 
 void Room::loadMap() {
+	readFile();
+	generateWalls();
+	generateCorridors();
+	generateTiles();
+}
+
+
+void Room::readFile() {
 	char character;
 	string line;
-	int offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
-	int offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	ifstream streamFile(filename.c_str());
-	// Floor mapping
-	for (int i = 0; i < TILES_PER_FILE; i++) {
-		for (int j = 0; j < TILES_PER_FILE; j++) {
-			tiles.push_back(new MappedTile("res/tiles/floor.png",
-				j * TILE_SIZE + offsetRoomX + FLOOR_OFFSET + TILE_SIZE / 2, 
-				i * TILE_SIZE + offsetRoomY + FLOOR_OFFSET + TILE_SIZE / 2,
-				160, rand() % 10, game));
-		}
-	}
 	if (!streamFile.is_open()) {
 		cout << "Error loading file " << filename << endl;
 		return;
@@ -57,82 +61,160 @@ void Room::loadMap() {
 			// For each character in the line
 			for (int j = 0; !streamLine.eof(); j++) {
 				streamLine >> character;			// Read character 
-				int x = j * TILE_SIZE + offsetRoomX + FLOOR_OFFSET;	
-				int y = i * TILE_SIZE + offsetRoomY + FLOOR_OFFSET;
-				loadMapObject(character, x, y);
+				grid[j+3][i+3] = character;
 			}
 		}
 	}
 	streamFile.close();
-	generateWalls();
-}
-
-void Room::loadMapObject(char character, float x, float y) {
-	Tile* tile = nullptr;
-	switch (character) {
-	case 'B': {
-		//tile = new Tile("res/tiles/room_base.png", x+48, y+48, 96, 96, game);
-		break;
-	}
-	case 'x': {
-		//tile = new Tile("res/floor.png", x, y, game);
-		break;
-	}
-	case '~': {
-		//tile = new Tile("res/water.png", x, y, game);
-		break;
-	}
-	}
-	if (tile != nullptr) {
-		//tiles.push_back(tile);
-	}
 }
 
 void Room::generateWalls() {
-	int offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
-	int offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	// Corners
-	tiles.push_back(new MappedTile("res/tiles/wall.png",
-		offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
-		offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
-		160, 0, game));
-	tiles.push_back(new MappedTile("res/tiles/wall.png",
-		offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
-		offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-		160, 1, game));
-	tiles.push_back(new MappedTile("res/tiles/wall.png",
-		offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-		offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-		160, 2, game));
-	tiles.push_back(new MappedTile("res/tiles/wall.png",
-		offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-		offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
-		160, 3, game));
+	grid[2][2] = TOP_LEFT_WALL;
+	grid[27][2] = TOP_RIGHT_WALL;
+	grid[2][27] = BOTTOM_LEFT_WALL;
+	grid[27][27] = BOTTOM_RIGHT_WALL;
 	// Sides
-	for (int i = 3; i < TILES_PER_ROOM - 3; i++) {
+	for (int i = 3; i < 14; i++) {
 		// TOP
-		tiles.push_back(new MappedTile("res/tiles/wall.png",
-			offsetRoomX + TILE_SIZE * i + TILE_SIZE / 2,
-			offsetRoomY + TILE_SIZE * 2 + TILE_SIZE / 2,
-			160, 4 + rand() % 2, game));
+		grid[i][2] = TOP_WALL;
+		grid[i+13][2] = TOP_WALL;
 		// LEFT
-		tiles.push_back(new MappedTile("res/tiles/wall.png",
-			offsetRoomX + TILE_SIZE * 2 + TILE_SIZE / 2,
-			offsetRoomY + TILE_SIZE * i + TILE_SIZE / 2,
-			160, 6 + i % 2, game));
+		grid[2][i] = LEFT_WALL;
+		grid[2][i+13] = LEFT_WALL;
 		// RIGHT
-		tiles.push_back(new MappedTile("res/tiles/wall.png",
-			offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-			offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * i + TILE_SIZE / 2),
-			160, 8 + i % 2, game));
+		grid[27][i] = RIGHT_WALL;
+		grid[27][i+13] = RIGHT_WALL;
 		// BOT
-		tiles.push_back(new MappedTile("res/tiles/wall.png",
-			offsetRoomX + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * i + TILE_SIZE / 2),
-			offsetRoomY + TILES_PER_ROOM * TILE_SIZE - (TILE_SIZE * 2 + TILE_SIZE / 2),
-			160, 10 + rand() % 2, game));
+		grid[i][27] = BOTTOM_WALL;
+		grid[i+13][27] = BOTTOM_WALL;
 	}
 }
 
+void Room::generateCorridors() {
+	if (top == nullptr) {
+		for (int i = 13; i <= 16; i++) {
+			grid[i][2] = TOP_WALL;
+		}
+	}
+	else {
+		for (int i = 0; i < 2; i++) {
+			grid[13][i] = LEFT_WALL;
+			grid[14][i] = FLOOR;
+			grid[15][i] = FLOOR;
+			grid[16][i] = RIGHT_WALL;
+		}
+		grid[14][2] = HORIZONTAL_DOOR;
+	}
+	if (left == nullptr) {
+		// Walls
+		for (int i = 13; i <= 16; i++) {
+			grid[2][i] = LEFT_WALL;
+		}
+	}
+	else {
+		for (int i = 0; i < 2; i++) {
+			grid[i][13] = TOP_WALL;
+			grid[i][14] = FLOOR;
+			grid[i][15] = FLOOR;
+			grid[i][16] = BOTTOM_WALL;
+		}
+		grid[2][13] = TOP_WALL;
+		grid[2][14] = VERTICAL_DOOR;
+		grid[2][16] = BOTTOM_WALL;
+	}
+	if (right == nullptr) {
+		// Walls
+		for (int i = 13; i <= 16; i++) {
+			grid[27][i] = RIGHT_WALL;
+		}
+	}
+	else {
+		for (int i = 28; i < 30; i++) {
+			grid[i][13] = TOP_WALL;
+			grid[i][14] = FLOOR;
+			grid[i][15] = FLOOR;
+			grid[i][16] = BOTTOM_WALL;
+		}
+		grid[27][13] = TOP_WALL;
+		grid[27][14] = VERTICAL_DOOR;
+		grid[27][16] = BOTTOM_WALL;
+	}
+	if (bottom == nullptr) {
+		// Walls
+		for (int i = 13; i <= 16; i++) {
+			grid[i][27] = BOTTOM_WALL;
+		}
+	}
+	else {
+		for (int i = 28; i < 30; i++) {
+			grid[13][i] = LEFT_WALL;
+			grid[14][i] = FLOOR;
+			grid[15][i] = FLOOR;
+			grid[16][i] = RIGHT_WALL;
+		}
+		grid[14][27] = HORIZONTAL_DOOR;
+	}
+}
+
+void Room::generateTiles() {
+	for (int i = 0; i < TILES_PER_ROOM; i++) {
+		for (int j = 0; j < TILES_PER_ROOM; j++) {
+			loadMapObject(grid[j][i], i, j);
+		}
+	}
+}
+
+void Room::loadMapObject(char character, int i, int j) {
+	int x = j * TILE_SIZE + offsetRoomX + HALF_TILE_SIZE;
+	int y = i * TILE_SIZE + offsetRoomY + HALF_TILE_SIZE;
+	switch (character) {
+	case FLOOR: {
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
+		break;
+	}
+	case TOP_LEFT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png",x, y, 160, 0, game));
+		break;
+	}
+	case TOP_RIGHT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 3, game));
+		break;
+	}
+	case BOTTOM_LEFT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 1, game));
+		break;
+	}
+	case BOTTOM_RIGHT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 2, game));
+		break;
+	}
+	case TOP_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 4 + rand() % 2, game));
+		break;
+	}
+	case LEFT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 6 + i % 2, game));
+		break;
+	}
+	case RIGHT_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 8 + i % 2, game));
+		break;
+	}
+	case BOTTOM_WALL: {
+		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 10 + j % 2, game));
+		break;
+	}
+	case HORIZONTAL_DOOR: {
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x + TILE_SIZE, y, 160, rand() % 10, game));
+	}
+	case VERTICAL_DOOR: {
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y + TILE_SIZE, 160, rand() % 10, game));
+	}
+	}
+}
 
 
 bool Room::isNeighbour(Room* room) {
@@ -193,4 +275,14 @@ Room* Room::expand(int childCode, int floorSize) {
 		return new Room(COMMON_ROOM, newRoomXY.x, newRoomXY.y, childCode, game);
 	}
 	return nullptr;
+}
+
+void Room::printGrid() {
+	cout << "\nRoom grid:" << endl;
+	for (int i = 0; i < TILES_PER_ROOM; i++) {
+		for (int j = 0; j < TILES_PER_ROOM; j++) {
+			cout << grid[j][i];
+		}
+		cout << endl;
+	}
 }

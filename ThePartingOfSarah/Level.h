@@ -28,6 +28,7 @@ private:
 	void setBossRoom(queue<int> codes);
 	void setTreasureRoom(queue<int> codes);
 	void generateCommonRooms(queue<int> codes);
+	void loadRoomMaps();
 	void printFloor();
 
 	Game* game;

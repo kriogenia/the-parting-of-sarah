@@ -6,6 +6,7 @@
 #include "Animation.h"
 
 #define STARTING_SPEED 3;
+#define DEBUGGING_SPEED 15;
 
 enum eAction {
     IDLE,

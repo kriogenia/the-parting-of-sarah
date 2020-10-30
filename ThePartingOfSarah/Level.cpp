@@ -7,6 +7,7 @@ Level::Level(int floor, Game* game) :
 	background = new Background(game);
 	generateRooms();
 	currentRoom = startingRoom;
+	currentRoom->printGrid();
 }
 
 Level::~Level() {
@@ -61,6 +62,7 @@ void Level::generateRooms() {
 	setBossRoom(codes);
 	setTreasureRoom(codes);
 	generateCommonRooms(codes);
+	loadRoomMaps();
 	printFloor();
 }
 
@@ -163,6 +165,12 @@ void Level::generateCommonRooms(queue<int> codes) {
 	}
 }
 
+void Level::loadRoomMaps() {
+	for (auto const& room : rooms) {
+		room->loadMap();
+	}
+}
+
 void Level::printFloor() {
 	string grid[FLOOR_SIZE][FLOOR_SIZE];
 	for (int i = 0; i < FLOOR_SIZE; i++) {
@@ -173,11 +181,11 @@ void Level::printFloor() {
 	for (auto const& room : rooms) {
 		grid[room->x][room->y] = room->type;
 	}
+	cout << "\nLevel grid:" << endl;
 	for (int i = 0; i < FLOOR_SIZE; i++) {
-		string line = " ";
 		for (int j = 0; j < FLOOR_SIZE; j++) {
-			line += grid[j][i] + " ";
+			cout << grid[j][i] << " ";
 		}
-		cout << line << endl;
+		cout << endl;
 	}
 }

@@ -2,7 +2,8 @@
 
 Player::Player(float x, float y, Game* game) : 
 	Actor("res/sprites/character/Character_Idle_Down.png", x, y, 32, 32, game) {
-	this->speed = STARTING_SPEED;
+	//this->speed = STARTING_SPEED;
+	this->speed = DEBUGGING_SPEED;
 
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(DOWN_LEFT, new Animation("res/sprites/character/Character_Moving_DownLeft.png", width, height,

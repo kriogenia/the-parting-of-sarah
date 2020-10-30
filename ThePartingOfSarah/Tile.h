@@ -2,6 +2,7 @@
 #include "Actor.h"
 
 constexpr auto TILE_SIZE = 16;
+constexpr auto HALF_TILE_SIZE = TILE_SIZE / 2;
 
 class Tile :
     public Actor {
