@@ -3,10 +3,10 @@
 Level::Level(int floor, Game* game) :
 	game(game) {
 	cout << "Floor: " << floor << endl;
-	delete background;
 	background = new Background(game);
 	generateRooms();
 	currentRoom = startingRoom;
+	currentRoom->openDoors();
 	currentRoom->printGrid();
 }
 
@@ -32,7 +32,7 @@ void Level::update(int playerX, int playerY) {
 		for (auto const& room : rooms) {
 			if (room->hasPlayerInside(playerX, playerY)) {
 				currentRoom = room;
-				// room.playerEntered();
+				currentRoom->playerEntered();
 			}
 		}
 		return;
@@ -59,9 +59,9 @@ void Level::calculateScroll(int playerX, int playerY, int* scrollX, int* scrollY
 
 void Level::generateRooms() {
 	queue<int> codes = getCodes();
-	setStartingRoom(codes);
-	setBossRoom(codes);
-	setTreasureRoom(codes);
+	setStartingRoom(&codes);
+	setBossRoom(&codes);
+	setTreasureRoom(&codes);
 	generateCommonRooms(codes);
 	loadRoomMaps();
 	printFloor();
@@ -82,23 +82,23 @@ queue<int> Level::getCodes() {
 	return codes;
 }
 
-void Level::setStartingRoom(queue<int> codes) {
+void Level::setStartingRoom(queue<int>* codes) {
 	// Generate the Starting Room (center of the grid)
-	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, codes.front(), game);
+	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, (*codes).front(), game);
 	rooms.push_back(startingRoom);
-	codes.pop();
+	(*codes).pop();
 }
 
-void Level::setBossRoom(queue<int> codes) {
+void Level::setBossRoom(queue<int>* codes) {
 	// Generate the Boss Room (outer ring)
 	int bossRoomX = ((rand() % 4) / 2) * 4;
 	int bossRoomY = ((rand() % 4) % 2) * 4;
-	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, codes.front(), game);
+	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), game);
 	rooms.push_back(bossRoom);
-	codes.pop();
+	(*codes).pop();
 }
 
-void Level::setTreasureRoom(queue<int> codes) {
+void Level::setTreasureRoom(queue<int>* codes) {
 	// Generate a Treasure Room (far from the boss room)
 	int treasureRoomPlacement = rand() % (FLOOR_SIZE - 2) ^ 2 - 1;
 	int fromI = (bossRoom->x == 0) ? 2 : 0;
@@ -109,9 +109,9 @@ void Level::setTreasureRoom(queue<int> codes) {
 		for (int j = fromJ; j < toJ; j++) {
 			if (i != j) {
 				if (treasureRoomPlacement == 0) {
-					treasureRoom = new Room(TREASURE_ROOM, i, j, codes.front(), game);
+					treasureRoom = new Room(TREASURE_ROOM, i, j, (*codes).front(), game);
 					rooms.push_back(treasureRoom);
-					codes.pop();
+					(*codes).pop();
 					return;
 				}
 				treasureRoomPlacement--;

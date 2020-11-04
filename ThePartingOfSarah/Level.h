@@ -24,9 +24,9 @@ public:
 private:
 	void generateRooms();
 	queue<int> getCodes();
-	void setStartingRoom(queue<int> codes);
-	void setBossRoom(queue<int> codes);
-	void setTreasureRoom(queue<int> codes);
+	void setStartingRoom(queue<int>* codes);
+	void setBossRoom(queue<int>* codes);
+	void setTreasureRoom(queue<int>* codes);
 	void generateCommonRooms(queue<int> codes);
 	void loadRoomMaps();
 	void printFloor();

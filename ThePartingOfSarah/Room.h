@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Game.h"
+
+#include "DestructibleTile.h"
+#include "Door.h"
 #include "MappedTile.h"
 #include "Rock.h"
 
@@ -8,7 +11,7 @@ constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;
 constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
 
-enum eType {
+enum eRoomType {
 	NO_ROOM,
 	COMMON_ROOM,
 	STARTING_ROOM,
@@ -37,13 +40,17 @@ enum eTileType {
 
 class Room {
 public:
-	Room(eType type, int x, int y, int number, Game* game);
+	Room(eRoomType type, int x, int y, int number, Game* game);
 	~Room();
 
 	void loadMap();
 
 	void draw(int scrollX, int scrollY);
+
 	bool hasPlayerInside(int playerX, int playerY);
+	void playerEntered();
+	void openDoors();
+	void closeDoors();
 
 	bool isNeighbour(Room* room);
 	void append(Room* room);
@@ -51,7 +58,7 @@ public:
 
 	void printGrid();
 
-	eType type;
+	eRoomType type;
 	int x;
 	int y;
 	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
@@ -73,7 +80,8 @@ private:
 	string filename;
 
 	list<Tile*> tiles;
-	list<Tile*> doors;
+	list<Door*> doors;
+	list<DestructibleTile*> destructibles;
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 	
 	int code = -1;

@@ -1,13 +1,14 @@
 #include "Room.h"
 
-Room::Room(eType type, int x, int y, int number, Game* game) :
+Room::Room(eRoomType type, int x, int y, int number, Game* game) :
 	type(type),
 	x(x),
 	y(y),
 	code(number),
 	game(game) {
 
-	this->filename = "res/rooms/room_9.txt";	// <- Code / type
+	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	this->filename = "res/rooms/room_19.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	for (int i = 0; i < TILES_PER_ROOM; i++) {
@@ -38,6 +39,22 @@ bool Room::hasPlayerInside(int playerX, int playerY) {
 	return false;
 }
 
+void Room::playerEntered() {
+	this->closeDoors();
+}
+
+void Room::openDoors() {
+	for (auto const& door : doors) {
+		door->open();
+	}
+}
+
+void Room::closeDoors() {
+	for (auto const& door : doors) {
+		door->close();
+	}
+}
+
 void Room::loadMap() {
 	readFile();
 	generateWalls();
@@ -59,7 +76,7 @@ void Room::readFile() {
 		for (int i = 0; getline(streamFile, line); i++) {
 			istringstream streamLine(line);
 			// For each character in the line
-			for (int j = 0; !streamLine.eof(); j++) {
+			for (int j = 0; j < TILES_PER_FILE; j++) {
 				streamLine >> character;			// Read character 
 				grid[j+3][i+3] = character;
 			}
@@ -207,15 +224,19 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case HORIZONTAL_DOOR: {
+		Door* door = new Door("res/tiles/horizontal_door.png", x, y, 32, 16, 64, 16, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x + TILE_SIZE, y, 160, rand() % 10, game));
-		// TODO add door
+		tiles.push_back(door);
+		doors.push_back(door);
 		break;
 	}
 	case VERTICAL_DOOR: {
+		Door* door = new Door("res/tiles/vertical_door.png", x, y, 16, 32, 16, 64, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y + TILE_SIZE, 160, rand() % 10, game));
-		// TODO add door
+		tiles.push_back(door);
+		doors.push_back(door);
 		break;
 	}
 	case ROCK: {
@@ -231,9 +252,15 @@ void Room::loadMapObject(char character, int i, int j) {
 		tiles.push_back(new MappedTile("res/tiles/water.png", x, y, 64, 1 + rand() % 3, game));
 		break;
 	}
+	case BARREL: {
+		DestructibleTile* tile = new DestructibleTile("res/tiles/barrel.png", x, y, 64, 3, game);
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
+		tiles.push_back(tile);
+		destructibles.push_back(tile);
+		break;
+	}
 	}
 }
-
 
 bool Room::isNeighbour(Room* room) {
 	if (this->x == room->x) {
