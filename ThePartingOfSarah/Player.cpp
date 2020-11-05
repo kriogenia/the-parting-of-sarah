@@ -5,19 +5,11 @@ Player::Player(float x, float y, Game* game) :
 	//this->speed = STARTING_SPEED;
 	this->speed = DEBUGGING_SPEED;
 
-	movingAnimations.clear();
-	movingAnimations.insert_or_assign(DOWN_LEFT, new Animation("res/sprites/character/Character_Moving_DownLeft.png", width, height,
-		128, 32, 4, 4, game));
-	movingAnimations.insert_or_assign(DOWN_RIGHT, new Animation("res/sprites/character/Character_Moving_DownRight.png", width, height,
-		128, 32, 4, 4, game));
-	movingAnimations.insert_or_assign(UP_LEFT, new Animation("res/sprites/character/Character_Moving_UpLeft.png", width, height,
-		128, 32, 4, 4, game));
-	movingAnimations.insert_or_assign(UP_RIGHT, new Animation("res/sprites/character/Character_Moving_UpRight.png", width, height,
-		128, 32, 4, 4, game));
+	this->importAnimations();
 
-	this->orientation = DOWN_RIGHT;
-	this->animation = movingAnimations[orientation];
-	this->action = MOVING;
+	this->action = IDLE;
+	this->orientation = DOWN;
+	setAnimation();
 
 }
 
@@ -27,8 +19,9 @@ Player::~Player() {
 }
 
 void Player::update(int mouseX, int mouseY) {
-	this->orientation = getOrientation(mouseX, mouseY);	// Sets the orientation towards the cursor
-	this->animation = getAnimation();					// Sets the animation
+	setAction();					// Sets the action performed by the player
+	setOrientation(mouseX, mouseY);	// Sets the orientation towards the cursor
+	setAnimation();					// Sets the animation
 	animation->update();
 	x = x + movementX * speed;
 	y = y + movementY * speed;
@@ -81,25 +74,73 @@ void Player::stop(int code) {
 
 }
 
-eOrientation Player::getOrientation(int mouseX, int mouseY) {
+void Player::importAnimations() {
+	// IDLE
+	idleAnimations.clear();
+	idleAnimations.insert_or_assign(DOWN, new Animation("res/sprites/character/Character_Idle_Down.png", width, height,
+		128, 32, 4, 4, game));
+	idleAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/character/Character_Idle_Right.png", width, height,
+		128, 32, 4, 4, game));
+	idleAnimations.insert_or_assign(LEFT, new Animation("res/sprites/character/Character_Idle_Left.png", width, height,
+		128, 32, 4, 4, game));
+	idleAnimations.insert_or_assign(UP, new Animation("res/sprites/character/Character_Idle_Up.png", width, height,
+		128, 32, 4, 4, game));
+	// MOVING
+	movingAnimations.clear();
+	movingAnimations.insert_or_assign(DOWN_LEFT, new Animation("res/sprites/character/Character_Moving_DownLeft.png", width, height,
+		128, 32, 4, 4, game));
+	movingAnimations.insert_or_assign(DOWN_RIGHT, new Animation("res/sprites/character/Character_Moving_DownRight.png", width, height,
+		128, 32, 4, 4, game));
+	movingAnimations.insert_or_assign(UP_LEFT, new Animation("res/sprites/character/Character_Moving_UpLeft.png", width, height,
+		128, 32, 4, 4, game));
+	movingAnimations.insert_or_assign(UP_RIGHT, new Animation("res/sprites/character/Character_Moving_UpRight.png", width, height,
+		128, 32, 4, 4, game));
+}
+
+void Player::setAction() {
+	if (movementX != 0 || movementY != 0)
+		this->action = MOVING;
+	else
+		this->action = IDLE;
+}
+
+void Player::setOrientation(int mouseX, int mouseY) {
 	int orientationX = mouseX - this->x;
 	int orientationY = mouseY - this->y;
-	if (orientationX < 0) {
-		if (orientationY < 0)
-			return orientation = UP_LEFT;
-		return orientation = DOWN_LEFT;
+	if		(this->action == IDLE)		setAxisOrientation(orientationX, orientationY);
+	else if (this->action == MOVING)	setDiagonalOrientation(orientationX, orientationY);
+	
+}
+
+void Player::setAxisOrientation(int orientationX, int orientationY) {
+	if (abs(orientationX) > abs(orientationY)) {
+		if (orientationX > 0)
+			this->orientation = RIGHT;
+		else
+			this->orientation = LEFT;
 	}
 	else {
-		if (orientationY < 0)
-			return orientation = UP_RIGHT;
-		return orientation = DOWN_RIGHT;
+		if (orientationY > 0)
+			this->orientation = DOWN;
+		else 
+			this->orientation = UP;
 	}
 }
 
-Animation* Player::getAnimation() {
-	//if (action == IDLE)
-	if (action == MOVING)
-		return movingAnimations[orientation];
-	//if (action == SHOOTING)
-	return nullptr;
+void Player::setDiagonalOrientation(int orientationX, int orientationY) {
+	if (orientationX < 0)
+		if (orientationY < 0)
+			this->orientation = UP_LEFT;
+		else
+			this->orientation = DOWN_LEFT;
+	else
+		if (orientationY < 0)
+			this->orientation = UP_RIGHT;
+		else
+			this->orientation = DOWN_RIGHT;
+}
+
+void Player::setAnimation() {
+	if		(action == IDLE)	this->animation = idleAnimations[orientation];
+	else if (action == MOVING)	this->animation = movingAnimations[orientation];
 }

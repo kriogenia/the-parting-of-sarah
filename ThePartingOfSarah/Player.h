@@ -6,19 +6,24 @@
 #include "Animation.h"
 
 #define STARTING_SPEED 3;
-#define DEBUGGING_SPEED 15;
+#define DEBUGGING_SPEED 3;
 
 enum eAction {
     IDLE,
     MOVING,
-    SHOOTING
+    SHOOTING,
+    DYING
 };
 
 enum eOrientation {
+    UP,
     UP_LEFT,
     UP_RIGHT,
+    LEFT,
+    RIGHT,
     DOWN_LEFT,
-    DOWN_RIGHT
+    DOWN_RIGHT,
+    DOWN
 };
 
 class Player :
@@ -34,8 +39,13 @@ public:
     void stop(int code);
     
 private:
-    eOrientation getOrientation(int mouseX, int mouseY);
-    Animation* getAnimation();
+    void importAnimations();
+
+    void setAction();
+    void setOrientation(int mouseX, int mouseY);
+    void setAxisOrientation(int orientationX, int orientationY);
+    void setDiagonalOrientation(int orientationX, int orientationY);
+    void setAnimation();
 
     Animation* animation;
 
@@ -45,6 +55,7 @@ private:
     eAction action;
     eOrientation orientation;
 
+    map<eOrientation, Animation*> idleAnimations;
     map<eOrientation, Animation*> movingAnimations;
 };
 
