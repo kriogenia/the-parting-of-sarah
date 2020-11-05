@@ -7,8 +7,8 @@ Room::Room(eRoomType type, int x, int y, int number, Game* game) :
 	code(number),
 	game(game) {
 
-	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	this->filename = "res/rooms/room_19.txt";			// room tests
+	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	//this->filename = "res/rooms/room_24.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	for (int i = 0; i < TILES_PER_ROOM; i++) {
