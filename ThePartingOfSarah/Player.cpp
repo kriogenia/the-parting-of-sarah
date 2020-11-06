@@ -23,51 +23,49 @@ void Player::update(int mouseX, int mouseY) {
 	setOrientation(mouseX, mouseY);	// Sets the orientation towards the cursor
 	setAnimation();					// Sets the animation
 	animation->update();
-	x = x + movementX * speed;
-	y = y + movementY * speed;
-}
-
-void Player::move(int code) {
-	switch (code) {
-	case SDLK_d:				// right
-		movementX = 1;
-		break;
-	case SDLK_a:				// left
-		movementX = -1;
-		break;
-	case SDLK_w:				// up
-		movementY = -1;
-		break;
-	case SDLK_s:				// down
-		movementY = 1;
-		break;
-	}
 }
 
 void Player::draw(float scrollX, float scrollY) {
 	animation->draw(x - scrollX, y - scrollY);
 }
 
+void Player::move(int code) {
+	switch (code) {
+	case SDLK_d:				// right
+		vx = speed;
+		break;
+	case SDLK_a:				// left
+		vx = -speed;
+		break;
+	case SDLK_w:				// up
+		vy = -speed;
+		break;
+	case SDLK_s:				// down
+		vy = speed;
+		break;
+	}
+}
+
 void Player::stop(int code) {
 	switch (code) {
 	case SDLK_d:				// right
-		if (movementX == 1) {
-			movementX = 0;
+		if (vx == speed) {
+			vx = 0;
 		}
 		break;
 	case SDLK_a:				// left
-		if (movementX == -1) {
-			movementX = 0;
+		if (vx == -speed) {
+			vx = 0;
 		}
 		break;
 	case SDLK_w:				// up
-		if (movementY == -1) {
-			movementY = 0;
+		if (vy == -speed) {
+			vy = 0;
 		}
 		break;
 	case SDLK_s:				// down
-		if (movementY == 1) {
-			movementY = 0;
+		if (vy == speed) {
+			vy = 0;
 		}
 		break;
 	}
@@ -98,7 +96,7 @@ void Player::importAnimations() {
 }
 
 void Player::setAction() {
-	if (movementX != 0 || movementY != 0)
+	if (vx != 0 || vy != 0)
 		this->action = MOVING;
 	else
 		this->action = IDLE;

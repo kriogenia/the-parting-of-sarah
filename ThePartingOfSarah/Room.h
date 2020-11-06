@@ -6,6 +6,7 @@
 #include "Door.h"
 #include "MappedTile.h"
 #include "Rock.h"
+#include "Space.h"
 
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;
@@ -40,7 +41,7 @@ enum eTileType {
 
 class Room {
 public:
-	Room(eRoomType type, int x, int y, int number, Game* game);
+	Room(eRoomType type, int x, int y, int number, Space* space, Game* game);
 	~Room();
 
 	void loadMap();
@@ -49,6 +50,7 @@ public:
 
 	bool hasPlayerInside(int playerX, int playerY);
 	void playerEntered();
+	void setCleared();
 	void openDoors();
 	void closeDoors();
 
@@ -77,6 +79,7 @@ private:
 	void generateTiles();
 
 	Game* game;
+	Space* space;
 	string filename;
 
 	list<Tile*> tiles;
@@ -85,6 +88,7 @@ private:
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 	
 	int code = -1;
+	bool cleared = false;
 
 	int offsetRoomX;
 	int offsetRoomY;

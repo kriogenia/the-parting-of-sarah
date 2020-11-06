@@ -12,18 +12,26 @@ GameLayer::~GameLayer() {
 }
 
 void GameLayer::init() {
+	delete space;
+	space = new Space();
+
+	delete level;
+	level = new Level(floor, space, game);
+
+	delete player;
+	player = new Player(
+		level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
+		level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
+		game);
+	space->addDynamicActor(player);
+
 	this->scrollX = 0;
 	this->scrollY = 0;
 
 	delete crosshair;
 	crosshair = new Crosshair(game);
-	delete level;
-	level = new Level(floor, game);
-	delete player;
-	player = new Player(
-		level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
-		level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2, 
-		game);
+
+
 }
 
 void GameLayer::processControls() {
@@ -35,6 +43,7 @@ void GameLayer::processControls() {
 }
 
 void GameLayer::update() {
+	space->update();
 	player->update(mouseX + scrollX, mouseY + scrollY);
 	level->update(player->x, player->y);
 	crosshair->update(mouseX, mouseY);

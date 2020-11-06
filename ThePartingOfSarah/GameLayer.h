@@ -4,6 +4,7 @@
 #include "Layer.h"
 #include "Level.h"
 #include "Player.h"
+#include "Space.h"
 
 class GameLayer : 
 	public Layer
@@ -23,9 +24,11 @@ public:
 private:
 	void keysToControl(SDL_Event event);
 
-	Crosshair* crosshair;
-	Player* player;
 	Level* level;
+	Player* player;
+	Space* space;
+	
+	Crosshair* crosshair;
 
 	int floor = 0;
 

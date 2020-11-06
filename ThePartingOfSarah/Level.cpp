@@ -1,7 +1,9 @@
 #include "Level.h"
 
-Level::Level(int floor, Game* game) :
-	game(game) {
+Level::Level(int floor, Space* space, Game* game) :
+	space(space),
+	game(game) 
+{
 	cout << "Floor: " << floor << endl;
 	background = new Background(game);
 	generateRooms();
@@ -84,7 +86,7 @@ queue<int> Level::getCodes() {
 
 void Level::setStartingRoom(queue<int>* codes) {
 	// Generate the Starting Room (center of the grid)
-	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, (*codes).front(), game);
+	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, (*codes).front(), space, game);
 	rooms.push_back(startingRoom);
 	(*codes).pop();
 }
@@ -93,7 +95,7 @@ void Level::setBossRoom(queue<int>* codes) {
 	// Generate the Boss Room (outer ring)
 	int bossRoomX = ((rand() % 4) / 2) * 4;
 	int bossRoomY = ((rand() % 4) % 2) * 4;
-	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), game);
+	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), space, game);
 	rooms.push_back(bossRoom);
 	(*codes).pop();
 }
@@ -109,7 +111,7 @@ void Level::setTreasureRoom(queue<int>* codes) {
 		for (int j = fromJ; j < toJ; j++) {
 			if (i != j) {
 				if (treasureRoomPlacement == 0) {
-					treasureRoom = new Room(TREASURE_ROOM, i, j, (*codes).front(), game);
+					treasureRoom = new Room(TREASURE_ROOM, i, j, (*codes).front(), space, game);
 					rooms.push_back(treasureRoom);
 					(*codes).pop();
 					return;

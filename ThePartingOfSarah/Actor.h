@@ -12,12 +12,14 @@ public:
 	virtual void draw(float scrollX = 0, float scrollY = 0);
 
 	SDL_Texture* texture;
-	int x;
-	int y;
-	float speed = 0;
-	int width;
-	int height;
-	int fileWidth;
+	int x;						
+	int y;						
+	int vx = 0;					// movement on X axis
+	int vy = 0;					// movement on Y axis
+	int width;					// actor width
+	int height;					// actor height
+	int fileWidth;				
 	int fileHeight;
-	Game* game; // referencia al juego
+	Game* game;					// referencia al juego
+
 };

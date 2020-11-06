@@ -1,12 +1,13 @@
 #include "Room.h"
 
-Room::Room(eRoomType type, int x, int y, int number, Game* game) :
+Room::Room(eRoomType type, int x, int y, int number, Space* space, Game* game) :
 	type(type),
 	x(x),
 	y(y),
 	code(number),
-	game(game) {
-
+	space(space),
+	game(game) 
+{
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
 	//this->filename = "res/rooms/room_24.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
@@ -15,6 +16,9 @@ Room::Room(eRoomType type, int x, int y, int number, Game* game) :
 		for (int j = 0; j < TILES_PER_ROOM; j++) {
 			grid[i][j] = NO_TILE;
 		}
+	}
+	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
+		cleared = true;
 	}
 }
 
@@ -41,17 +45,27 @@ bool Room::hasPlayerInside(int playerX, int playerY) {
 
 void Room::playerEntered() {
 	this->closeDoors();
+	// spawn enemies
+}
+
+void Room::setCleared() {
+	cleared = true;
+	openDoors();
 }
 
 void Room::openDoors() {
 	for (auto const& door : doors) {
 		door->open();
+		space->removeStaticActor(door);
 	}
 }
 
 void Room::closeDoors() {
-	for (auto const& door : doors) {
-		door->close();
+	if (!cleared) {
+		for (auto const& door : doors) {
+			door->close();
+			space->addStaticActor(door);
+		}
 	}
 }
 
@@ -192,35 +206,51 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case TOP_LEFT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png",x, y, 160, 0, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 0, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case TOP_RIGHT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 3, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 3, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case BOTTOM_LEFT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 1, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 1, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case BOTTOM_RIGHT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 2, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 2, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case TOP_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 4 + rand() % 2, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 4 + rand() % 2, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case LEFT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 6 + i % 2, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 6 + i % 2, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case RIGHT_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 8 + i % 2, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 8 + i % 2, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case BOTTOM_WALL: {
-		tiles.push_back(new MappedTile("res/tiles/wall.png", x, y, 160, 10 + j % 2, game));
+		Tile* tile = new MappedTile("res/tiles/wall.png", x, y, 160, 10 + j % 2, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case HORIZONTAL_DOOR: {
@@ -240,16 +270,22 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case ROCK: {
-		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
+		Tile* tile = new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game);
+		tiles.push_back(tile);
 		tiles.push_back(new Rock(x, y, game));
+		space->addStaticActor(tile);
 		break;
 	}
 	case POND_TOP: {
-		tiles.push_back(new MappedTile("res/tiles/water.png", x, y, 64, 0, game));
+		Tile* tile = new MappedTile("res/tiles/water.png", x, y, 64, 0, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case POND_BASE: {
-		tiles.push_back(new MappedTile("res/tiles/water.png", x, y, 64, 1 + rand() % 3, game));
+		Tile* tile = new MappedTile("res/tiles/water.png", x, y, 64, 1 + rand() % 3, game);
+		tiles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	case BARREL: {
@@ -257,6 +293,7 @@ void Room::loadMapObject(char character, int i, int j) {
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(tile);
 		destructibles.push_back(tile);
+		space->addStaticActor(tile);
 		break;
 	}
 	}
@@ -317,7 +354,7 @@ Room* Room::expand(int childCode, int floorSize) {
 	// Generate a random child among the possible ways
 	if (!possibleChildren.empty()) {
 		position newRoomXY = possibleChildren[code % possibleChildren.size()];
-		return new Room(COMMON_ROOM, newRoomXY.x, newRoomXY.y, childCode, game);
+		return new Room(COMMON_ROOM, newRoomXY.x, newRoomXY.y, childCode, space, game);
 	}
 	return nullptr;
 }

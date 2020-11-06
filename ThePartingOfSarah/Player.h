@@ -49,13 +49,12 @@ private:
 
     Animation* animation;
 
-    int movementX;                  // movement on X axis
-    int movementY;                  // movement on Y axis
-
     eAction action;
     eOrientation orientation;
 
     map<eOrientation, Animation*> idleAnimations;
     map<eOrientation, Animation*> movingAnimations;
+
+    float speed;
 };
 

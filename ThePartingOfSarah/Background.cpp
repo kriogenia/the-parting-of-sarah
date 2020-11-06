@@ -2,7 +2,7 @@
 
 Background::Background(Game* game) :
 	Actor("res/backgrounds/bg1.png", 0, 0, WIDTH, HEIGHT, 1920, 480, game) {
-	this->speed = 1;
+	this->vx = 1;
 	bgAux = new Background(0, 0, game);
 }
 
@@ -11,7 +11,7 @@ Background::Background(float x, float y, Game* game) :
 }
 
 void Background::update() {
-	x = x + speed;
+	x = x + vx;
 	if (x >= fileWidth) {
 		x = 0;
 	}
