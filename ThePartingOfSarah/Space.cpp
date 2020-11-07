@@ -72,13 +72,15 @@ void Space::checkCollisionUp(Actor* dynamicActor, Actor* staticActor, int* possi
     int bottomStatic = staticActor->y + staticActor->height / 2;
     int leftStatic = staticActor->x - staticActor->width / 2;
     int rightStatic = staticActor->x + staticActor->width / 2;
-    // Collision
+    // Check
     if ((topDynamic + dynamicActor->vy) < bottomStatic
         && bottomDynamic > topStatic
         && leftDynamic < rightStatic
         && rightDynamic > leftStatic) {
+        // Collision
+        dynamicActor->collisionedWith(staticActor);
+        staticActor->collisionedWith(dynamicActor);
         if (*possibleMovement < bottomStatic - topDynamic) {
-            // Avaliable movement
             *possibleMovement = bottomStatic - topDynamic;
         }
     }
@@ -106,13 +108,15 @@ void Space::checkCollisionLeft(Actor* dynamicActor, Actor* staticActor, int* pos
     int rightStatic = staticActor->x + staticActor->width / 2;
     int topStatic = staticActor->y - staticActor->height / 2;
     int bottomStatic = staticActor->y + staticActor->height / 2;
-    // Collision
+    // Check
     if ((leftDynamic + dynamicActor->vx) < rightStatic
         && leftDynamic >= rightStatic
         && topStatic < bottomDynamic
         && bottomStatic > topDynamic) {
+        // Collision
+        dynamicActor->collisionedWith(staticActor);
+        staticActor->collisionedWith(dynamicActor);
         if (*possibleMovement < rightStatic - leftDynamic) {
-            // Avaliable movement
             *possibleMovement = rightStatic - leftDynamic;
         }
     }
@@ -123,7 +127,7 @@ void Space::updateMovementRight(Actor* dynamicActor, bool flying) {
     for (auto const& staticActor : staticActors)
         checkCollisionRight(dynamicActor, staticActor, &possibleMovement);
     if (!flying) {
-        for (auto const& staticActor : staticActors)
+        for (auto const& staticActor : lowStaticActors)
             checkCollisionRight(dynamicActor, staticActor, &possibleMovement);
     }
     dynamicActor->x += possibleMovement;
@@ -139,13 +143,15 @@ void Space::checkCollisionRight(Actor* dynamicActor, Actor* staticActor, int* po
     int leftStatic = staticActor->x - staticActor->width / 2;
     int topStatic = staticActor->y - staticActor->height / 2;
     int bottomStatic = staticActor->y + staticActor->height / 2;
-    // Collision
+    // Check
     if ((rightDynamic + dynamicActor->vx) > leftStatic
         && rightDynamic <= leftStatic
         && topStatic < bottomDynamic
         && bottomStatic > topDynamic) {
+        // Collision
+        dynamicActor->collisionedWith(staticActor);
+        staticActor->collisionedWith(dynamicActor);
         if (*possibleMovement > leftStatic - rightDynamic) {
-            // Avaliable movement
             *possibleMovement = leftStatic - rightDynamic;
         }
     }
@@ -174,13 +180,15 @@ void Space::checkCollisionDown(Actor* dynamicActor, Actor* staticActor, int* pos
     int bottomStatic = staticActor->y + staticActor->height / 2;
     int leftStatic = staticActor->x - staticActor->width / 2;
     int rightStatic = staticActor->x + staticActor->width / 2;
-    // Collision
+    // Check
     if ((bottomDynamic + dynamicActor->vy) > topStatic
         && topDynamic < bottomStatic
         && leftDynamic < rightStatic
         && rightDynamic > leftStatic) {
+        // Collision
+        dynamicActor->collisionedWith(staticActor);
+        staticActor->collisionedWith(dynamicActor);
         if (*possibleMovement > topStatic - bottomDynamic) {
-            // Avaliable movement
             *possibleMovement = topStatic - bottomDynamic;
         }
     }

@@ -48,6 +48,7 @@ public:
 	void loadMap();
 
 	void draw(int scrollX, int scrollY);
+	void update();
 
 	bool hasPlayerInside(Player* player);
 	void playerEntered();
@@ -71,6 +72,8 @@ public:
 	Room* bottom = nullptr;
 	Room* right = nullptr;
 
+	list<DestructibleTile*> destructibles;
+
 private:
 	void loadMapObject(char character, int x, int y);
 
@@ -85,7 +88,6 @@ private:
 
 	list<Tile*> tiles;
 	list<Door*> doors;
-	list<DestructibleTile*> destructibles;
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 	
 	int code = -1;

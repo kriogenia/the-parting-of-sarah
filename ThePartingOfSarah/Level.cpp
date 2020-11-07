@@ -29,6 +29,9 @@ void Level::draw(int scrollX, int scrollY) {
 
 void Level::update(Player* player) {
 	background->update();
+	for (auto const& room : rooms) {
+		room->update();
+	}
 	// Out of room player, check if they entered a new room
 	if (currentRoom == nullptr) {
 		for (auto const& room : rooms) {

@@ -11,6 +11,7 @@ public:
     Projectile(string filename, int x, int y, int mouseX, int mouseY, int size, Game* game);
 
     void draw(float scrollX = 0, float scrollY = 0) override;
-    void update();
+
+    void collisionedWith(Actor* actor) override;
 };
 

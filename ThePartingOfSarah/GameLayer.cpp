@@ -61,15 +61,13 @@ void GameLayer::update() {
 	level->update(player);
 	crosshair->update(mouseX, mouseY);
 
+	// Projectile deletion
 	list<Projectile*> projectilesToDelete;
 	for (auto const& projectile : projectiles) {
-		projectile->update();
 		if (projectile->destructionFlag) {
 			projectilesToDelete.push_back(projectile);
 		}
 	}
-
-	// Actor deletion
 	for (auto const& projectile : projectilesToDelete) {
 		space->removeFlyingDynamicActor(projectile);
 		projectiles.remove(projectile);

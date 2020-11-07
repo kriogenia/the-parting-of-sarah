@@ -3,6 +3,8 @@
 Player::Player(float x, float y, Game* game) : 
 	Actor("res/sprites/character/Character_Idle_Down.png", x, y, 16, 16, game) 
 {
+	this->type = PLAYER;
+
 	//this->speed = STARTING_SPEED;
 	this->shotCadence = STARTING_CADENCE;
 	this->shotTime = shotCadence;

@@ -31,6 +31,26 @@ void Room::draw(int scrollX, int scrollY) {
 	for (auto const& tile : tiles) {
 		tile->draw(scrollX, scrollY);
 	}
+	for (auto const& tile : destructibles) {
+		tile->draw(scrollX, scrollY);
+	}
+	for (auto const& tile : doors) {
+		tile->draw(scrollX, scrollY);
+	}
+}
+
+void Room::update() {
+	// Deletion of destructibles
+	list<DestructibleTile*> destructiblesToDelete;
+	for (auto const& destructible : destructibles) {
+		if (destructible->destructionFlag) {
+			destructiblesToDelete.push_back(destructible);
+		}
+	}
+	for (auto const& destructible : destructiblesToDelete) {
+		space->removeStaticActor(destructible);
+		destructibles.remove(destructible);
+	}
 }
 
 bool Room::hasPlayerInside(Player* player) {
@@ -258,19 +278,15 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case HORIZONTAL_DOOR: {
-		Door* door = new Door("res/tiles/horizontal_door.png", x, y, 32, 16, 64, 16, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x + TILE_SIZE, y, 160, rand() % 10, game));
-		tiles.push_back(door);
-		doors.push_back(door);
+		doors.push_back(new Door("res/tiles/horizontal_door.png", x, y, 32, 16, 64, 16, game));
 		break;
 	}
 	case VERTICAL_DOOR: {
-		Door* door = new Door("res/tiles/vertical_door.png", x, y, 16, 32, 16, 64, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y + TILE_SIZE, 160, rand() % 10, game));
-		tiles.push_back(door);
-		doors.push_back(door);
+		doors.push_back(new Door("res/tiles/vertical_door.png", x, y, 16, 32, 16, 64, game));
 		break;
 	}
 	case ROCK: {
@@ -295,7 +311,6 @@ void Room::loadMapObject(char character, int i, int j) {
 	case BARREL: {
 		DestructibleTile* tile = new DestructibleTile("res/tiles/barrel.png", x, y, 64, 3, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
-		tiles.push_back(tile);
 		destructibles.push_back(tile);
 		space->addStaticActor(tile);
 		break;

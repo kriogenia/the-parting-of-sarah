@@ -8,8 +8,7 @@ class DestructibleTile :
 public:
     DestructibleTile(string filename, int x, int y, int width, int hp, Game* game);
 
-    void triggerImpact();
-    bool isDestroyed();
+    void collisionedWith(Actor* actor) override;
 private:
     int hp;
 };

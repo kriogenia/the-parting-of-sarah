@@ -1,7 +1,10 @@
 #include "Background.h"
 
 Background::Background(Game* game) :
-	Actor("res/backgrounds/bg1.png", 0, 0, WIDTH, HEIGHT, 1920, 480, game) {
+	Actor("res/backgrounds/bg1.png", 0, 0, WIDTH, HEIGHT, 1920, 480, game) 
+{
+	this->type = BACKGROUND;
+
 	this->vx = 1;
 	bgAux = new Background(0, 0, game);
 }

@@ -2,6 +2,15 @@
 
 #include "Game.h"
 
+enum eActorType {
+	PLAYER,
+	ENEMY,
+	TILE,
+	PROJECTILE,
+	HUD,
+	BACKGROUND
+};
+
 class Actor
 {
 public:
@@ -11,16 +20,26 @@ public:
 
 	virtual void draw(float scrollX = 0, float scrollY = 0);
 
+	bool isOverlap(Actor* actor);
+	virtual void collisionedWith(Actor* actor);
+
 	SDL_Texture* texture;
+	Game* game;
+
+	eActorType type;
+
 	int x;						
-	int y;						
+	int y;		
+
 	float vx = 0;				// movement on X axis
 	float vy = 0;				// movement on Y axis
+
 	int width;					// actor width
 	int height;					// actor height
+
 	int fileWidth;				
 	int fileHeight;
-	bool destructionFlag;				
-	Game* game;					// referencia al juego
+
+	bool destructionFlag;		
 
 };

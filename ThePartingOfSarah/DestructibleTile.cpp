@@ -5,11 +5,12 @@ DestructibleTile::DestructibleTile(string filename, int x, int y, int width, int
 	this->hp = hp;
 }
 
-void DestructibleTile::triggerImpact() {
-	this->hp--;
-	this->position++;
-}
-
-bool DestructibleTile::isDestroyed() {
-	return this->hp == 0;
+void DestructibleTile::collisionedWith(Actor* actor) {
+	if (actor->type == PROJECTILE) {
+		this->hp--;
+		this->position = hp;
+		if (hp <= 0) {
+			this->destructionFlag = true;
+		}
+	}
 }
