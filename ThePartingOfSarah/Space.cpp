@@ -58,7 +58,6 @@ void Space::updateMovementUp(Actor* dynamicActor, bool flying) {
             checkCollisionUp(dynamicActor, staticActor, &possibleMovement);
     }
     dynamicActor->y += possibleMovement;
-    dynamicActor->vy = possibleMovement;
 }
 
 void Space::checkCollisionUp(Actor* dynamicActor, Actor* staticActor, int* possibleMovement) {
@@ -96,7 +95,6 @@ void Space::updateMovementLeft(Actor* dynamicActor, bool flying) {
             checkCollisionLeft(dynamicActor, staticActor, &possibleMovement);
     }
     dynamicActor->x += possibleMovement;
-    dynamicActor->vx = possibleMovement;
 }
 
 void Space::checkCollisionLeft(Actor* dynamicActor, Actor* staticActor, int* possibleMovement) {
@@ -131,7 +129,6 @@ void Space::updateMovementRight(Actor* dynamicActor, bool flying) {
             checkCollisionRight(dynamicActor, staticActor, &possibleMovement);
     }
     dynamicActor->x += possibleMovement;
-    dynamicActor->vx = possibleMovement;
 }
 
 void Space::checkCollisionRight(Actor* dynamicActor, Actor* staticActor, int* possibleMovement) {
@@ -166,7 +163,6 @@ void Space::updateMovementBottom(Actor* dynamicActor, bool flying) {
             checkCollisionDown(dynamicActor, staticActor, &possibleMovement);
     }
     dynamicActor->y += possibleMovement;
-    dynamicActor->vy = possibleMovement;
 }
 
 void Space::checkCollisionDown(Actor* dynamicActor, Actor* staticActor, int* possibleMovement) {

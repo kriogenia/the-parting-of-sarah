@@ -23,10 +23,11 @@ void Projectile::draw(float scrollX, float scrollY) {
 	destination.w = width;
 	destination.h = height;
 
-	//float angle = vx * 1
+	// Calculate angle of the shot to rotate the texture
+	float angle = acos(-vy / sqrt(pow(vx, 2) + pow(vy, 2))) * 180.0 / 3.14156 + 90;
 
 	SDL_RenderCopyEx(game->renderer,
-		texture, &source, &destination, 0, NULL, SDL_FLIP_NONE);
+		texture, &source, &destination, angle, NULL, SDL_FLIP_NONE);
 }
 
 void Projectile::collisionedWith(Actor* actor) {
