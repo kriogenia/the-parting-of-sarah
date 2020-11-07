@@ -13,6 +13,7 @@ Actor::Actor(string filename, float x, float y, int width, int height,
 	width(width),
 	height(height)
 {
+	destructionFlag = false;
 	texture = game->getTexture(filename);
 }
 

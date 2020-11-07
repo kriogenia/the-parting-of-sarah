@@ -20,6 +20,7 @@ public:
 	int height;					// actor height
 	int fileWidth;				
 	int fileHeight;
+	bool destructionFlag;				
 	Game* game;					// referencia al juego
 
 };

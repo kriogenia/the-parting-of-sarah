@@ -48,10 +48,10 @@ void GameLayer::processControls() {
 	}
 	player->move();
 	// Register player shot
-	Projectile* projectile = player->shoot(mouseX, mouseY);
+	Projectile* projectile = player->shoot(mouseX + scrollX, mouseY + scrollY);
 	if (projectile != nullptr) {
 		projectiles.push_back(projectile);
-		space->addDynamicActor(projectile);
+		space->addFlyingDynamicActor(projectile);
 	}
 }
 
@@ -60,6 +60,21 @@ void GameLayer::update() {
 	player->update(mouseX + scrollX, mouseY + scrollY);
 	level->update(player);
 	crosshair->update(mouseX, mouseY);
+
+	list<Projectile*> projectilesToDelete;
+	for (auto const& projectile : projectiles) {
+		projectile->update();
+		if (projectile->destructionFlag) {
+			projectilesToDelete.push_back(projectile);
+		}
+	}
+
+	// Actor deletion
+	for (auto const& projectile : projectilesToDelete) {
+		space->removeFlyingDynamicActor(projectile);
+		projectiles.remove(projectile);
+	}
+
 }
 
 void GameLayer::draw() {

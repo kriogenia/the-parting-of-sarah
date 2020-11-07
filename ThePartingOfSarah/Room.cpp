@@ -274,22 +274,22 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case ROCK: {
-		Tile* tile = new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game);
+		Tile* tile = new Rock(x, y, game);
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(tile);
-		tiles.push_back(new Rock(x, y, game));
 		space->addStaticActor(tile);
 		break;
 	}
 	case POND_TOP: {
 		Tile* tile = new MappedTile("res/tiles/water.png", x, y, 64, 0, game);
 		tiles.push_back(tile);
-		space->addStaticActor(tile);
+		space->addLowStaticActor(tile);
 		break;
 	}
 	case POND_BASE: {
 		Tile* tile = new MappedTile("res/tiles/water.png", x, y, 64, 1 + rand() % 3, game);
 		tiles.push_back(tile);
-		space->addStaticActor(tile);
+		space->addLowStaticActor(tile);
 		break;
 	}
 	case BARREL: {

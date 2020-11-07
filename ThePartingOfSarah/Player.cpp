@@ -85,8 +85,8 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
-		return new Projectile("res/projectiles/basic_player_shot.png", x, y,
-			mouseX, mouseY, 5, game);
+		return new Projectile("res/sprites/projectiles/player_projectile.png", 
+			x, y, mouseX, mouseY, 7, game);
 	}
 	return nullptr;
 }

@@ -3,9 +3,9 @@
 Projectile::Projectile(string filename, int x, int y, int mouseX, int mouseY, int size, Game* game) :
 	Actor(filename, x, y, size, size, game)
 {
-	float vectorLength = sqrt(pow(mouseX - x, 2) + pow(mouseY + y, 2));
+	float vectorLength = sqrt(pow(mouseX - x, 2) + pow(mouseY - y, 2));
 	this->vx = (mouseX - x) / vectorLength * PROJECTILE_SPEED;
-	this->vy = -(mouseY - y) / vectorLength * PROJECTILE_SPEED;
+	this->vy = (mouseY - y) / vectorLength * PROJECTILE_SPEED;
 }
 
 void Projectile::draw(float scrollX, float scrollY) {
@@ -25,4 +25,8 @@ void Projectile::draw(float scrollX, float scrollY) {
 
 	SDL_RenderCopyEx(game->renderer,
 		texture, &source, &destination, 0, NULL, SDL_FLIP_NONE);
+}
+
+void Projectile::update() {
+	this->destructionFlag = (vx == 0 || vy == 0);
 }
