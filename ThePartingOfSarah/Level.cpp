@@ -27,12 +27,12 @@ void Level::draw(int scrollX, int scrollY) {
 	}
 }
 
-void Level::update(int playerX, int playerY) {
+void Level::update(Player* player) {
 	background->update();
 	// Out of room player, check if they entered a new room
 	if (currentRoom == nullptr) {
 		for (auto const& room : rooms) {
-			if (room->hasPlayerInside(playerX, playerY)) {
+			if (room->hasPlayerInside(player)) {
 				currentRoom = room;
 				currentRoom->playerEntered();
 			}
@@ -40,7 +40,7 @@ void Level::update(int playerX, int playerY) {
 		return;
 	}
 	// Check if player is still in room
-	if (currentRoom->hasPlayerInside(playerX, playerY)) {
+	if (currentRoom->hasPlayerInside(player)) {
 		return;
 	}
 	// Otherwise it exited

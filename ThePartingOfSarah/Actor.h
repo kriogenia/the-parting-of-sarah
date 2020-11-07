@@ -14,8 +14,8 @@ public:
 	SDL_Texture* texture;
 	int x;						
 	int y;						
-	int vx = 0;					// movement on X axis
-	int vy = 0;					// movement on Y axis
+	float vx = 0;				// movement on X axis
+	float vy = 0;				// movement on Y axis
 	int width;					// actor width
 	int height;					// actor height
 	int fileWidth;				

@@ -9,6 +9,9 @@ GameLayer::~GameLayer() {
 	delete crosshair;
 	delete level;
 	delete player;
+	delete space;
+
+	projectiles.clear();
 }
 
 void GameLayer::init() {
@@ -31,6 +34,8 @@ void GameLayer::init() {
 	delete crosshair;
 	crosshair = new Crosshair(game);
 
+	projectiles.clear();
+
 
 }
 
@@ -39,22 +44,32 @@ void GameLayer::processControls() {
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		keysToControl(event);
+		mouseToControl(event);
+	}
+	player->move();
+	// Register player shot
+	Projectile* projectile = player->shoot(mouseX, mouseY);
+	if (projectile != nullptr) {
+		projectiles.push_back(projectile);
+		space->addDynamicActor(projectile);
 	}
 }
 
 void GameLayer::update() {
 	space->update();
 	player->update(mouseX + scrollX, mouseY + scrollY);
-	level->update(player->x, player->y);
+	level->update(player);
 	crosshair->update(mouseX, mouseY);
 }
 
 void GameLayer::draw() {
-	// Calculates the scroll
+	// Calculate the scroll
 	level->calculateScroll(player->x, player->y, &scrollX, &scrollY);
-	// Draws the actors
+	// Draw the actors
 	level->draw(scrollX, scrollY);
 	player->draw(scrollX, scrollY);
+	for (auto const& projectile : projectiles)
+		projectile->draw(scrollX, scrollY);
 	crosshair->draw();
 }
 
@@ -65,9 +80,18 @@ void GameLayer::keysToControl(SDL_Event event) {
 			game->loopActive = false;
 			return;
 		}
-		player->move(code);
+		player->enterInput(code);
 	}
 	if (event.type == SDL_KEYUP) {
-		player->stop(code);
+		player->stopInput(code);
+	}
+}
+
+void GameLayer::mouseToControl(SDL_Event event) {
+	if (event.type == SDL_MOUSEBUTTONDOWN) {
+		player->enterInput(event.type);
+	}
+	if (event.type == SDL_MOUSEBUTTONUP) {
+		player->stopInput(event.type);
 	}
 }

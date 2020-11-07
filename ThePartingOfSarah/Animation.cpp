@@ -1,7 +1,7 @@
 #include "Animation.h"
 
-Animation::Animation(string filename, float actorWidth, float actorHeight,
-	float fileWidth, float fileHeight, int updateFrequence, int totalFrames, Game* game) :
+Animation::Animation(string filename, float actorWidth, float actorHeight, float fileWidth, 
+	float fileHeight, int updateFrequence, int totalFrames, bool loop, Game* game) :
 	
 	actorWidth(actorWidth),
 	actorHeight(actorHeight),
@@ -9,6 +9,7 @@ Animation::Animation(string filename, float actorWidth, float actorHeight,
 	fileHeight(fileHeight),
 	updateFrequence(updateFrequence),
 	totalFrames(totalFrames),
+	loop(loop),
 	game(game),
 	updateTime(0),
 	currentFrame(0)
@@ -36,6 +37,9 @@ bool Animation::update() {
 		currentFrame++;
 		if (currentFrame >= totalFrames) {
 			currentFrame = 0;
+			if (!loop) {
+				return true;
+			}
 		}
 	}
 	// Update frame rectangle

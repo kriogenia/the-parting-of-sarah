@@ -5,6 +5,7 @@
 #include "DestructibleTile.h"
 #include "Door.h"
 #include "MappedTile.h"
+#include "Player.h"
 #include "Rock.h"
 #include "Space.h"
 
@@ -48,7 +49,7 @@ public:
 
 	void draw(int scrollX, int scrollY);
 
-	bool hasPlayerInside(int playerX, int playerY);
+	bool hasPlayerInside(Player* player);
 	void playerEntered();
 	void setCleared();
 	void openDoors();

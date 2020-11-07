@@ -12,6 +12,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Game* game) :
 	//this->filename = "res/rooms/room_24.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
+	// Grid initialization
 	for (int i = 0; i < TILES_PER_ROOM; i++) {
 		for (int j = 0; j < TILES_PER_ROOM; j++) {
 			grid[i][j] = NO_TILE;
@@ -32,20 +33,25 @@ void Room::draw(int scrollX, int scrollY) {
 	}
 }
 
-bool Room::hasPlayerInside(int playerX, int playerY) {
+bool Room::hasPlayerInside(Player* player) {
 	int topLimit = offsetRoomY + FLOOR_OFFSET;
 	int leftLimit = offsetRoomX + FLOOR_OFFSET;
 	int rightLimit = offsetRoomX + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
 	int bottomLimit = offsetRoomY + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
-	if (playerX > leftLimit && playerX < rightLimit && playerY > topLimit && playerY < bottomLimit) {
+	if (player->x + player->width / 2 >= leftLimit && 
+		player->x - player->width / 2 <= rightLimit && 
+		player->y - player->height / 2 >= topLimit && 
+		player->y + player->height / 2 <= bottomLimit) {
 		return true;
 	}
 	return false;
 }
 
 void Room::playerEntered() {
-	this->closeDoors();
-	// spawn enemies
+	if (!cleared) {
+		this->closeDoors();
+		// spawn enemies
+	}
 }
 
 void Room::setCleared() {
@@ -61,11 +67,9 @@ void Room::openDoors() {
 }
 
 void Room::closeDoors() {
-	if (!cleared) {
-		for (auto const& door : doors) {
-			door->close();
-			space->addStaticActor(door);
-		}
+	for (auto const& door : doors) {
+		door->close();
+		space->addStaticActor(door);
 	}
 }
 

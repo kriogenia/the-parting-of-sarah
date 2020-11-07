@@ -16,7 +16,7 @@ public:
 	~Level();
 
 	void draw(int scrollX, int scrollY);
-	void update(int playerX, int playerY);
+	void update(Player* player);
 	void calculateScroll(int playerX, int playerY, int* scrollX, int* scrollY);
 
 	Room* currentRoom;

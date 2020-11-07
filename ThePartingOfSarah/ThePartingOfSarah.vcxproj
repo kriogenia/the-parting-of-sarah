@@ -164,6 +164,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Space.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Space.h" />
