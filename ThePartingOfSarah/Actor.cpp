@@ -21,7 +21,7 @@ Actor::~Actor() {
 	SDL_DestroyTexture(texture);
 }
 
-void Actor::draw(float scrollX, float scrollY) {
+void Actor::draw(int scrollX, int scrollY) {
 	SDL_Rect source;
 	source.x = 0;
 	source.y = 0;

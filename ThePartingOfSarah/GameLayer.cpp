@@ -15,6 +15,10 @@ GameLayer::~GameLayer() {
 }
 
 void GameLayer::init() {
+
+	this->scrollX = 0;
+	this->scrollY = 0;
+
 	delete space;
 	space = new Space();
 
@@ -25,17 +29,13 @@ void GameLayer::init() {
 	player = new Player(
 		level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
 		level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
-		game);
+		&mouseX, &mouseY, &scrollX, &scrollY, game);
 	space->addDynamicActor(player);
-
-	this->scrollX = 0;
-	this->scrollY = 0;
 
 	delete crosshair;
 	crosshair = new Crosshair(game);
 
 	projectiles.clear();
-
 
 }
 
@@ -57,7 +57,7 @@ void GameLayer::processControls() {
 
 void GameLayer::update() {
 	space->update();
-	player->update(mouseX + scrollX, mouseY + scrollY);
+	player->update();
 	level->update(player);
 	crosshair->update(mouseX, mouseY);
 

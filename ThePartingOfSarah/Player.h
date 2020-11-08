@@ -2,23 +2,14 @@
 
 #include <map>
 
-#include "Actor.h"
-#include "Animation.h"
+#include "Character.h"
 #include "Projectile.h"
 
-constexpr auto STARTING_SPEED = 3;
-constexpr auto STARTING_CADENCE = 30;
+constexpr auto STARTING_PLAYER_SPEED = 3;
+constexpr auto STARTING_PLAYER_CADENCE = 30;
+constexpr auto STARTING_PLAYER_HP = 3;
 
-constexpr auto DEBUGGING_SPEED  = 3;
-
-enum eAction {
-    IDLE,
-    MOVING,
-    SHOOTING,
-    DYING
-};
-
-enum eOrientation {
+enum ePlayerOrientation {
     UP,
     UP_LEFT,
     UP_RIGHT,
@@ -30,14 +21,13 @@ enum eOrientation {
 };
 
 class Player :
-    public Actor {
+    public Character {
 
 public:
-    Player(float x, float y, Game* game);
+    Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* scrollY, Game* game);
     ~Player();
 
-    void update(int mouseX, int mouseY);
-    void draw(float scrollX = 0, float scrollY = 0) override;
+    void update() override;
     // Controls
     void enterInput(int code);
     void stopInput(int code);
@@ -49,18 +39,17 @@ private:
     void importAnimations();
     // Update
     void setAction(bool endedAction);
-    void setOrientation(int mouseX, int mouseY);
+    void setOrientation();
     void setAxisOrientation(int orientationX, int orientationY);
     //void setDiagonalOrientation(int orientationX, int orientationY);
     void setAnimation();
     // Animations
-    Animation* animation;
-    map<eOrientation, Animation*> idleAnimations;
-    map<eOrientation, Animation*> movingAnimations;
-    map<eOrientation, Animation*> shootingAnimations;
+    map<ePlayerOrientation, Animation*> idleAnimations;
+    map<ePlayerOrientation, Animation*> movingAnimations;
+    map<ePlayerOrientation, Animation*> shootingAnimations;
     // States
-    eAction action;
-    eOrientation orientation;
+    eCharacterAction action;
+    ePlayerOrientation orientation;
     // Movement and controls
     int moveUp = 0;
     int moveLeft = 0;
@@ -71,5 +60,10 @@ private:
     int shotTime;
     int shotCadence;
     float speed;
+    // Mouse and screen reference
+    int* mouseX;
+    int* mouseY;
+    int* scrollX;
+    int* scrollY;
 };
 

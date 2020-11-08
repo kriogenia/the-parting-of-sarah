@@ -18,7 +18,7 @@ public:
 	Actor(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game);
 	~Actor();
 
-	virtual void draw(float scrollX = 0, float scrollY = 0);
+	virtual void draw(int scrollX = 0, int scrollY = 0);
 
 	bool isOverlap(Actor* actor);
 	virtual void collisionedWith(Actor* actor);

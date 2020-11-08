@@ -37,6 +37,12 @@
     <Filter Include="Archivos de origen\Actors\Tiles">
       <UniqueIdentifier>{35ef8b3c-c1f0-46af-8eed-8ac8685d1fb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Actors\Characters">
+      <UniqueIdentifier>{535dc34c-cb48-47eb-bed1-90aaffd752ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\Characters">
+      <UniqueIdentifier>{6c8c1be5-3c06-4dc9-8efd-0bb9d2fecd72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -52,9 +58,6 @@
       <Filter>Archivos de origen\Layers</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Archivos de origen\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>Archivos de origen\Actors</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
@@ -93,6 +96,12 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Archivos de origen\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -105,9 +114,6 @@
       <Filter>Archivos de encabezado\Layers</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Archivos de encabezado\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
       <Filter>Archivos de encabezado\Actors</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Archivos de encabezado\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,7 +20,7 @@ void Background::update() {
 	}
 }
 
-void Background::draw(float scrollX, float scrollY) {
+void Background::draw(int scrollX, int scrollY) {
 	int offset = ((x + WIDTH > fileWidth) ? fileWidth - x : 0);
 
 	SDL_Rect source;

@@ -10,7 +10,7 @@ Projectile::Projectile(string filename, int x, int y, int mouseX, int mouseY, in
 	this->vy = (mouseY - y) / vectorLength * PROJECTILE_SPEED;
 }
 
-void Projectile::draw(float scrollX, float scrollY) {
+void Projectile::draw(int scrollX, int scrollY) {
 	SDL_Rect source;
 	source.x = 0;
 	source.y = 0;
