@@ -102,6 +102,12 @@
     <ClCompile Include="Character.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Snail.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -156,6 +162,12 @@
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Snail.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
   </ItemGroup>

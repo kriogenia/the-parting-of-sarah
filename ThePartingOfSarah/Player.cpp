@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* scrollY, Game* game) : 
-	Character("res/sprites/character/Character_Idle_Down.png", x, y, 16, 16, game) 
+	Character("res/sprites/player/Character_Idle_Down.png", x, y, 16, 16, game) 
 {
 	this->type = PLAYER;
 	// Set references
@@ -17,7 +17,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	// Debugging stats
 	this->speed = 10;
 
-	this->importAnimations();
+	importAnimations();
 	// State initialization
 	this->action = IDLE;
 	this->orientation = DOWN;
@@ -26,9 +26,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 
 Player::~Player() {
 	idleAnimations.clear();
-	movingAnimations.clear();
 	shootingAnimations.clear();
-	delete animation;
 }
 
 void Player::update() {
@@ -38,6 +36,12 @@ void Player::update() {
 	setAction(endAnimation);			// Sets the action performed by the player
 	setOrientation();					// Sets the orientation towards the cursor
 	setAnimation();						// Sets the new animation
+}
+
+void Player::collisionedWith(Actor* actor) {
+	if (actor->type == ENEMY) {
+		damage();
+	}
 }
 
 void Player::enterInput(int code) {
@@ -90,7 +94,7 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
-		return new Projectile("res/sprites/projectiles/player_projectile.png", 
+		return new Projectile("res/sprites/player/player_projectile.png", 
 			x, y, mouseX, mouseY, 7, game);
 	}
 	return nullptr;
@@ -150,32 +154,32 @@ void Player::setAnimation() {
 void Player::importAnimations() {
 	// IDLE
 	idleAnimations.clear();
-	idleAnimations.insert_or_assign(DOWN, new Animation("res/sprites/character/Character_Idle_Down.png",
+	idleAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Idle_Down.png",
 		width, height, 64, 16, 8, 4, true, game));
-	idleAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/character/Character_Idle_Right.png",
+	idleAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Idle_Right.png",
 		width, height, 64, 16, 8, 4, true, game));
-	idleAnimations.insert_or_assign(LEFT, new Animation("res/sprites/character/Character_Idle_Left.png",
+	idleAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Idle_Left.png",
 		width, height, 64, 16, 8, 4, true, game));
-	idleAnimations.insert_or_assign(UP, new Animation("res/sprites/character/Character_Idle_Up.png",
+	idleAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Idle_Up.png",
 		width, height, 64, 16, 8, 4, true, game));
 	// MOVING
 	movingAnimations.clear();
-	movingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/character/Character_Moving_Down.png",
+	movingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Moving_Down.png",
 		width, height, 64, 16, 4, 4, true, game));
-	movingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/character/Character_Moving_Right.png",
+	movingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Moving_Right.png",
 		width, height, 64, 16, 4, 4, true, game));
-	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/character/Character_Moving_Left.png",
+	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Moving_Left.png",
 		width, height, 64, 16, 4, 4, true, game));
-	movingAnimations.insert_or_assign(UP, new Animation("res/sprites/character/Character_Moving_Up.png",
+	movingAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Moving_Up.png",
 		width, height, 64, 16, 4, 4, true, game));
 	// SHOOTING
 	shootingAnimations.clear();
-	shootingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/character/Character_Shooting_Down.png",
+	shootingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Shooting_Down.png",
 		width, height, 80, 16, 6, 5, false, game));
-	shootingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/character/Character_Shooting_Right.png",
+	shootingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Shooting_Right.png",
 		width, height, 80, 16, 6, 5, false, game));
-	shootingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/character/Character_Shooting_Left.png",
+	shootingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Shooting_Left.png",
 		width, height, 80, 16, 6, 5, false, game));
-	shootingAnimations.insert_or_assign(UP, new Animation("res/sprites/character/Character_Shooting_Up.png",
+	shootingAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Shooting_Up.png",
 		width, height, 80, 16, 6, 5, false, game));
 }

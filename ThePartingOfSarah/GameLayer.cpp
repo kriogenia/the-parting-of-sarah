@@ -60,8 +60,12 @@ void GameLayer::update() {
 	player->update();
 	level->update(player);
 	crosshair->update(mouseX, mouseY);
-
-	// Projectile deletion
+	space->checkDynamicCollisions();
+	// Game Over check
+	if (player->destructionFlag) {
+		game->loopActive = false;
+	}
+	// Projectiles deletion
 	list<Projectile*> projectilesToDelete;
 	for (auto const& projectile : projectiles) {
 		if (projectile->destructionFlag) {

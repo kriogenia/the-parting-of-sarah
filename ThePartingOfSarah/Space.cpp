@@ -16,6 +16,37 @@ void Space::update() {
     }
 }
 
+void Space::checkDynamicCollisions() {
+    for (auto const& actor : dynamicActors) {
+        for (auto const& actorToCheck : dynamicActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
+        for (auto const& actorToCheck : flyingDynamicActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
+    }
+    for (auto const& actor : flyingDynamicActors) {
+        for (auto const& actorToCheck : dynamicActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
+        for (auto const& actorToCheck : flyingDynamicActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
+    }
+}
+
 void Space::addDynamicActor(Actor* actor) {
 	dynamicActors.push_back(actor);
 }

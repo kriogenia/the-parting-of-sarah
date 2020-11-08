@@ -9,7 +9,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Game* game) :
 	game(game) 
 {
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	//this->filename = "res/rooms/room_24.txt";			// room tests
+	this->filename = "res/rooms/room_0.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	// Grid initialization
@@ -24,6 +24,10 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Game* game) :
 }
 
 Room::~Room() {
+	destructibles.clear();
+	doors.clear();
+	enemies.clear();
+	enemiesToSpawn.clear();
 	tiles.clear();
 }
 
@@ -37,9 +41,27 @@ void Room::draw(int scrollX, int scrollY) {
 	for (auto const& tile : doors) {
 		tile->draw(scrollX, scrollY);
 	}
+	for (auto const& enemy : enemies) {
+		enemy->draw(scrollX, scrollY);
+	}
 }
 
 void Room::update() {
+	// Enemies update
+	list<Enemy*> enemiesToDelete;
+	for (auto const& enemy : enemies) {
+		enemy->update();
+		if (enemy->destructionFlag) {
+			enemiesToDelete.push_back(enemy);
+		}
+	}
+	for (auto const& enemy : enemiesToDelete) {
+		space->removeDynamicActor(enemy);
+		enemies.remove(enemy);
+	}
+	if (enemies.empty() && enemiesToSpawn.empty()) {
+		setCleared();
+	}
 	// Deletion of destructibles
 	list<DestructibleTile*> destructiblesToDelete;
 	for (auto const& destructible : destructibles) {
@@ -70,7 +92,12 @@ bool Room::hasPlayerInside(Player* player) {
 void Room::playerEntered() {
 	if (!cleared) {
 		this->closeDoors();
-		// spawn enemies
+		// Spawn enemies
+		for (auto const& enemy : enemiesToSpawn) {
+			enemies.push_back(enemy);
+			space->addDynamicActor(enemy);
+		}
+		enemiesToSpawn.clear();
 	}
 }
 
@@ -314,6 +341,10 @@ void Room::loadMapObject(char character, int i, int j) {
 		destructibles.push_back(tile);
 		space->addStaticActor(tile);
 		break;
+	}
+	case SPAWN: {
+		enemiesToSpawn.push_back(new Snail(x, y, game));
+		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 	}
 	}
 }

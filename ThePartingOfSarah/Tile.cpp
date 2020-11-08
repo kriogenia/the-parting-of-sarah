@@ -8,4 +8,5 @@ Tile::Tile(string filename, float x, float y, int width, int height, Game* game)
 
 Tile::Tile(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game)
 	: Actor(filename, x, y, width, height, fileWidth, fileHeight, game) {
+	this->type = TILE;
 }

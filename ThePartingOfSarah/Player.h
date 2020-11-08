@@ -9,17 +9,6 @@ constexpr auto STARTING_PLAYER_SPEED = 3;
 constexpr auto STARTING_PLAYER_CADENCE = 30;
 constexpr auto STARTING_PLAYER_HP = 3;
 
-enum ePlayerOrientation {
-    UP,
-    UP_LEFT,
-    UP_RIGHT,
-    LEFT,
-    RIGHT,
-    DOWN_LEFT,
-    DOWN_RIGHT,
-    DOWN
-};
-
 class Player :
     public Character {
 
@@ -28,6 +17,9 @@ public:
     ~Player();
 
     void update() override;
+
+    void collisionedWith(Actor* actor) override;
+
     // Controls
     void enterInput(int code);
     void stopInput(int code);
@@ -36,7 +28,7 @@ public:
     
 private:
     // Initialization
-    void importAnimations();
+    void importAnimations() override;
     // Update
     void setAction(bool endedAction);
     void setOrientation();
@@ -44,12 +36,8 @@ private:
     //void setDiagonalOrientation(int orientationX, int orientationY);
     void setAnimation();
     // Animations
-    map<ePlayerOrientation, Animation*> idleAnimations;
-    map<ePlayerOrientation, Animation*> movingAnimations;
-    map<ePlayerOrientation, Animation*> shootingAnimations;
-    // States
-    eCharacterAction action;
-    ePlayerOrientation orientation;
+    map<eCharacterOrientation, Animation*> idleAnimations;
+    map<eCharacterOrientation, Animation*> shootingAnimations;
     // Movement and controls
     int moveUp = 0;
     int moveLeft = 0;

@@ -7,7 +7,16 @@ enum eCharacterAction {
     IDLE,
     MOVING,
     SHOOTING,
+    HIDING,
+    HIT,
     DYING
+};
+
+enum eCharacterOrientation {
+    UP,
+    LEFT,
+    RIGHT,
+    DOWN
 };
 
 class Character :
@@ -15,15 +24,22 @@ class Character :
 {
 public:
     Character(string filename, float x, float y, int width, int height, Game* game);
-    Character(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game);
+    ~Character();
 
     virtual void update();
     void draw(int scrollX = 0, int scrollY = 0) override;
 
-    // void damage();
+    virtual void damage();
 
 protected:
+    // Initialization
+    virtual void importAnimations();
+    // States
+    eCharacterAction action;        
+    eCharacterOrientation orientation;
+    // Animations
     Animation* animation;
+    map<eCharacterOrientation, Animation*> movingAnimations;
 
     int hp;
 };

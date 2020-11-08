@@ -9,6 +9,8 @@ public:
 
 	void update();
 
+	void checkDynamicCollisions();
+
 	void addDynamicActor(Actor* actor);
 	void addFlyingDynamicActor(Actor* actor);
 	void addStaticActor(Actor* actor);

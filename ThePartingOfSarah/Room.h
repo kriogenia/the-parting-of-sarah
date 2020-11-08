@@ -4,9 +4,11 @@
 
 #include "DestructibleTile.h"
 #include "Door.h"
+#include "Enemy.h"
 #include "MappedTile.h"
 #include "Player.h"
 #include "Rock.h"
+#include "Snail.h"					// TODO delete
 #include "Space.h"
 
 constexpr auto TILES_PER_ROOM = 30;
@@ -37,7 +39,8 @@ enum eTileType {
 	ROCK = 'X',
 	POND_TOP = 'P',
 	POND_BASE = '~',
-	BARREL = 'M'
+	BARREL = 'M',
+	SPAWN = 'S'
 };
 
 class Room {
@@ -73,6 +76,7 @@ public:
 	Room* right = nullptr;
 
 	list<DestructibleTile*> destructibles;
+	list<Enemy*> enemies;
 
 private:
 	void loadMapObject(char character, int x, int y);
@@ -89,6 +93,8 @@ private:
 	list<Tile*> tiles;
 	list<Door*> doors;
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
+
+	list<Enemy*> enemiesToSpawn;
 	
 	int code = -1;
 	bool cleared = false;

@@ -31,5 +31,6 @@ void Projectile::draw(int scrollX, int scrollY) {
 }
 
 void Projectile::collisionedWith(Actor* actor) {
-	this->destructionFlag = true;
+	if (actor->type == ENEMY || actor->type == TILE)
+		this->destructionFlag = true;
 }
