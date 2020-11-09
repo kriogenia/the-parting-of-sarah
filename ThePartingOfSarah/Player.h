@@ -47,7 +47,6 @@ private:
     // Attributes
     int shotTime;
     int shotCadence;
-    float speed;
     // Mouse and screen reference
     int* mouseX;
     int* mouseY;

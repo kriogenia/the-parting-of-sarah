@@ -7,6 +7,7 @@ enum eActorType {
 	ENEMY,
 	TILE,
 	PROJECTILE,
+	ENEMY_PROJECTILE,
 	HUD,
 	BACKGROUND
 };

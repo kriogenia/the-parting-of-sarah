@@ -45,7 +45,8 @@ protected:
     // Animations
     Animation* animation;
     map<eCharacterOrientation, Animation*> movingAnimations;
-
+    // Attributes
     int hp;
+    float speed;
 };
 
