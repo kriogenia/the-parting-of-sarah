@@ -7,8 +7,9 @@
 #include "Enemy.h"
 #include "MappedTile.h"
 #include "Rock.h"
-#include "Snail.h"					// TODO delete
 #include "Space.h"
+
+#include "Pig.h"					// TODO delete
 
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;

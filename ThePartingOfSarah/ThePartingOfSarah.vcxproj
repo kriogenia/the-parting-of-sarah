@@ -165,6 +165,7 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pig.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rock.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="GameLayer.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Pig.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rock.h" />

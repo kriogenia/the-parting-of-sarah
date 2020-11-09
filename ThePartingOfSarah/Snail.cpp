@@ -3,7 +3,7 @@
 Snail::Snail(float x, float y, Actor* player, Game* game) :
 	Enemy("res/sprites/snail/Snail_Moving.png", x, y, 38, 24, player, game) 
 {
-	this->hp = SNAIL_HP;
+	this->hp = SNAIL_STARTING_HP;
 	this->speed = SNAIL_SPEED;
 	this->timeToHide = SNAIL_INVULNERATIBILITY_CD;
 
@@ -21,7 +21,7 @@ Snail::~Snail() {
 void Snail::update() {
 	if (this->action == MOVING)
 		timeToHide--;
-	Character::update();
+	Enemy::update();
 }
 
 void Snail::damage() {
@@ -41,7 +41,7 @@ void Snail::setMovement() {
 }
 
 void Snail::setAction(bool endAction) {
-	if ((this->action == HIT || this->action == HIDING) && !endAction)
+	if (this->action != MOVING && !endAction)
 		return;
 	if (timeToHide <= 0) {
 		timeToHide = SNAIL_INVULNERATIBILITY_CD;

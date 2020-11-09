@@ -344,7 +344,7 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case SPAWN: {
-		enemiesToSpawn.push_back(new Snail(x, y, player, game));
+		enemiesToSpawn.push_back(new Pig(x, y, player, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 	}
 	}

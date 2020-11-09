@@ -9,6 +9,7 @@ enum eCharacterAction {
     SHOOTING,
     HIDING,
     HIT,
+    RUNNING,
     DYING
 };
 

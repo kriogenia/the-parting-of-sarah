@@ -3,7 +3,7 @@
 #include "Enemy.h"
 
 constexpr auto SNAIL_SPEED = 1;
-constexpr auto SNAIL_HP = 5;
+constexpr auto SNAIL_STARTING_HP = 11;
 constexpr auto SNAIL_INVULNERATIBILITY_CD = 90;
 
 class Snail : 

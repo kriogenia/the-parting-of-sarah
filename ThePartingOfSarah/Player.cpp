@@ -15,7 +15,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->shotTime = shotCadence;
 	this->speed = STARTING_PLAYER_SPEED;
 	// Debugging stats
-	this->speed = 10;
+	this->speed = 3;
 
 	importAnimations();
 	// State initialization

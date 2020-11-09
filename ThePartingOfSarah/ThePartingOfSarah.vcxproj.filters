@@ -108,6 +108,9 @@
     <ClCompile Include="Snail.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="Pig.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -168,6 +171,9 @@
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Snail.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Pig.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,27 +18,27 @@ void Enemy::collisionedWith(Actor* actor) {
 }
 
 void Enemy::damage() {
-	if (this->action != HIT) {
-		this->action = HIT;
+	if (this->action != HIT || this->action != DYING) {
+		this->hp--;
+		this->action = (hp <= 0) ? DYING : HIT;
 		this->animation = hitAnimations[orientation];
-		Character::damage();
 	}
 }
 
 void Enemy::setMovement() {
-	if (this->action == MOVING) {
+	if (this->action == HIT || this->action == DYING) {
+		this->vx = 0;
+		this->vy = 0;
+	}
+	else {
 		float vectorLength = sqrt(pow(player->x - x, 2) + pow(player->y - y, 2));
 		this->vx = (player->x - x) / vectorLength * speed;
 		this->vy = (player->y - y) / vectorLength * speed;
 	}
-	else {
-		this->vx = 0;
-		this->vy = 0;
-	}
 }
 
 void Enemy::setAction(bool endAction) {
-	if (this->action == HIT && !endAction)
+	if (this->action != MOVING && !endAction)
 		return;
 	this->action = MOVING;
 }
