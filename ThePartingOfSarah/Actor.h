@@ -28,8 +28,8 @@ public:
 
 	eActorType type;
 
-	int x;						
-	int y;		
+	float x;						
+	float y;		
 
 	float vx = 0;				// movement on X axis
 	float vy = 0;				// movement on Y axis

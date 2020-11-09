@@ -8,7 +8,13 @@ Character::~Character() {
 	delete animation;
 }
 
-void Character::update() {}
+void Character::update() {
+	bool endAnimation = animation->update();
+	setMovement();
+	setAction(endAnimation);
+	setOrientation();
+	setAnimation();
+}
 
 void Character::draw(int scrollX, int scrollY) {
 	animation->draw(x - scrollX, y - scrollY);
@@ -22,3 +28,22 @@ void Character::damage() {
 }
 
 void Character::importAnimations() {}
+
+void Character::setMovement() {
+	this->vx = 0;
+	this->vy = 0;
+}
+
+void Character::setAction(bool endedAction) {
+	this->action = MOVING;
+}
+
+void Character::setOrientation() {
+	this->orientation = LEFT;
+}
+
+void Character::setAnimation() {
+	if (this->action == MOVING) {
+		this->animation = movingAnimations[orientation];
+	}
+}

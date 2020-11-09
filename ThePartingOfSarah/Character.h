@@ -34,6 +34,11 @@ public:
 protected:
     // Initialization
     virtual void importAnimations();
+    // Character update
+    virtual void setMovement();
+    virtual void setAction(bool endedAction);
+    virtual void setOrientation();
+    virtual void setAnimation();
     // States
     eCharacterAction action;        
     eCharacterOrientation orientation;

@@ -10,7 +10,7 @@ class Snail :
     public Enemy
 {
 public:
-    Snail(float x, float y, Game* game);
+    Snail(float x, float y, Actor* player, Game* game);
     
 private:
     void importAnimations() override;

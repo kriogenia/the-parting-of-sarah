@@ -30,11 +30,11 @@ private:
     // Initialization
     void importAnimations() override;
     // Update
-    void setAction(bool endedAction);
-    void setOrientation();
+    void setAction(bool endedAction) override;
+    void setOrientation() override;
     void setAxisOrientation(int orientationX, int orientationY);
     //void setDiagonalOrientation(int orientationX, int orientationY);
-    void setAnimation();
+    void setAnimation() override;
     // Animations
     map<eCharacterOrientation, Animation*> idleAnimations;
     map<eCharacterOrientation, Animation*> shootingAnimations;

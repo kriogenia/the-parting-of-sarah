@@ -1,7 +1,8 @@
 #include "Level.h"
 
-Level::Level(int floor, Space* space, Game* game) :
+Level::Level(int floor, Space* space, Actor* player, Game* game) :
 	space(space),
+	player(player),
 	game(game) 
 {
 	cout << "Floor: " << floor << endl;
@@ -27,7 +28,7 @@ void Level::draw(int scrollX, int scrollY) {
 	}
 }
 
-void Level::update(Player* player) {
+void Level::update() {
 	background->update();
 	for (auto const& room : rooms) {
 		room->update();
@@ -35,7 +36,7 @@ void Level::update(Player* player) {
 	// Out of room player, check if they entered a new room
 	if (currentRoom == nullptr) {
 		for (auto const& room : rooms) {
-			if (room->hasPlayerInside(player)) {
+			if (room->hasPlayerInside()) {
 				currentRoom = room;
 				currentRoom->playerEntered();
 			}
@@ -43,22 +44,22 @@ void Level::update(Player* player) {
 		return;
 	}
 	// Check if player is still in room
-	if (currentRoom->hasPlayerInside(player)) {
+	if (currentRoom->hasPlayerInside()) {
 		return;
 	}
 	// Otherwise it exited
 	currentRoom = nullptr;
 }
 
-void Level::calculateScroll(int playerX, int playerY, int* scrollX, int* scrollY) {
+void Level::moveScroll(int* scrollX, int* scrollY) {
 	if (currentRoom != nullptr) {
 		int roomDimension = TILES_PER_ROOM * TILE_SIZE;
 		*scrollX = currentRoom->x * roomDimension + roomDimension / 2 - HEIGHT / 2;
 		*scrollY = currentRoom->y * roomDimension + roomDimension / 2 - WIDTH / 2;
 	}
 	else {
-		*scrollX = playerX - HEIGHT / 2;
-		*scrollY = playerY - WIDTH / 2;
+		*scrollX = player->x - HEIGHT / 2;
+		*scrollY = player->y - WIDTH / 2;
 	}
 }
 
@@ -89,7 +90,7 @@ queue<int> Level::getCodes() {
 
 void Level::setStartingRoom(queue<int>* codes) {
 	// Generate the Starting Room (center of the grid)
-	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, (*codes).front(), space, game);
+	startingRoom = new Room(STARTING_ROOM, FLOOR_SIZE / 2, FLOOR_SIZE / 2, (*codes).front(), space, player, game);
 	rooms.push_back(startingRoom);
 	(*codes).pop();
 }
@@ -98,7 +99,7 @@ void Level::setBossRoom(queue<int>* codes) {
 	// Generate the Boss Room (outer ring)
 	int bossRoomX = ((rand() % 4) / 2) * 4;
 	int bossRoomY = ((rand() % 4) % 2) * 4;
-	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), space, game);
+	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), space, player, game);
 	rooms.push_back(bossRoom);
 	(*codes).pop();
 }
@@ -114,7 +115,7 @@ void Level::setTreasureRoom(queue<int>* codes) {
 		for (int j = fromJ; j < toJ; j++) {
 			if (i != j) {
 				if (treasureRoomPlacement == 0) {
-					treasureRoom = new Room(TREASURE_ROOM, i, j, (*codes).front(), space, game);
+					treasureRoom = new Room(TREASURE_ROOM, i, j, (*codes).front(), space, player, game);
 					rooms.push_back(treasureRoom);
 					(*codes).pop();
 					return;

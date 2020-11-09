@@ -1,11 +1,12 @@
 #include "Room.h"
 
-Room::Room(eRoomType type, int x, int y, int number, Space* space, Game* game) :
+Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player, Game* game) :
 	type(type),
 	x(x),
 	y(y),
 	code(number),
 	space(space),
+	player(player),
 	game(game) 
 {
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
@@ -75,14 +76,14 @@ void Room::update() {
 	}
 }
 
-bool Room::hasPlayerInside(Player* player) {
+bool Room::hasPlayerInside() {
 	int topLimit = offsetRoomY + FLOOR_OFFSET;
 	int leftLimit = offsetRoomX + FLOOR_OFFSET;
 	int rightLimit = offsetRoomX + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
 	int bottomLimit = offsetRoomY + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
-	if (player->x + player->width / 2 >= leftLimit && 
-		player->x - player->width / 2 <= rightLimit && 
-		player->y - player->height / 2 >= topLimit && 
+	if (player->x + player->width / 2 >= leftLimit &&
+		player->x - player->width / 2 <= rightLimit &&
+		player->y - player->height / 2 >= topLimit &&
 		player->y + player->height / 2 <= bottomLimit) {
 		return true;
 	}
@@ -343,7 +344,7 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case SPAWN: {
-		enemiesToSpawn.push_back(new Snail(x, y, game));
+		enemiesToSpawn.push_back(new Snail(x, y, player, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 	}
 	}
@@ -404,7 +405,7 @@ Room* Room::expand(int childCode, int floorSize) {
 	// Generate a random child among the possible ways
 	if (!possibleChildren.empty()) {
 		position newRoomXY = possibleChildren[code % possibleChildren.size()];
-		return new Room(COMMON_ROOM, newRoomXY.x, newRoomXY.y, childCode, space, game);
+		return new Room(COMMON_ROOM, newRoomXY.x, newRoomXY.y, childCode, space, player, game);
 	}
 	return nullptr;
 }

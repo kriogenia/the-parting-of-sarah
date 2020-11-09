@@ -12,12 +12,12 @@ using namespace std;
 
 class Level {
 public:
-	Level(int floor, Space* space, Game* game);
+	Level(int floor, Space* space, Actor* player, Game* game);
 	~Level();
 
 	void draw(int scrollX, int scrollY);
-	void update(Player* player);
-	void calculateScroll(int playerX, int playerY, int* scrollX, int* scrollY);
+	void update();
+	void moveScroll(int* scrollX, int* scrollY);
 
 	Room* currentRoom;
 
@@ -32,6 +32,7 @@ private:
 	void printFloor();
 
 	Game* game;
+	Actor* player;
 	Space* space;
 
 	list<Room*> rooms;

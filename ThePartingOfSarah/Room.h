@@ -6,7 +6,6 @@
 #include "Door.h"
 #include "Enemy.h"
 #include "MappedTile.h"
-#include "Player.h"
 #include "Rock.h"
 #include "Snail.h"					// TODO delete
 #include "Space.h"
@@ -45,7 +44,7 @@ enum eTileType {
 
 class Room {
 public:
-	Room(eRoomType type, int x, int y, int number, Space* space, Game* game);
+	Room(eRoomType type, int x, int y, int number, Space* space, Actor* player, Game* game);
 	~Room();
 
 	void loadMap();
@@ -53,7 +52,7 @@ public:
 	void draw(int scrollX, int scrollY);
 	void update();
 
-	bool hasPlayerInside(Player* player);
+	bool hasPlayerInside();
 	void playerEntered();
 	void setCleared();
 	void openDoors();
@@ -87,6 +86,7 @@ private:
 	void generateTiles();
 
 	Game* game;
+	Actor* player;
 	Space* space;
 	string filename;
 

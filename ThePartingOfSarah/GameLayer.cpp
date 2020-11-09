@@ -22,15 +22,14 @@ void GameLayer::init() {
 	delete space;
 	space = new Space();
 
-	delete level;
-	level = new Level(floor, space, game);
-
 	delete player;
-	player = new Player(
-		level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
-		level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2,
-		&mouseX, &mouseY, &scrollX, &scrollY, game);
+	player = new Player(0, 0, &mouseX, &mouseY, &scrollX, &scrollY, game);
 	space->addDynamicActor(player);
+
+	delete level;
+	level = new Level(floor, space, player, game);
+	player->x = level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
+	player->y = level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 
 	delete crosshair;
 	crosshair = new Crosshair(game);
@@ -58,7 +57,7 @@ void GameLayer::processControls() {
 void GameLayer::update() {
 	space->update();
 	player->update();
-	level->update(player);
+	level->update();
 	crosshair->update(mouseX, mouseY);
 	space->checkDynamicCollisions();
 	// Game Over check
@@ -81,7 +80,7 @@ void GameLayer::update() {
 
 void GameLayer::draw() {
 	// Calculate the scroll
-	level->calculateScroll(player->x, player->y, &scrollX, &scrollY);
+	level->moveScroll(&scrollX, &scrollY);
 	// Draw the actors
 	level->draw(scrollX, scrollY);
 	player->draw(scrollX, scrollY);
