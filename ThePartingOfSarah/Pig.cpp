@@ -7,9 +7,6 @@ Pig::Pig(float x, float y, Actor* player, Game* game) :
 	this->speed = PIG_MOVING_SPEED;
 
 	importAnimations();
-
-	this->action = MOVING;
-	this->orientation = LEFT;
 	this->animation = movingAnimations[orientation];
 }
 

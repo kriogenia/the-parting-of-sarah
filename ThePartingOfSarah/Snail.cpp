@@ -8,9 +8,6 @@ Snail::Snail(float x, float y, Actor* player, Game* game) :
 	this->timeToHide = SNAIL_INVULNERATIBILITY_CD;
 
 	importAnimations();
-
-	this->action = MOVING;
-	this->orientation = LEFT;
 	this->animation = movingAnimations[LEFT];
 }
 

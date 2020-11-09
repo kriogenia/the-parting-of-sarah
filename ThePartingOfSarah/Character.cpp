@@ -1,7 +1,10 @@
 #include "Character.h"
 
 Character::Character(string filename, float x, float y, int width, int height, Game* game) :
-	Actor(filename, x, y, width, height, game) {}
+	Actor(filename, x, y, width, height, game) 
+{
+	this->flying = false;
+}
 
 Character::~Character() {
 	movingAnimations.clear();

@@ -5,6 +5,9 @@ Enemy::Enemy(string filename, float x, float y, int width, int height, Actor* pl
 {
 	this->type = ENEMY;
 	this->player = player;
+
+	this->action = MOVING;
+	this->orientation = LEFT;
 }
 
 Enemy::~Enemy() {
@@ -12,7 +15,7 @@ Enemy::~Enemy() {
 }
 
 void Enemy::collisionedWith(Actor* actor) {
-	if (actor->type == PROJECTILE) {
+	if (actor->type == PROJECTILE && !actor->destructionFlag) {
 		damage();
 	}
 }

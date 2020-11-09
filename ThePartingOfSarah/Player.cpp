@@ -39,7 +39,7 @@ void Player::update() {
 }
 
 void Player::collisionedWith(Actor* actor) {
-	if (actor->type == ENEMY || actor->type == ENEMY_PROJECTILE) {
+	if ((actor->type == ENEMY || actor->type == ENEMY_PROJECTILE) && !actor->destructionFlag) {
 		damage();
 	}
 }

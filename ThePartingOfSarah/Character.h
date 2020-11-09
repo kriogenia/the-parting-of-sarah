@@ -32,6 +32,8 @@ public:
 
     virtual void damage();
 
+    bool flying;
+
 protected:
     // Initialization
     virtual void importAnimations();
@@ -47,7 +49,7 @@ protected:
     Animation* animation;
     map<eCharacterOrientation, Animation*> movingAnimations;
     // Attributes
-    int hp;
+    float hp;
     float speed;
 };
 

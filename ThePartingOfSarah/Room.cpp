@@ -10,7 +10,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	game(game) 
 {
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	this->filename = "res/rooms/room_0.txt";			// room tests
+	this->filename = "res/rooms/room_1.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	// Grid initialization
@@ -96,7 +96,9 @@ void Room::playerEntered() {
 		// Spawn enemies
 		for (auto const& enemy : enemiesToSpawn) {
 			enemies.push_back(enemy);
-			space->addDynamicActor(enemy);
+			(enemy->flying) ? 
+				space->addFlyingDynamicActor(enemy) :
+				space->addDynamicActor(enemy);
 		}
 		enemiesToSpawn.clear();
 	}

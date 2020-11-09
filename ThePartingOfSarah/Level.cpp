@@ -10,7 +10,7 @@ Level::Level(int floor, Space* space, Actor* player, Game* game) :
 	generateRooms();
 	currentRoom = startingRoom;
 	currentRoom->openDoors();
-	currentRoom->printGrid();
+	//currentRoom->printGrid();
 }
 
 Level::~Level() {
