@@ -9,6 +9,8 @@ constexpr auto STARTING_PLAYER_SPEED = 3;
 constexpr auto STARTING_PLAYER_CADENCE = 30;
 constexpr auto STARTING_PLAYER_HP = 3;
 
+constexpr auto PLAYER_VISUAL_SIZE = 32;
+
 class Player :
     public Character {
 

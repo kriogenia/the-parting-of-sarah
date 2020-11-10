@@ -94,7 +94,7 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
-		return new Projectile("res/sprites/player/player_projectile.png", 
+		return new Projectile("res/sprites/player/Player_Projectile.png", 
 			x, y, mouseX, mouseY, 7, game);
 	}
 	return nullptr;
@@ -155,31 +155,31 @@ void Player::importAnimations() {
 	// IDLE
 	idleAnimations.clear();
 	idleAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Idle_Down.png",
-		width, height, 64, 16, 8, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 8, 4, true, game));
 	idleAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Idle_Right.png",
-		width, height, 64, 16, 8, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 8, 4, true, game));
 	idleAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Idle_Left.png",
-		width, height, 64, 16, 8, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 8, 4, true, game));
 	idleAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Idle_Up.png",
-		width, height, 64, 16, 8, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 8, 4, true, game));
 	// MOVING
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Moving_Down.png",
-		width, height, 64, 16, 4, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 4, 4, true, game));
 	movingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Moving_Right.png",
-		width, height, 64, 16, 4, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 4, 4, true, game));
 	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Moving_Left.png",
-		width, height, 64, 16, 4, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 4, 4, true, game));
 	movingAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Moving_Up.png",
-		width, height, 64, 16, 4, 4, true, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 128, 32, 4, 4, true, game));
 	// SHOOTING
 	shootingAnimations.clear();
 	shootingAnimations.insert_or_assign(DOWN, new Animation("res/sprites/player/Character_Shooting_Down.png",
-		width, height, 80, 16, 6, 5, false, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 160, 32, 4, 5, false, game));
 	shootingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/player/Character_Shooting_Right.png",
-		width, height, 80, 16, 6, 5, false, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 160, 32, 4, 5, false, game));
 	shootingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/player/Character_Shooting_Left.png",
-		width, height, 80, 16, 6, 5, false, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 160, 32, 4, 5, false, game));
 	shootingAnimations.insert_or_assign(UP, new Animation("res/sprites/player/Character_Shooting_Up.png",
-		width, height, 80, 16, 6, 5, false, game));
+		PLAYER_VISUAL_SIZE, PLAYER_VISUAL_SIZE, 160, 32, 4, 5, false, game));
 }

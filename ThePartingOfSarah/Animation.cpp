@@ -21,13 +21,13 @@ Animation::Animation(string filename, float actorWidth, float actorHeight, float
 
 	// Calculate frame dimensiones
 	frameWidth = fileWidth / totalFrames;
-	frameHeigt = fileHeight;
+	frameHeight = fileHeight;
 
 	// Rectangle to show
 	source.x = 0;
 	source.y = 0;
 	source.w = frameWidth;
-	source.h = frameHeigt;
+	source.h = frameHeight;
 }
 
 bool Animation::update() {

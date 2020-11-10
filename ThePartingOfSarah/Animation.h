@@ -27,7 +27,7 @@ private:
 	SDL_Rect source;							// Rectangle view
 
 	float frameWidth;							
-	float frameHeigt; 
+	float frameHeight; 
 
 	bool loop;
 	int updateFrequence = 0;

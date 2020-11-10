@@ -20,12 +20,12 @@ void Bird::setMovement() {
 void Bird::importAnimations() {
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bird/Bird_Moving_Left.png",
-		32, 32, 288, 32, 4, 9, true, game));
+		width, height, 288, 32, 4, 9, true, game));
 	movingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/bird/Bird_Moving_Right.png",
-		32, 32, 288, 32, 4, 9, true, game));
+		width, height, 288, 32, 4, 9, true, game));
 	hitAnimations.clear();
 	hitAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bird/Bird_Hit_Left.png",
-		32, 32, 160, 32, 4, 5, false, game));
+		width, height, 160, 32, 2, 5, false, game));
 	hitAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/bird/Bird_Hit_Right.png",
-		32, 32, 160, 32, 4, 5, false, game));
+		width, height, 160, 32, 2, 5, false, game));
 }

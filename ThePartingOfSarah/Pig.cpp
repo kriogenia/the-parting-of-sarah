@@ -35,17 +35,17 @@ void Pig::setAnimation() {
 void Pig::importAnimations() {
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/pig/Pig_Moving_Left.png",
-		36, 30, 576, 30, 4, 16, true, game));
+		width, height, 576, 30, 4, 16, true, game));
 	movingAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/pig/Pig_Moving_Right.png",
-		36, 30, 576, 30, 4, 16, true, game));
+		width, height, 576, 30, 4, 16, true, game));
 	hitAnimations.clear();
 	hitAnimations.insert_or_assign(LEFT, new Animation("res/sprites/pig/Pig_Hit_Left.png",
-		36, 30, 180, 30, 4, 5, false, game));
+		width, height, 180, 30, 2, 5, false, game));
 	hitAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/pig/Pig_Hit_Right.png",
-		36, 30, 180, 30, 4, 5, false, game));
+		width, height, 180, 30, 2, 5, false, game));
 	runningAnimations.clear();
 	runningAnimations.insert_or_assign(LEFT, new Animation("res/sprites/pig/Pig_Running_Left.png",
-		36, 30, 432, 30, 2, 12, false, game));
+		width, height, 432, 30, 2, 12, false, game));
 	runningAnimations.insert_or_assign(RIGHT, new Animation("res/sprites/pig/Pig_Running_Right.png",
-		36, 30, 432, 30, 2, 12, false, game));
+		width, height, 432, 30, 2, 12, false, game));
 }
