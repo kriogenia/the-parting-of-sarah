@@ -43,6 +43,12 @@
     <Filter Include="Archivos de origen\Actors\Characters">
       <UniqueIdentifier>{6c8c1be5-3c06-4dc9-8efd-0bb9d2fecd72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Actors\Characters\Enemies">
+      <UniqueIdentifier>{3cc5edd7-810f-4f5b-b42d-b889559d1110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\Characters\Enemies">
+      <UniqueIdentifier>{7a3dda3d-331d-40e1-a843-b86a17f1819a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -99,20 +105,23 @@
     <ClCompile Include="Player.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Snail.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
+    <ClCompile Include="Bird.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Pig.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Bird.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
+    <ClCompile Include="Snail.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +173,6 @@
     <ClInclude Include="Projectile.h">
       <Filter>Archivos de encabezado\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
@@ -174,13 +180,19 @@
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Snail.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Pig.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Bird.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Pig.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFactory.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

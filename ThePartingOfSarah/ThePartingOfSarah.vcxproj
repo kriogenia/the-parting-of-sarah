@@ -160,6 +160,7 @@
     <ClCompile Include="DestructibleTile.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="MappedTile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLayer.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="DestructibleTile.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="MappedTile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLayer.h" />

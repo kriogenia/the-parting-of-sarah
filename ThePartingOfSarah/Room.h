@@ -2,14 +2,15 @@
 
 #include "Game.h"
 
+#include "Character.h"
 #include "DestructibleTile.h"
 #include "Door.h"
-#include "Enemy.h"
 #include "MappedTile.h"
 #include "Rock.h"
 #include "Space.h"
 
-#include "Pig.h"					// TODO delete
+#include "EnemyFactory.h"
+class EnemyFactory;
 
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;
@@ -75,8 +76,9 @@ public:
 	Room* bottom = nullptr;
 	Room* right = nullptr;
 
+	Actor* player;
 	list<DestructibleTile*> destructibles;
-	list<Enemy*> enemies;
+	list<Character*> enemies;
 
 private:
 	void loadMapObject(char character, int x, int y);
@@ -86,16 +88,17 @@ private:
 	void readFile();
 	void generateTiles();
 
+	EnemyFactory* spawner;
 	Game* game;
-	Actor* player;
 	Space* space;
+
 	string filename;
+	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 
 	list<Tile*> tiles;
 	list<Door*> doors;
-	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
 
-	list<Enemy*> enemiesToSpawn;
+	list<Character*> enemiesToSpawn;
 	
 	int code = -1;
 	bool cleared = false;

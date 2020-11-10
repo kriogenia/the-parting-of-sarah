@@ -7,7 +7,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	code(number),
 	space(space),
 	player(player),
-	game(game) 
+	game(game),
+	spawner(EnemyFactory::getInstance())
 {
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
 	this->filename = "res/rooms/room_1.txt";			// room tests
@@ -49,7 +50,7 @@ void Room::draw(int scrollX, int scrollY) {
 
 void Room::update() {
 	// Enemies update
-	list<Enemy*> enemiesToDelete;
+	list<Character*> enemiesToDelete;
 	for (auto const& enemy : enemies) {
 		enemy->update();
 		if (enemy->destructionFlag) {
@@ -346,7 +347,7 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case SPAWN: {
-		enemiesToSpawn.push_back(new Pig(x, y, player, game));
+		enemiesToSpawn.push_back(spawner->generateEnemy(x, y, this, game));
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 	}
 	}
