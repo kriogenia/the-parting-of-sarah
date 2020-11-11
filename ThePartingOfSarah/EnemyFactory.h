@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Bee.h"
 #include "Bird.h"
 #include "Pig.h"
 #include "Snail.h"
@@ -7,9 +8,10 @@
 #include "Room.h"
 class Room;
 
-constexpr auto NUMBER_OF_ENEMY_TYPES = 3;
+constexpr auto NUMBER_OF_ENEMY_TYPES = 4;
 
 enum TYPE_OF_ENEMY {
+    BEE,
     BIRD,
     PIG,
     SNAIL

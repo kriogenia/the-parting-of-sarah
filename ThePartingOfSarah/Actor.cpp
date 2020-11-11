@@ -21,7 +21,7 @@ Actor::~Actor() {
 	SDL_DestroyTexture(texture);
 }
 
-void Actor::draw(int scrollX, int scrollY) {
+void Actor::draw(int scrollX, int scrollY, float rotation) {
 	SDL_Rect source;
 	source.x = 0;
 	source.y = 0;
@@ -35,7 +35,7 @@ void Actor::draw(int scrollX, int scrollY) {
 	destination.h = height;
 
 	SDL_RenderCopyEx(game->renderer,
-		texture, &source, &destination, 0, NULL, SDL_FLIP_NONE);
+		texture, &source, &destination, rotation, NULL, SDL_FLIP_NONE);
 }
 
 bool Actor::isOverlap(Actor* actor) {

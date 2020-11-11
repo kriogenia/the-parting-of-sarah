@@ -10,7 +10,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	game(game),
 	spawner(EnemyFactory::getInstance())
 {
-	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
 	this->filename = "res/rooms/room_1.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
@@ -30,6 +30,7 @@ Room::~Room() {
 	doors.clear();
 	enemies.clear();
 	enemiesToSpawn.clear();
+	enemyProjectiles.clear();
 	tiles.clear();
 }
 
@@ -45,6 +46,9 @@ void Room::draw(int scrollX, int scrollY) {
 	}
 	for (auto const& enemy : enemies) {
 		enemy->draw(scrollX, scrollY);
+	}
+	for (auto const& projectile : enemyProjectiles) {
+		projectile->draw(scrollX, scrollY);
 	}
 }
 
@@ -63,6 +67,17 @@ void Room::update() {
 	}
 	if (enemies.empty() && enemiesToSpawn.empty()) {
 		setCleared();
+	}
+	// Deletion of projectiles
+	list<Projectile*> projectilesToDelete;
+	for (auto const& projectile : enemyProjectiles) {
+		if (projectile->destructionFlag) {
+			projectilesToDelete.push_back(projectile);
+		}
+	}
+	for (auto const& projectile : projectilesToDelete) {
+		space->removeStaticActor(projectile);
+		enemyProjectiles.remove(projectile);
 	}
 	// Deletion of destructibles
 	list<DestructibleTile*> destructiblesToDelete;

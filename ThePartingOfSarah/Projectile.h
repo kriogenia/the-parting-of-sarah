@@ -10,7 +10,7 @@ class Projectile :
 public:
     Projectile(string filename, int x, int y, int mouseX, int mouseY, int size, Game* game);
 
-    void draw(int scrollX = 0, int scrollY = 0) override;
+    void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     void collisionedWith(Actor* actor) override;
 };

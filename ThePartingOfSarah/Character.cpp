@@ -21,7 +21,7 @@ void Character::update() {
 	setAnimation();
 }
 
-void Character::draw(int scrollX, int scrollY) {
+void Character::draw(int scrollX, int scrollY, float rotation) {
 	animation->draw(x - scrollX, y - scrollY);
 }
 

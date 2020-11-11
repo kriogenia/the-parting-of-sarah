@@ -8,7 +8,7 @@ public:
 		int updateFrequence, int totalFrames, bool loop, Game* game);
 
 	bool update();
-	void draw(float x, float y);
+	void draw(float x, float y, float rotation = 0);
 
 	int currentFrame;
 	int totalFrames;

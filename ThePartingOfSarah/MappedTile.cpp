@@ -10,7 +10,7 @@ MappedTile::MappedTile(string filename, int x, int y, int width, int height, int
 	this->position = pos;
 }
 
-void MappedTile::draw(int scrollX, int scrollY) {
+void MappedTile::draw(int scrollX, int scrollY, float rotation) {
 	SDL_Rect source;
 	source.x = width * position;
 	source.y = 0;

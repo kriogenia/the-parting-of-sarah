@@ -28,7 +28,7 @@ public:
     ~Character();
 
     virtual void update();
-    void draw(int scrollX = 0, int scrollY = 0) override;
+    void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     virtual void damage();
 

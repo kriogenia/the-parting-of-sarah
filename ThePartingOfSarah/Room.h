@@ -6,6 +6,7 @@
 #include "DestructibleTile.h"
 #include "Door.h"
 #include "MappedTile.h"
+#include "Projectile.h"
 #include "Rock.h"
 #include "Space.h"
 
@@ -16,6 +17,7 @@ constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;
 constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
 
+/* Types of rooms */
 enum eRoomType {
 	NO_ROOM,
 	COMMON_ROOM,
@@ -24,65 +26,44 @@ enum eRoomType {
 	BOSS_ROOM
 };
 
-enum eTileType {
-	NO_TILE = ' ',
-	FLOOR = '.',
-	TOP_LEFT_WALL = '/',
-	TOP_RIGHT_WALL = '\\',
-	BOTTOM_LEFT_WALL = '{',
-	BOTTOM_RIGHT_WALL = '}',
-	TOP_WALL = 'T',
-	LEFT_WALL = 'L',
-	RIGHT_WALL = 'R',
-	BOTTOM_WALL = 'B',
-	HORIZONTAL_DOOR = '-',
-	VERTICAL_DOOR = '|',
-	ROCK = 'X',
-	POND_TOP = 'P',
-	POND_BASE = '~',
-	BARREL = 'M',
-	SPAWN = 'S'
-};
-
 class Room {
 public:
 	Room(eRoomType type, int x, int y, int number, Space* space, Actor* player, Game* game);
 	~Room();
-
+	/* Room layout loading */
 	void loadMap();
 
 	void draw(int scrollX, int scrollY);
 	void update();
-
+	/* Game flow */
 	bool hasPlayerInside();
 	void playerEntered();
 	void setCleared();
 	void openDoors();
 	void closeDoors();
-
+	/* Level generation */
 	bool isNeighbour(Room* room);
 	void append(Room* room);
 	Room* expand(int code, int floorSize);
-
+	/* Debug */
 	void printGrid();
-
+	/* Room attributes */
 	eRoomType type;
 	int x;
 	int y;
 	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
-
+	/* Room neighbours */
 	Room* top = nullptr;
 	Room* left = nullptr;
 	Room* bottom = nullptr;
 	Room* right = nullptr;
 
 	Actor* player;
-	list<DestructibleTile*> destructibles;
-	list<Character*> enemies;
 
 private:
+	/* Tile creation */
 	void loadMapObject(char character, int x, int y);
-
+	/* Room generation */
 	void generateWalls();
 	void generateCorridors();
 	void readFile();
@@ -91,18 +72,21 @@ private:
 	EnemyFactory* spawner;
 	Game* game;
 	Space* space;
-
+	/* Room generators */
 	string filename;
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
-
+	/* Room tiles */
 	list<Tile*> tiles;
 	list<Door*> doors;
-
+	list<DestructibleTile*> destructibles;
+	/* Room actors */
+	list<Character*> enemies;
 	list<Character*> enemiesToSpawn;
-	
+	list<Projectile*> enemyProjectiles;
+	/* Room attributes */
 	int code = -1;
 	bool cleared = false;
-
+	/* Room global position*/
 	int offsetRoomX;
 	int offsetRoomY;
 };

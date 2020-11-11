@@ -105,13 +105,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="Bird.cpp">
-      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Pig.cpp">
@@ -121,6 +115,15 @@
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de origen\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Bee.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,16 +179,10 @@
     <ClInclude Include="Player.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Snail.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Bird.h">
-      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Pig.h">
@@ -193,6 +190,15 @@
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Bee.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

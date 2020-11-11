@@ -47,8 +47,7 @@ bool Animation::update() {
 	return false;
 }
 
-
-void Animation::draw(float x, float y) {
+void Animation::draw(float x, float y, float rotation) {
 	// Place to render
 	SDL_Rect destination;
 	destination.x = x - actorWidth / 2;
@@ -57,7 +56,5 @@ void Animation::draw(float x, float y) {
 	destination.h = actorHeight;
 
 	SDL_RenderCopyEx(game->renderer,
-		texture, &source, &destination, 0, NULL, SDL_FLIP_NONE);
+		texture, &source, &destination, rotation, NULL, SDL_FLIP_NONE);
 }
-
-
