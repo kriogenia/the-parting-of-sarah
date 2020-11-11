@@ -1,13 +1,20 @@
 #include "Projectile.h"
 
-Projectile::Projectile(string filename, int x, int y, int mouseX, int mouseY, int size, Game* game) :
+Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, bool playerShot, Game* game) :
 	Actor(filename, x, y, size, size, game)
 {
-	this->type = PROJECTILE;
+	if (playerShot) {
+		this->type = PROJECTILE;
+		this->speed = PLAYER_PROJECTILE_SPEED;
+	}
+	else {
+		this->type = ENEMY_PROJECTILE;
+		this->speed = ENEMY_PROJECTILE_SPEED;
+	}
 
-	float vectorLength = sqrt(pow(mouseX - x, 2) + pow(mouseY - y, 2));
-	this->vx = (mouseX - x) / vectorLength * PROJECTILE_SPEED;
-	this->vy = (mouseY - y) / vectorLength * PROJECTILE_SPEED;
+	float vectorLength = sqrt(pow(destinyX - x, 2) + pow(destinyY - y, 2));
+	this->vx = (destinyX - x) / vectorLength * PLAYER_PROJECTILE_SPEED;
+	this->vy = (destinyY - y) / vectorLength * PLAYER_PROJECTILE_SPEED;
 }
 
 void Projectile::draw(int scrollX, int scrollY, float rotation) {
@@ -19,6 +26,8 @@ void Projectile::draw(int scrollX, int scrollY, float rotation) {
 }
 
 void Projectile::collisionedWith(Actor* actor) {
-	if (actor->type == ENEMY || actor->type == TILE)
+	if (actor->type == TILE ||
+		(type == PROJECTILE && actor->type == ENEMY) ||
+		(type == ENEMY_PROJECTILE && actor->type == PLAYER))
 		this->destructionFlag = true;
 }

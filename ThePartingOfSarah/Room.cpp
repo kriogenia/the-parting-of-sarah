@@ -139,6 +139,11 @@ void Room::closeDoors() {
 	}
 }
 
+void Room::addEnemyProjectile(Projectile* projectile) {
+	enemyProjectiles.push_back(projectile);
+	space->addFlyingDynamicActor(projectile);
+}
+
 void Room::loadMap() {
 	readFile();
 	generateWalls();

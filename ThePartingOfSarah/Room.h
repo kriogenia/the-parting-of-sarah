@@ -41,6 +41,8 @@ public:
 	void setCleared();
 	void openDoors();
 	void closeDoors();
+	/* Enemies actions */
+	void addEnemyProjectile(Projectile* projectile);
 	/* Level generation */
 	bool isNeighbour(Room* room);
 	void append(Room* room);

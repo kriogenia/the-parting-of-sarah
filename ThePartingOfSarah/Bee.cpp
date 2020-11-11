@@ -7,6 +7,7 @@ Bee::Bee(float x, float y, Room* room, Game* game) :
 	this->room = room;
 	this->hp = BEE_HP;
 	this->speed = BEE_SPEED;
+	this->shotTime = BEE_SHOT_CADENCE;
 
 	importAnimations();
 	this->animation = movingAnimations[LEFT];
@@ -26,15 +27,49 @@ void Bee::draw(int scrollX, int scrollY, float rotation) {
 	animation->draw(x - scrollX, y - scrollY, angle);
 }
 
+void Bee::update() {
+	shotTime--;
+	if (this->action == SHOOTING &&
+		this->animation->currentFrame == 5)
+		shoot();
+	Enemy::update();
+}
+
+/* Shoots the projectile */
+void Bee::shoot() {
+	Projectile* projectile = new Projectile(BEE_PROJECTILE_FILE, x, y, player->x, player->y, 8, false, game);
+	room->addEnemyProjectile(projectile);
+}
+
+void Bee::setMovement() {
+	if (this->action == SHOOTING) {
+		vx = 0;
+		vy = 0;
+	}
+	else {
+		Enemy::setMovement();
+	}
+}
+
 void Bee::setOrientation() {}
+
+void Bee::setAction(bool endAction) {
+	float distance = sqrt(pow(player->x - x, 2) + pow(player->y - y, 2));
+	if (this->action == MOVING && distance < BEE_LOCK_DISTANCE && shotTime < 0) {
+		this->action = SHOOTING;
+		this->animation = shootingAnimation;
+		this->shotTime = BEE_SHOT_CADENCE;
+	}
+	Enemy::setAction(endAction);
+}
 
 void Bee::importAnimations() {
 	shootingAnimation = new Animation("res/sprites/bee/Bee_Shooting.png",
-		width, height, 288, 34, 2, 8, false, game);
+		width, height, 288, 34, 0, 8, false, game);
 	hitAnimations.clear();
 	hitAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bee/Bee_Hit.png",
 		width, height, 180, 34, 2, 5, false, game));
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bee/Bee_Moving.png",
-		width, height, 216, 34, 4, 6, true, game));
+		width, height, 216, 34, 2, 6, true, game));
 }

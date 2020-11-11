@@ -4,9 +4,11 @@
 #include "Room.h"
 class Room;
 
-constexpr auto BEE_SPEED = 2.5;
+constexpr auto BEE_SPEED = 1.5;
 constexpr auto BEE_HP = 3;
-constexpr auto BEE_LOCK_DISTANCE = 480;
+constexpr auto BEE_SHOT_CADENCE = 55;
+constexpr auto BEE_LOCK_DISTANCE = 150;
+constexpr auto BEE_PROJECTILE_FILE = "res/sprites/bee/Bee_Projectile.png";
 
 class Bee :
     public Enemy
@@ -16,14 +18,22 @@ public:
     ~Bee();
 
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
+    void update();
+
+    void shoot();
 
 private:
-    void setOrientation();
+    void setMovement() override;
+    void setAction(bool endAction) override;
+    void setOrientation() override;
 
     void importAnimations() override;
 
     Room* room;
 
     Animation* shootingAnimation;
+
+    float shotTime;
+
 };
 

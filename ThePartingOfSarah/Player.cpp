@@ -11,7 +11,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->scrollY = scrollY;
 	// Set stats
 	this->hp = STARTING_PLAYER_HP;
-	this->shotCadence = STARTING_PLAYER_CADENCE;
+	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
 	this->shotTime = shotCadence;
 	this->speed = STARTING_PLAYER_SPEED;
 	// Debugging stats
@@ -94,8 +94,8 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
-		return new Projectile("res/sprites/player/Player_Projectile.png", 
-			x, y, mouseX, mouseY, 7, game);
+		return new Projectile(PLAYER_PROJECTILE_FILE, 
+			x, y, mouseX, mouseY, 7, true, game);
 	}
 	return nullptr;
 }
