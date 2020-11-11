@@ -23,8 +23,14 @@ void Enemy::collisionedWith(Actor* actor) {
 void Enemy::damage() {
 	if (this->action != HIT || this->action != DYING) {
 		this->hp--;
-		this->action = (hp <= 0) ? DYING : HIT;
-		this->animation = hitAnimations[orientation];
+		if (hp <= 0) {
+			this->action = DYING;
+			this->animation = dyingAnimation;
+		}
+		else {
+			this->action = HIT;
+			this->animation = hitAnimations[orientation];
+		}
 	}
 }
 

@@ -64,12 +64,14 @@ void Bee::setAction(bool endAction) {
 }
 
 void Bee::importAnimations() {
-	shootingAnimation = new Animation("res/sprites/bee/Bee_Shooting.png",
-		width, height, 288, 34, 0, 8, false, game);
+	dyingAnimation = new Animation("res/sprites/bee/Bee_Dying.png",
+		width, height, 180, 34, 2, 5, false, game);
 	hitAnimations.clear();
 	hitAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bee/Bee_Hit.png",
 		width, height, 180, 34, 2, 5, false, game));
 	movingAnimations.clear();
 	movingAnimations.insert_or_assign(LEFT, new Animation("res/sprites/bee/Bee_Moving.png",
 		width, height, 216, 34, 2, 6, true, game));
+	shootingAnimation = new Animation("res/sprites/bee/Bee_Shooting.png",
+		width, height, 288, 34, 0, 8, false, game);
 }

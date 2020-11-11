@@ -19,6 +19,7 @@ protected:
 
     Actor* player;
 
+    Animation* dyingAnimation;
     map<eCharacterOrientation, Animation*> hitAnimations;
 };
 
