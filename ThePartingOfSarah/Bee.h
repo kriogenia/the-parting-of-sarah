@@ -7,6 +7,7 @@ class Room;
 constexpr auto BEE_SPEED = 1.5;
 constexpr auto BEE_HP = 3;
 constexpr auto BEE_SHOT_CADENCE = 55;
+constexpr auto BEE_SHOT_FRAME = 5;
 constexpr auto BEE_LOCK_DISTANCE = 150;
 constexpr auto BEE_PROJECTILE_FILE = "res/sprites/bee/Bee_Projectile.png";
 
@@ -18,7 +19,7 @@ public:
     ~Bee();
 
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
-    void update();
+    void update() override;
 
     void shoot();
 
@@ -33,7 +34,7 @@ private:
 
     Animation* shootingAnimation;
 
-    float shotTime;
+    int shotTime;
 
 };
 

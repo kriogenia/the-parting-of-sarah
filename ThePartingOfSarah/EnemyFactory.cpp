@@ -11,7 +11,7 @@ EnemyFactory* EnemyFactory::getInstance() {
 EnemyFactory::EnemyFactory() {}
 
 Enemy* EnemyFactory::generateEnemy(float x, float y, Room* room, Game* game) {
-    return new Bee(x, y, room, game);                       // Debug
+    return new Plant(x, y, room, game);                       // Debug
     int typeOfEnemy = rand() % NUMBER_OF_ENEMY_TYPES;
     switch (typeOfEnemy) {
     case BEE:
@@ -20,6 +20,8 @@ Enemy* EnemyFactory::generateEnemy(float x, float y, Room* room, Game* game) {
         return new Bird(x, y, room->player, game);
     case PIG:
         return new Pig(x, y, room->player, game);
+    case PLANT:
+        return new Plant(x, y, room, game);
     case SNAIL:
         return new Snail(x, y, room->player, game);
     }

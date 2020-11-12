@@ -76,7 +76,7 @@ void Room::update() {
 		}
 	}
 	for (auto const& projectile : projectilesToDelete) {
-		space->removeStaticActor(projectile);
+		space->removeFlyingDynamicActor(projectile);
 		enemyProjectiles.remove(projectile);
 	}
 	// Deletion of destructibles

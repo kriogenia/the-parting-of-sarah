@@ -11,6 +11,7 @@ Enemy::Enemy(string filename, float x, float y, int width, int height, Actor* pl
 }
 
 Enemy::~Enemy() {
+	delete dyingAnimation;
 	hitAnimations.clear();
 }
 

@@ -3,6 +3,7 @@
 #include "Bee.h"
 #include "Bird.h"
 #include "Pig.h"
+#include "Plant.h"
 #include "Snail.h"
 
 #include "Room.h"
@@ -14,6 +15,7 @@ enum TYPE_OF_ENEMY {
     BEE,
     BIRD,
     PIG,
+    PLANT,
     SNAIL
 };
 

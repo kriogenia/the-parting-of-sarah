@@ -126,6 +126,9 @@
     <ClCompile Include="Bee.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

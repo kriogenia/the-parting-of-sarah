@@ -62,7 +62,7 @@ void GameLayer::update() {
 	space->checkDynamicCollisions();
 	// Game Over check
 	if (player->destructionFlag) {
-		game->loopActive = false;
+		//game->loopActive = false;
 	}
 	// Projectiles deletion
 	list<Projectile*> projectilesToDelete;

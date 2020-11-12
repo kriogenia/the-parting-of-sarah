@@ -30,7 +30,7 @@ void Bee::draw(int scrollX, int scrollY, float rotation) {
 void Bee::update() {
 	shotTime--;
 	if (this->action == SHOOTING &&
-		this->animation->currentFrame == 5)
+		this->animation->currentFrame == BEE_SHOT_FRAME)
 		shoot();
 	Enemy::update();
 }
