@@ -49,6 +49,18 @@
     <Filter Include="Archivos de origen\Actors\Characters\Enemies">
       <UniqueIdentifier>{7a3dda3d-331d-40e1-a843-b86a17f1819a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Observers">
+      <UniqueIdentifier>{2d361b2f-5914-422a-b131-1f74837b33d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Observers">
+      <UniqueIdentifier>{f3603681-567d-4fd6-a711-7357090f1513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\HUD">
+      <UniqueIdentifier>{e8295fbf-be0d-4d03-8ad0-9ee60ccd4672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\HUD">
+      <UniqueIdentifier>{f86ba234-5a19-49f0-a479-d5715e1c68c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -120,14 +132,20 @@
     <ClCompile Include="Character.cpp">
       <Filter>Archivos de origen\Actors\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de origen\Actors\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="Bee.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Plant.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Hud.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,11 +218,17 @@
     <ClInclude Include="Character.h">
       <Filter>Archivos de encabezado\Actors\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\Actors\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Plant.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Hud.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

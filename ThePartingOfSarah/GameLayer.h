@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Crosshair.h"
+#include "Hud.h"
 #include "Layer.h"
 #include "Level.h"
 #include "Player.h"
@@ -23,11 +23,11 @@ private:
 	void keysToControl(SDL_Event event);
 	void mouseToControl(SDL_Event event);
 
+	Hud* hud;
 	Level* level;
 	Space* space;
 	
 	// Actors
-	Crosshair* crosshair;
 	Player* player;
 	list<Projectile*> projectiles;
 

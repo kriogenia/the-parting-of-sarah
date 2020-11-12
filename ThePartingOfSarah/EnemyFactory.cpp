@@ -11,7 +11,7 @@ EnemyFactory* EnemyFactory::getInstance() {
 EnemyFactory::EnemyFactory() {}
 
 Enemy* EnemyFactory::generateEnemy(float x, float y, Room* room, Game* game) {
-    return new Plant(x, y, room, game);                       // Debug
+    return new Snail(x, y, room->player, game);                       // Debug
     int typeOfEnemy = rand() % NUMBER_OF_ENEMY_TYPES;
     switch (typeOfEnemy) {
     case BEE:

@@ -6,7 +6,7 @@ GameLayer::GameLayer(Game* game) :
 }
 
 GameLayer::~GameLayer() {
-	delete crosshair;
+	delete hud;
 	delete level;
 	delete player;
 	delete space;
@@ -31,8 +31,8 @@ void GameLayer::init() {
 	player->x = level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 	player->y = level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 
-	delete crosshair;
-	crosshair = new Crosshair(game);
+	delete hud;
+	hud = new Hud(game);
 
 	projectiles.clear();
 
@@ -58,7 +58,7 @@ void GameLayer::update() {
 	space->update();
 	player->update();
 	level->update();
-	crosshair->update(mouseX, mouseY);
+	hud->update(mouseX, mouseY);
 	space->checkDynamicCollisions();
 	// Game Over check
 	if (player->destructionFlag) {
@@ -81,12 +81,14 @@ void GameLayer::update() {
 void GameLayer::draw() {
 	// Calculate the scroll
 	level->moveScroll(&scrollX, &scrollY);
-	// Draw the actors
+	// Draw the level
 	level->draw(scrollX, scrollY);
+	// Draw the actors
 	player->draw(scrollX, scrollY);
 	for (auto const& projectile : projectiles)
 		projectile->draw(scrollX, scrollY);
-	crosshair->draw();
+	// Draw the HUD
+	hud->draw();
 }
 
 void GameLayer::keysToControl(SDL_Event event) {
