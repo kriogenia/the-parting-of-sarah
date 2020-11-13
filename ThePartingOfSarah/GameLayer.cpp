@@ -34,6 +34,10 @@ void GameLayer::init() {
 	delete hud;
 	hud = new Hud(game);
 
+	delete audio;
+	audio = AudioPlayer::getInstance();
+	audio->start();
+
 	player->observers.push_back(new HudObserver(player, hud));
 
 	projectiles.clear();

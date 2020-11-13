@@ -61,6 +61,12 @@
     <Filter Include="Archivos de origen\Actors\HUD">
       <UniqueIdentifier>{5f1e5ce5-b8a4-4c1f-a7d6-d2b2cddc3260}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Audio">
+      <UniqueIdentifier>{63e82a7b-68b7-4c6d-bba8-94cca05d9a3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Audio">
+      <UniqueIdentifier>{ec393a98-9bc6-47ef-9487-041c6d1247c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -156,6 +162,12 @@
     <ClCompile Include="HudObserver.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="AudioPlayer.cpp">
+      <Filter>Archivos de origen\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundAudio.cpp">
+      <Filter>Archivos de origen\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -247,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="HudObserver.h">
       <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioPlayer.h">
+      <Filter>Archivos de encabezado\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundAudio.h">
+      <Filter>Archivos de encabezado\Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

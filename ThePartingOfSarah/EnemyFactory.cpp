@@ -4,7 +4,7 @@ EnemyFactory* EnemyFactory::instance = 0;
 
 EnemyFactory* EnemyFactory::getInstance() {
     if (instance == 0)
-        instance = new EnemyFactory();
+        instance = new EnemyFactory;
     return instance;
 }
 

@@ -153,7 +153,9 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BackgroundAudio.cpp" />
     <ClCompile Include="Bee.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -186,7 +188,9 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BackgroundAudio.h" />
     <ClInclude Include="Bee.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Character.h" />

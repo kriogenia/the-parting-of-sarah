@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AudioPlayer.h"
 #include "Hud.h"
 #include "HudObserver.h"
 #include "Layer.h"
@@ -24,6 +25,7 @@ private:
 	void keysToControl(SDL_Event event);
 	void mouseToControl(SDL_Event event);
 
+	AudioPlayer* audio;
 	Hud* hud;
 	Level* level;
 	Space* space;
