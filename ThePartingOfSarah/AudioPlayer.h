@@ -1,6 +1,12 @@
 #pragma once
 
+#include "AudioClip.h"
 #include "BackgroundAudio.h"
+#include <map>
+
+enum eAudioClips {
+	TRACK_PLAYER_HIT
+};
 
 /* Singleton */
 class AudioPlayer
@@ -10,6 +16,7 @@ public:
 	~AudioPlayer();
 
 	void start();
+	void play(eAudioClips key);
 
 private:
 	static AudioPlayer* instance;
@@ -17,4 +24,6 @@ private:
 	AudioPlayer();
 
 	BackgroundAudio* mainTheme;
+	map<eAudioClips, AudioClip*> clips;
+
 };

@@ -18,4 +18,9 @@ AudioPlayer::~AudioPlayer() {
 
 void AudioPlayer::start() {
 	mainTheme->play();
+	clips.insert_or_assign(TRACK_PLAYER_HIT, new AudioClip("res/audio/player_hit.wav"));
+}
+
+void AudioPlayer::play(eAudioClips key) {
+	clips[key]->play();
 }

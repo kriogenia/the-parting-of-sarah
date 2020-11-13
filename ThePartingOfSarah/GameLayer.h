@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AudioObserver.h"
 #include "AudioPlayer.h"
 #include "Hud.h"
 #include "HudObserver.h"
