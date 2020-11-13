@@ -13,13 +13,14 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->hp = STARTING_PLAYER_HP;
 	this->maxHp = STARTING_PLAYER_HP;
 	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
-	this->shotTime = shotCadence;
 	this->speed = STARTING_PLAYER_SPEED;
 	// Debugging stats
 	this->speed = 3;
 
 	importAnimations();
 	// State initialization
+	this->invulnerabilityTime = 0;
+	this->shotTime = shotCadence;
 	this->action = IDLE;
 	this->orientation = DOWN;
 	this->animation = idleAnimations[orientation];
@@ -33,10 +34,18 @@ Player::~Player() {
 void Player::update() {
 	bool endAnimation = animation->update();
 	shotTime--;
+	invulnerabilityTime--;
 	// Player update
 	setAction(endAnimation);			// Sets the action performed by the player
 	setOrientation();					// Sets the orientation towards the cursor
 	setAnimation();						// Sets the new animation
+}
+
+void Player::draw(int scrollX, int scrollY, float rotation) {
+	if (invulnerabilityTime <= 0 || 
+		invulnerabilityTime % 10 >= 0 && 
+		invulnerabilityTime % 10 <= 5)
+			Character::draw(scrollX, scrollY, rotation);
 }
 
 void Player::collisionedWith(Actor* actor) {
@@ -46,9 +55,12 @@ void Player::collisionedWith(Actor* actor) {
 }
 
 void Player::damage() {
-	Character::damage();
-	for (auto const& observer : observers) {
-		observer->notify(NOTIFICATION_PLAYER_HIT);
+	if (invulnerabilityTime <= 0) {
+		invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
+		Character::damage();
+		for (auto const& observer : observers) {
+			observer->notify(NOTIFICATION_PLAYER_HIT);
+		}
 	}
 }
 

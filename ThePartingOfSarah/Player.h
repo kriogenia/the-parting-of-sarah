@@ -6,6 +6,7 @@
 constexpr auto STARTING_PLAYER_SPEED = 3;
 constexpr auto STARTING_PLAYER_SHOT_CADENCE = 30;
 constexpr auto STARTING_PLAYER_HP = 3;
+constexpr auto PLAYER_INVULNERABILITY_TIME = 30;
 constexpr auto PLAYER_PROJECTILE_FILE = "res/sprites/player/Player_Projectile.png";
 
 constexpr auto PLAYER_VISUAL_SIZE = 32;
@@ -18,6 +19,7 @@ public:
     ~Player();
 
     void update() override;
+    void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     void collisionedWith(Actor* actor) override;
     void damage() override;
@@ -48,8 +50,10 @@ private:
     int moveDown = 0;
     bool shooting = false;
     // Attributes
-    int shotTime;
     int shotCadence;
+    // States
+    int shotTime;
+    int invulnerabilityTime;
     // Mouse and screen reference
     int* mouseX;
     int* mouseY;
