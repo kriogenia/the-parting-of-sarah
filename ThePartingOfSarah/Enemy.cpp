@@ -22,6 +22,7 @@ void Enemy::collisionedWith(Actor* actor) {
 }
 
 void Enemy::damage() {
+	this->hp = 0;				// Debug
 	if (this->action != HIT || this->action != DYING) {
 		this->hp--;
 		if (hp <= 0) {

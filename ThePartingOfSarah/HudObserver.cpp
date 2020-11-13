@@ -7,10 +7,16 @@ HudObserver::HudObserver(Hud* hud) :
 }
 
 void HudObserver::notify(eObserverMessages message, void* publisher) {
+	Player* player;
+	Room* room;
 	switch (message) {
 	case NOTIFICATION_PLAYER_HIT:
-		Player* player = (Player*) publisher;
+		player = (Player*) publisher;
 		hud->updateHealthDisplay(player->hp, player->maxHp);
+		break;
+	case NOTIFICATION_ENTER_ROOM:
+		room = (Room*) publisher;
+		hud->updateMap(room);
 		break;
 	}
 }

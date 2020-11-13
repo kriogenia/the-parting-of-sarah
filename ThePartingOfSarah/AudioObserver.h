@@ -3,6 +3,7 @@
 #include "AudioPlayer.h"
 #include "Observer.h"
 #include "Player.h"
+#include "Room.h"
 
 class AudioObserver :
     public Observer

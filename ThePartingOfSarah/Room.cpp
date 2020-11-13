@@ -10,8 +10,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	game(game),
 	spawner(EnemyFactory::getInstance())
 {
-	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	this->filename = "res/rooms/room_1.txt";			// room tests
+	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	//this->filename = "res/rooms/room_9.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	// Grid initialization
@@ -118,11 +118,17 @@ void Room::playerEntered() {
 		}
 		enemiesToSpawn.clear();
 	}
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_ENTER_ROOM, this);
+	}
 }
 
 void Room::setCleared() {
 	cleared = true;
 	openDoors();
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_CLEAR_ROOM);
+	}
 }
 
 void Room::openDoors() {
@@ -130,18 +136,12 @@ void Room::openDoors() {
 		door->open();
 		space->removeStaticActor(door);
 	}
-	for (auto const& observer : observers) {
-		observer->notify(NOTIFICATION_DOOR_OPEN);
-	}
 }
 
 void Room::closeDoors() {
 	for (auto const& door : doors) {
 		door->close();
 		space->addStaticActor(door);
-	}
-	for (auto const& observer: observers) {
-		observer->notify(NOTIFICATION_DOOR_CLOSE);
 	}
 }
 

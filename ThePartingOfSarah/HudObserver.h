@@ -3,6 +3,7 @@
 #include "Hud.h"
 #include "Observer.h"
 #include "Player.h"
+#include "Room.h"
 
 class HudObserver :
     public Observer

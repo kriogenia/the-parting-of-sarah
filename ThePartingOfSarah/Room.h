@@ -19,11 +19,12 @@ constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
 
 /* Types of rooms */
 enum eRoomType {
-	NO_ROOM,
+	UNKNOWN_ROOM,
 	COMMON_ROOM,
 	STARTING_ROOM,
 	TREASURE_ROOM,
-	BOSS_ROOM
+	BOSS_ROOM,
+	NO_ROOM
 };
 
 class Room {
@@ -54,6 +55,7 @@ public:
 	int x;
 	int y;
 	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
+	bool cleared = false;
 	/* Room neighbours */
 	Room* top = nullptr;
 	Room* left = nullptr;
@@ -88,7 +90,6 @@ private:
 	list<Projectile*> enemyProjectiles;
 	/* Room attributes */
 	int code = -1;
-	bool cleared = false;
 	/* Room global position*/
 	int offsetRoomX;
 	int offsetRoomY;
