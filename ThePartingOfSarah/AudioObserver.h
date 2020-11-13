@@ -8,10 +8,11 @@ class AudioObserver :
     public Observer
 {
 public:
-    AudioObserver(Player* player, AudioPlayer* audio);
+    AudioObserver(AudioPlayer* audio);
 
-    void notify(eObserverMessages message) override;
+    void notify(eObserverMessages message, void* publisher = nullptr) override;
 private:
     AudioPlayer* audio;
-    Player* player;
+
+    map<eObserverMessages, eAudioClips> relatedClip;
 };

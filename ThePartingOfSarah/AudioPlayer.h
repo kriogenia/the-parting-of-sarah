@@ -5,7 +5,10 @@
 #include <map>
 
 enum eAudioClips {
-	TRACK_PLAYER_HIT
+	TRACK_PLAYER_HIT,
+	TRACK_PLAYER_SHOT,
+	TRACK_DOOR_OPEN,
+	TRACK_DOOR_CLOSE
 };
 
 /* Singleton */

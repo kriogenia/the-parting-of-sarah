@@ -59,7 +59,8 @@ public:
 	Room* left = nullptr;
 	Room* bottom = nullptr;
 	Room* right = nullptr;
-
+	// Observers
+	list<Observer*> observers;
 	Actor* player;
 
 private:

@@ -35,7 +35,7 @@ void Player::update() {
 	bool endAnimation = animation->update();
 	shotTime--;
 	invulnerabilityTime--;
-	// Player update
+	/* Player update */
 	setAction(endAnimation);			// Sets the action performed by the player
 	setOrientation();					// Sets the orientation towards the cursor
 	setAnimation();						// Sets the new animation
@@ -59,7 +59,7 @@ void Player::damage() {
 		invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
 		Character::damage();
 		for (auto const& observer : observers) {
-			observer->notify(NOTIFICATION_PLAYER_HIT);
+			observer->notify(NOTIFICATION_PLAYER_HIT, this);
 		}
 	}
 }
@@ -114,6 +114,9 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
+		for (auto const& observer : observers) {
+			observer->notify(NOTIFICATION_PLAYER_SHOT);
+		}
 		return new Projectile(PLAYER_PROJECTILE_FILE, 
 			x, y, mouseX, mouseY, 7, true, game);
 	}

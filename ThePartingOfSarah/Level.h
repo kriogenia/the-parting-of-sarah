@@ -17,9 +17,13 @@ public:
 
 	void draw(int scrollX, int scrollY);
 	void update();
+
 	void moveScroll(int* scrollX, int* scrollY);
+	void addObserver(Observer* observer);
 
 	Room* currentRoom;
+	// Observers
+	list<Observer*> observers;
 
 private:
 	void generateRooms();

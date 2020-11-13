@@ -65,7 +65,7 @@ void Room::update() {
 		space->removeDynamicActor(enemy);
 		enemies.remove(enemy);
 	}
-	if (enemies.empty() && enemiesToSpawn.empty()) {
+	if (!cleared && enemies.empty() && enemiesToSpawn.empty()) {
 		setCleared();
 	}
 	// Deletion of projectiles
@@ -130,12 +130,18 @@ void Room::openDoors() {
 		door->open();
 		space->removeStaticActor(door);
 	}
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_DOOR_OPEN);
+	}
 }
 
 void Room::closeDoors() {
 	for (auto const& door : doors) {
 		door->close();
 		space->addStaticActor(door);
+	}
+	for (auto const& observer: observers) {
+		observer->notify(NOTIFICATION_DOOR_CLOSE);
 	}
 }
 

@@ -1,15 +1,15 @@
 #include "HudObserver.h"
 
-HudObserver::HudObserver(Player* player, Hud* hud) :
+HudObserver::HudObserver(Hud* hud) :
 	Observer() 
 {
 	this->hud = hud;
-	this->player = player;
 }
 
-void HudObserver::notify(eObserverMessages message) {
+void HudObserver::notify(eObserverMessages message, void* publisher) {
 	switch (message) {
 	case NOTIFICATION_PLAYER_HIT:
+		Player* player = (Player*) publisher;
 		hud->updateHealthDisplay(player->hp, player->maxHp);
 		break;
 	}

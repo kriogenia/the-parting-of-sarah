@@ -38,8 +38,9 @@ void GameLayer::init() {
 	audio = AudioPlayer::getInstance();
 	audio->start();
 
-	player->observers.push_back(new HudObserver(player, hud));
-	player->observers.push_back(new AudioObserver(player, audio));
+	player->observers.push_back(new HudObserver(hud));
+	player->observers.push_back(new AudioObserver(audio));
+	level->addObserver(new AudioObserver(audio));
 
 	projectiles.clear();
 

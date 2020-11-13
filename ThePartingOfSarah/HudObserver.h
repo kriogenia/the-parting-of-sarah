@@ -8,10 +8,9 @@ class HudObserver :
     public Observer
 {
 public:
-    HudObserver(Player* player, Hud* hud);
+    HudObserver(Hud* hud);
 
-    void notify(eObserverMessages message) override;
+    void notify(eObserverMessages message, void* publisher = nullptr) override;
 private:
     Hud* hud;
-    Player* player;
 };

@@ -63,6 +63,13 @@ void Level::moveScroll(int* scrollX, int* scrollY) {
 	}
 }
 
+void Level::addObserver(Observer* observer) {
+	observers.push_back(observer);
+	for (auto const& room : rooms) {
+		room->observers = observers;
+	}
+}
+
 void Level::generateRooms() {
 	queue<int> codes = getCodes();
 	setStartingRoom(&codes);
