@@ -4,7 +4,7 @@
 
 constexpr auto PIG_MOVING_SPEED = 2;
 constexpr auto PIG_RUNNING_SPEED = 4;
-constexpr auto PIG_STARTING_HP = 5;
+constexpr auto PIG_HP = 5;
 
 class Pig :
     public Enemy

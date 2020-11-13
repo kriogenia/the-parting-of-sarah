@@ -34,6 +34,8 @@ void GameLayer::init() {
 	delete hud;
 	hud = new Hud(game);
 
+	player->observers.push_back(new HudObserver(player, hud));
+
 	projectiles.clear();
 
 }
@@ -58,7 +60,7 @@ void GameLayer::update() {
 	space->update();
 	player->update();
 	level->update();
-	hud->update(mouseX, mouseY);
+	hud->updateCrosshair(mouseX, mouseY);
 	space->checkDynamicCollisions();
 	// Game Over check
 	if (player->destructionFlag) {

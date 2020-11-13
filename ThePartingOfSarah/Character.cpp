@@ -4,10 +4,12 @@ Character::Character(string filename, float x, float y, int width, int height, G
 	Actor(filename, x, y, width, height, game) 
 {
 	this->flying = false;
+	observers.clear();
 }
 
 Character::~Character() {
 	movingAnimations.clear();
+	observers.clear();
 	delete animation;
 }
 

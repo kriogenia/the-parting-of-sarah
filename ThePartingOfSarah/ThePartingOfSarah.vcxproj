@@ -162,7 +162,10 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
+    <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="Hud.cpp" />
+    <ClCompile Include="HudObserver.cpp" />
     <ClCompile Include="MappedTile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLayer.cpp" />
@@ -192,7 +195,10 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="Hud.h" />
+    <ClInclude Include="HudObserver.h" />
     <ClInclude Include="MappedTile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLayer.h" />

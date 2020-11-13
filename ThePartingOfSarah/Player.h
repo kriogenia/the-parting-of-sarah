@@ -20,7 +20,9 @@ public:
     void update() override;
 
     void collisionedWith(Actor* actor) override;
-
+    void damage() override;
+    // Attributes
+    int maxHp;
     // Controls
     void enterInput(int code);
     void stopInput(int code);

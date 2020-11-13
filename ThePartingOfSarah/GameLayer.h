@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Hud.h"
+#include "HudObserver.h"
 #include "Layer.h"
 #include "Level.h"
 #include "Player.h"

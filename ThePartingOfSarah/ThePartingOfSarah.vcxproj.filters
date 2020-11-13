@@ -49,17 +49,17 @@
     <Filter Include="Archivos de origen\Actors\Characters\Enemies">
       <UniqueIdentifier>{7a3dda3d-331d-40e1-a843-b86a17f1819a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Observers">
-      <UniqueIdentifier>{2d361b2f-5914-422a-b131-1f74837b33d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Observers">
-      <UniqueIdentifier>{f3603681-567d-4fd6-a711-7357090f1513}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de encabezado\HUD">
       <UniqueIdentifier>{e8295fbf-be0d-4d03-8ad0-9ee60ccd4672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de origen\HUD">
       <UniqueIdentifier>{f86ba234-5a19-49f0-a479-d5715e1c68c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Actors\HUD">
+      <UniqueIdentifier>{31b71379-d317-47df-9b29-8130dc4cd943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\HUD">
+      <UniqueIdentifier>{5f1e5ce5-b8a4-4c1f-a7d6-d2b2cddc3260}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Crosshair.cpp">
-      <Filter>Archivos de origen\Actors</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Archivos de origen\Levels</Filter>
@@ -147,6 +144,18 @@
     <ClCompile Include="Hud.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Crosshair.cpp">
+      <Filter>Archivos de origen\Actors\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthDisplay.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthBar.cpp">
+      <Filter>Archivos de origen\Actors\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HudObserver.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -166,9 +175,6 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Crosshair.h">
-      <Filter>Archivos de encabezado\Actors</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Archivos de encabezado\Levels</Filter>
@@ -228,6 +234,18 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Hud.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Crosshair.h">
+      <Filter>Archivos de encabezado\Actors\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthDisplay.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthBar.h">
+      <Filter>Archivos de encabezado\Actors\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HudObserver.h">
       <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>

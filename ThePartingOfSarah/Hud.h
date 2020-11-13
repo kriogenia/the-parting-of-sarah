@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Actor.h"
 #include "Crosshair.h"
+#include "HealthDisplay.h"
+#include "Player.h"
 
 class Hud
 {
@@ -10,10 +11,12 @@ public:
 	~Hud();
 
 	void draw();
-	void update(int mouseX, int mouseY);
+	void updateCrosshair(int mouseX, int mouseY);
+	void updateHealthDisplay(int currentHp, int maxHp);
 
 private:
 	Crosshair* crosshair;
+	HealthDisplay* health;
 	Game* game;
 };
 

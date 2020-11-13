@@ -4,7 +4,7 @@
 using namespace std;
 
 enum eObserverMessages {
-	PLAYER_HIT
+	NOTIFICATION_PLAYER_HIT
 };
 
 class Observer
@@ -12,6 +12,5 @@ class Observer
 public:
 	Observer();
 
-	void notify(string message);
+	virtual void notify(eObserverMessages message);
 };
-

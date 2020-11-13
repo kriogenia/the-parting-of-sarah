@@ -11,6 +11,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->scrollY = scrollY;
 	// Set stats
 	this->hp = STARTING_PLAYER_HP;
+	this->maxHp = STARTING_PLAYER_HP;
 	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
 	this->shotTime = shotCadence;
 	this->speed = STARTING_PLAYER_SPEED;
@@ -41,6 +42,13 @@ void Player::update() {
 void Player::collisionedWith(Actor* actor) {
 	if ((actor->type == ENEMY || actor->type == ENEMY_PROJECTILE) && !actor->destructionFlag) {
 		damage();
+	}
+}
+
+void Player::damage() {
+	Character::damage();
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_PLAYER_HIT);
 	}
 }
 

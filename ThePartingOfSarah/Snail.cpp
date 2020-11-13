@@ -3,7 +3,7 @@
 Snail::Snail(float x, float y, Actor* player, Game* game) :
 	Enemy("res/sprites/snail/Snail_Moving.png", x, y, 38, 24, player, game) 
 {
-	this->hp = SNAIL_STARTING_HP;
+	this->hp = SNAIL_HP;
 	this->speed = SNAIL_SPEED;
 	this->timeToHide = SNAIL_INVULNERATIBILITY_CD;
 

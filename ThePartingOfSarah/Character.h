@@ -2,6 +2,7 @@
 
 #include "Actor.h"
 #include "Animation.h"
+#include "Observer.h"
 
 enum eCharacterAction {
     IDLE,
@@ -31,8 +32,11 @@ public:
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     virtual void damage();
-
+    // Attributes
+    int hp;
     bool flying;
+    // Observers
+    list<Observer*> observers;
 
 protected:
     // Initialization
@@ -43,13 +47,12 @@ protected:
     virtual void setOrientation();
     virtual void setAnimation();
     // States
-    eCharacterAction action;        
+    eCharacterAction action;
     eCharacterOrientation orientation;
     // Animations
     Animation* animation;
     map<eCharacterOrientation, Animation*> movingAnimations;
     // Attributes
-    float hp;
     float speed;
 };
 

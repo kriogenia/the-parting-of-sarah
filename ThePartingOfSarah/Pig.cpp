@@ -3,7 +3,7 @@
 Pig::Pig(float x, float y, Actor* player, Game* game) :
 	Enemy("res/sprites/pig/Pig_Moving_Left.png", x, y, 36, 30, player, game) 
 {
-	this->hp = PIG_STARTING_HP;
+	this->hp = PIG_HP;
 	this->speed = PIG_MOVING_SPEED;
 
 	importAnimations();
@@ -22,7 +22,7 @@ void Pig::setMovement() {
 void Pig::setAction(bool endAction) {
 	if ((this->action == HIT || this->action == DYING) && !endAction)
 		return;
-	this->action = (hp != PIG_STARTING_HP) ? RUNNING : MOVING;
+	this->action = (hp != PIG_HP) ? RUNNING : MOVING;
 }
 
 void Pig::setAnimation() {

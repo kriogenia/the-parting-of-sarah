@@ -2,4 +2,4 @@
 
 Observer::Observer() {}
 
-void Observer::notify(string message) {}
+void Observer::notify(eObserverMessages message) {}
