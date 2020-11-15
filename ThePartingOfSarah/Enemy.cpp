@@ -17,14 +17,14 @@ Enemy::~Enemy() {
 
 void Enemy::collisionedWith(Actor* actor) {
 	if (actor->type == PROJECTILE && !actor->destructionFlag) {
-		damage();
+		damage(((Projectile*) actor)->damage);
 	}
 }
 
-void Enemy::damage() {
-	this->hp = 0;				// Debug
+void Enemy::damage(float damage) {
+	//this->hp = 0;				// Debug
 	if (this->action != HIT || this->action != DYING) {
-		this->hp--;
+		this->hp -= damage;
 		if (hp <= 0) {
 			this->action = DYING;
 			this->animation = dyingAnimation;

@@ -14,7 +14,7 @@ public:
     ~Snail();
 
     void update() override;
-    void damage() override;
+    void damage(float damage = 1.0) override;
     
 private:
     void setMovement() override;

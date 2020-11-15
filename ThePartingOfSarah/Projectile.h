@@ -4,18 +4,24 @@
 
 constexpr auto PLAYER_PROJECTILE_SPEED = 10;
 constexpr auto ENEMY_PROJECTILE_SPEED = 6;
+constexpr auto ENEMY_DEFAULT_DAMAGE = 1.0;
 
 class Projectile :
     public Actor
 {
 public:
-    Projectile(string filename, int x, int y, int mouseX, int mouseY, int size, bool playerShot, Game* game);
+    Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, Game* game);
+    Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, float damage, Game* game);
 
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     void collisionedWith(Actor* actor) override;
 
+    /* Attributes */
+    float damage;
+
 private:
+    void setVector(int destinyX, int destinyY);
     /* Attributes */
     float speed;
 };

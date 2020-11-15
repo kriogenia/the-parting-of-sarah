@@ -23,7 +23,7 @@ void Plant::update() {
 }
 
 void Plant::shoot() {
-	Projectile* projectile = new Projectile(PLANT_PROJECTILE_FILE, x, y, player->x, player->y, 8, false, game);
+	Projectile* projectile = new Projectile(PLANT_PROJECTILE_FILE, x, y, player->x, player->y, 8, game);
 	room->addEnemyProjectile(projectile);
 }
 

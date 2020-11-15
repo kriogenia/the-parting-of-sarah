@@ -10,7 +10,7 @@ public:
     ~Enemy();
 
     void collisionedWith(Actor* actor) override;
-    void damage() override;
+    void damage(float damage = 1.0) override;
 
 protected:
     void setMovement() override;

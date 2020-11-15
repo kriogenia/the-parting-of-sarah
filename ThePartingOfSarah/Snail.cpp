@@ -21,10 +21,10 @@ void Snail::update() {
 	Enemy::update();
 }
 
-void Snail::damage() {
+void Snail::damage(float damage) {
 	if (this->action == HIDING)
 		return;
-	Enemy::damage();
+	Enemy::damage(damage);
 }
 
 void Snail::setMovement() {

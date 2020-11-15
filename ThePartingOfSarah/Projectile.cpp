@@ -1,20 +1,23 @@
 #include "Projectile.h"
 
-Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, bool playerShot, Game* game) :
+/* Player projectile constructor */
+Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, float damage, Game* game) :
+	Actor(filename, x, y, size, size, game) 
+{
+	this->type = PROJECTILE;
+	this->damage = damage;
+	this->speed = PLAYER_PROJECTILE_SPEED;
+	setVector(destinyX, destinyY);
+}
+
+/* Enemy projectile constructor */
+Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, Game* game) :
 	Actor(filename, x, y, size, size, game)
 {
-	if (playerShot) {
-		this->type = PROJECTILE;
-		this->speed = PLAYER_PROJECTILE_SPEED;
-	}
-	else {
-		this->type = ENEMY_PROJECTILE;
-		this->speed = ENEMY_PROJECTILE_SPEED;
-	}
-
-	float vectorLength = sqrt(pow(destinyX - x, 2) + pow(destinyY - y, 2));
-	this->vx = (destinyX - x) / vectorLength * PLAYER_PROJECTILE_SPEED;
-	this->vy = (destinyY - y) / vectorLength * PLAYER_PROJECTILE_SPEED;
+	this->type = ENEMY_PROJECTILE;
+	this->damage = ENEMY_DEFAULT_DAMAGE;
+	this->speed = ENEMY_PROJECTILE_SPEED;
+	setVector(destinyX, destinyY);
 }
 
 void Projectile::draw(int scrollX, int scrollY, float rotation) {
@@ -30,4 +33,10 @@ void Projectile::collisionedWith(Actor* actor) {
 		(type == PROJECTILE && actor->type == ENEMY) ||
 		(type == ENEMY_PROJECTILE && actor->type == PLAYER))
 		this->destructionFlag = true;
+}
+
+void Projectile::setVector(int destinyX, int destinyY) {
+	float vectorLength = sqrt(pow(destinyX - x, 2) + pow(destinyY - y, 2));
+	this->vx = (destinyX - x) / vectorLength * speed;
+	this->vy = (destinyY - y) / vectorLength * speed;
 }

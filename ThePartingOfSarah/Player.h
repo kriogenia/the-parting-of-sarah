@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Character.h"
-#include "Projectile.h"
 
-constexpr auto STARTING_PLAYER_SPEED = 3;
-constexpr auto STARTING_PLAYER_SHOT_CADENCE = 30;
+constexpr auto STARTING_PLAYER_ATTACK = 3.0;
 constexpr auto STARTING_PLAYER_HP = 3;
+constexpr auto STARTING_PLAYER_SHOT_CADENCE = 30;
+constexpr auto STARTING_PLAYER_SPEED = 3;
 constexpr auto PLAYER_INVULNERABILITY_TIME = 30;
 constexpr auto PLAYER_PROJECTILE_FILE = "res/sprites/player/Player_Projectile.png";
 
@@ -22,7 +22,7 @@ public:
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 
     void collisionedWith(Actor* actor) override;
-    void damage() override;
+    void damage(float damage = 1.0) override;
     // Attributes
     int maxHp;
     // Controls
@@ -50,6 +50,7 @@ private:
     int moveDown = 0;
     bool shooting = false;
     // Attributes
+    float attack;
     int shotCadence;
     // States
     int shotTime;

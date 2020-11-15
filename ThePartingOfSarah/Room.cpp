@@ -10,8 +10,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	game(game),
 	spawner(EnemyFactory::getInstance())
 {
-	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	//this->filename = "res/rooms/room_9.txt";			// room tests
+	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	this->filename = "res/rooms/room_1.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	// Grid initialization

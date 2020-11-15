@@ -4,20 +4,20 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	Character("res/sprites/player/Character_Idle_Down.png", x, y, 16, 16, game) 
 {
 	this->type = PLAYER;
+	importAnimations();
 	// Set references
 	this->mouseX = mouseX;
 	this->mouseY = mouseY;
 	this->scrollX = scrollX;
 	this->scrollY = scrollY;
 	// Set stats
+	this->attack = STARTING_PLAYER_ATTACK;
 	this->hp = STARTING_PLAYER_HP;
 	this->maxHp = STARTING_PLAYER_HP;
 	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
 	this->speed = STARTING_PLAYER_SPEED;
 	// Debugging stats
 	this->speed = 3;
-
-	importAnimations();
 	// State initialization
 	this->invulnerabilityTime = 0;
 	this->shotTime = shotCadence;
@@ -54,7 +54,7 @@ void Player::collisionedWith(Actor* actor) {
 	}
 }
 
-void Player::damage() {
+void Player::damage(float damage) {
 	if (invulnerabilityTime <= 0) {
 		invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
 		Character::damage();
@@ -118,7 +118,7 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 			observer->notify(NOTIFICATION_PLAYER_SHOT);
 		}
 		return new Projectile(PLAYER_PROJECTILE_FILE, 
-			x, y, mouseX, mouseY, 7, true, game);
+			x, y, mouseX, mouseY, 7, attack, game);
 	}
 	return nullptr;
 }

@@ -27,8 +27,8 @@ void Character::draw(int scrollX, int scrollY, float rotation) {
 	animation->draw(x - scrollX, y - scrollY);
 }
 
-void Character::damage() {
-	this->hp--;
+void Character::damage(float damage) {
+	this->hp -= damage;
 	if (hp <= 0) {
 		this->destructionFlag = true;
 	}
