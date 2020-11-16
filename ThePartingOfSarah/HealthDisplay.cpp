@@ -1,8 +1,5 @@
 #include "HealthDisplay.h"
 
-constexpr auto HEART_WIDTH = 18;
-constexpr auto HEART_HEIGHT = 15;
-
 HealthDisplay::HealthDisplay(Game* game) :
 	game(game)
 {

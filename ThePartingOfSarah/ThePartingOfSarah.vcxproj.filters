@@ -183,6 +183,12 @@
     <ClCompile Include="Environment.cpp">
       <Filter>Archivos de origen\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="CoinBar.cpp">
+      <Filter>Archivos de origen\Actors\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinDisplay.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -295,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="Environment.h">
       <Filter>Archivos de encabezado\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinBar.h">
+      <Filter>Archivos de encabezado\Actors\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinDisplay.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
