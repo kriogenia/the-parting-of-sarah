@@ -11,6 +11,7 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 	Room* room;
 	switch (message) {
 	case NOTIFICATION_PLAYER_HIT:
+	case NOTIFICATION_PLAYER_HEAL:
 		player = (Player*) publisher;
 		hud->updateHealthDisplay(player->hp, player->maxHp);
 		break;

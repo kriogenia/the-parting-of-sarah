@@ -9,7 +9,8 @@ enum eActorType {
 	PROJECTILE,
 	ENEMY_PROJECTILE,
 	HUD,
-	BACKGROUND
+	BACKGROUND,
+	COIN
 };
 
 class Actor

@@ -15,11 +15,13 @@ public:
 	void addFlyingDynamicActor(Actor* actor);
 	void addStaticActor(Actor* actor);
 	void addLowStaticActor(Actor* actor);
+	void addVirtualActor(Actor* actor);
 
 	void removeDynamicActor(Actor* actor);
 	void removeFlyingDynamicActor(Actor* actor);
 	void removeStaticActor(Actor* actor);
 	void removeLowStaticActor(Actor* actor);
+	void removeVirtualActor(Actor* actor);
 
 private:
 	void updateMovementUp(Actor* dynamicActor, bool flying);
@@ -36,5 +38,6 @@ private:
 	list<Actor*> flyingDynamicActors;
 	list<Actor*> staticActors;
 	list<Actor*> lowStaticActors;
+	list<Actor*> virtualActors;
 };
 

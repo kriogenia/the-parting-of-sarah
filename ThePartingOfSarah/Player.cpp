@@ -16,8 +16,10 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->maxHp = STARTING_PLAYER_HP;
 	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
 	this->speed = STARTING_PLAYER_SPEED;
+	this->shotSize = STARTING_PLAYER_PROJECTILE_SIZE;
+	this->coins = 0;
 	// Debugging stats
-	this->speed = 3;
+	//this->speed = 3;
 	// State initialization
 	this->invulnerabilityTime = 0;
 	this->shotTime = shotCadence;
@@ -52,6 +54,9 @@ void Player::collisionedWith(Actor* actor) {
 	if ((actor->type == ENEMY || actor->type == ENEMY_PROJECTILE) && !actor->destructionFlag) {
 		damage();
 	}
+	else if (actor->type == COIN) {
+		coinUp();
+	}
 }
 
 void Player::damage(float damage) {
@@ -62,6 +67,56 @@ void Player::damage(float damage) {
 			observer->notify(NOTIFICATION_PLAYER_HIT, this);
 		}
 	}
+}
+
+void Player::coinUp() {
+	coins++;
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_PICK_COIN);
+	}
+	if (coins >= 5 && hp < maxHp) {
+		hp++;
+		for (auto const& observer : observers) {
+			observer->notify(NOTIFICATION_PLAYER_HEAL, this);
+		}
+		coins -= 5;
+	}
+	else if (coins > 10) {
+		powerUp();
+		coins -= 10;
+	}
+}
+
+void Player::powerUp() {
+	int stat = rand() % 5;
+	switch (stat) {
+	case ATTACK_DAMAGE:
+		if (attack < CAP_PLAYER_ATTACK)
+			attack += 0.5;
+		break;
+	case HEALTH_POINTS:
+		if (maxHp < CAP_PLAYER_HP)
+			maxHp++;
+		if (hp < maxHp)
+			hp++;
+		break;
+	case SHOT_CADENCE:
+		if (shotCadence > CAP_PLAYER_SHOT_CADENCE)
+			shotCadence -= 2;
+		break;
+	case MOVEMENT_SPEED:
+		if (speed < CAP_PLAYER_SPEED)
+			speed += 0.5;
+		break;
+	case PROJECTILE_SIZE:
+		if (shotSize < CAP_PLAYER_PROJECTILE_SIZE)
+			shotSize++;
+		break;
+	}
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_POWER_UP);
+	}
+
 }
 
 void Player::enterInput(int code) {
@@ -115,10 +170,10 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		this->action = SHOOTING;
 		this->animation = shootingAnimations[this->orientation];
 		for (auto const& observer : observers) {
-			observer->notify(NOTIFICATION_PLAYER_SHOT);
+			observer->notify(NOTIFICATION_PLAYER_SHOOT);
 		}
 		return new Projectile(PLAYER_PROJECTILE_FILE, 
-			x, y, mouseX, mouseY, 7, attack, game);
+			x, y, mouseX, mouseY, shotSize, attack, game);
 	}
 	return nullptr;
 }

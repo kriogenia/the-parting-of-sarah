@@ -30,6 +30,12 @@ void Space::checkDynamicCollisions() {
                 actorToCheck->collisionedWith(actor);
             }
         }
+        for (auto const& actorToCheck : virtualActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
     }
     for (auto const& actor : flyingDynamicActors) {
         for (auto const& actorToCheck : dynamicActors) {
@@ -39,6 +45,12 @@ void Space::checkDynamicCollisions() {
             }
         }
         for (auto const& actorToCheck : flyingDynamicActors) {
+            if (actor->isOverlap(actorToCheck)) {
+                actor->collisionedWith(actorToCheck);
+                actorToCheck->collisionedWith(actor);
+            }
+        }
+        for (auto const& actorToCheck : virtualActors) {
             if (actor->isOverlap(actorToCheck)) {
                 actor->collisionedWith(actorToCheck);
                 actorToCheck->collisionedWith(actor);
@@ -63,6 +75,10 @@ void Space::addLowStaticActor(Actor* actor) {
     lowStaticActors.push_back(actor);
 }
 
+void Space::addVirtualActor(Actor* actor) {
+    virtualActors.push_back(actor);
+}
+
 void Space::removeDynamicActor(Actor* actor) {
 	dynamicActors.remove(actor);
 }
@@ -77,6 +93,10 @@ void Space::removeStaticActor(Actor* actor) {
 
 void Space::removeLowStaticActor(Actor* actor) {
     lowStaticActors.remove(actor);
+}
+
+void Space::removeVirtualActor(Actor* actor) {
+    virtualActors.remove(actor);
 }
 
 void Space::updateMovementUp(Actor* dynamicActor, bool flying) {

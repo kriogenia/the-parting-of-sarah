@@ -3,7 +3,7 @@
 #include "Character.h"
 #include "Environment.h"
 
-constexpr auto COIN_RARITY = 4;
+constexpr auto COIN_RARITY = 1;
 
 class Enemy :
     public Character

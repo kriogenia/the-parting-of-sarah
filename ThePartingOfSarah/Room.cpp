@@ -68,7 +68,7 @@ void Room::update() {
 		}
 	}
 	for (auto const& coin : coinsToDelete) {
-		space->removeStaticActor(coin);
+		space->removeVirtualActor(coin);
 		coins.remove(coin);
 	}
 	// Deletion of projectiles
@@ -90,7 +90,7 @@ void Room::update() {
 		}
 	}
 	for (auto const& destructible : destructiblesToDelete) {
-		space->removeStaticActor(destructible);
+		space->removeVirtualActor(destructible);
 		destructibles.remove(destructible);
 	}
 }
@@ -156,7 +156,7 @@ void Room::addEnemyProjectile(Projectile* projectile) {
 void Room::spawnCoin(float x, float y) {
 	Coin* coin = new Coin(x, y, game);
 	coins.push_back(coin);
-	space->addStaticActor(coin);
+	space->addVirtualActor(coin);
 }
 
 void Room::loadMap() {
