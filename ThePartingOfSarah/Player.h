@@ -61,6 +61,8 @@ private:
     void setAxisOrientation(int orientationX, int orientationY);
     //void setDiagonalOrientation(int orientationX, int orientationY);
     void setAnimation() override;
+    // Debug
+    void printPlayer();
     // Animations
     map<eCharacterOrientation, Animation*> idleAnimations;
     map<eCharacterOrientation, Animation*> shootingAnimations;

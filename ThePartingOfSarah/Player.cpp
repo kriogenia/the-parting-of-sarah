@@ -18,7 +18,8 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->speed = STARTING_PLAYER_SPEED;
 	this->shotSize = STARTING_PLAYER_PROJECTILE_SIZE;
 	this->coins = 0;
-	// Debugging stats
+	// Debugging
+	printPlayer();
 	//this->speed = 3;
 	// State initialization
 	this->invulnerabilityTime = 0;
@@ -71,24 +72,27 @@ void Player::damage(float damage) {
 
 void Player::coinUp() {
 	coins++;
-	for (auto const& observer : observers) {
-		observer->notify(NOTIFICATION_PICK_COIN);
-	}
+	cout << "Picked up coin. Coins: " << coins << endl;
 	if (coins >= 5 && hp < maxHp) {
 		hp++;
+		cout << "Healed up using five 5 coins. HP: " << hp << "/" << maxHp << " - Coins: " << coins << endl;
 		for (auto const& observer : observers) {
 			observer->notify(NOTIFICATION_PLAYER_HEAL, this);
 		}
 		coins -= 5;
 	}
-	else if (coins > 10) {
+	else if (coins >= 10) {
 		powerUp();
 		coins -= 10;
+	}
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_PICK_COIN, &coins);
 	}
 }
 
 void Player::powerUp() {
 	int stat = rand() % 5;
+	//stat = HEALTH_POINTS;		// Debug
 	switch (stat) {
 	case ATTACK_DAMAGE:
 		if (attack < CAP_PLAYER_ATTACK)
@@ -113,8 +117,10 @@ void Player::powerUp() {
 			shotSize++;
 		break;
 	}
+	cout << "Player powered up" << endl;
+	printPlayer();
 	for (auto const& observer : observers) {
-		observer->notify(NOTIFICATION_POWER_UP);
+		observer->notify(NOTIFICATION_POWER_UP, this);
 	}
 
 }
@@ -227,6 +233,17 @@ void Player::setDiagonalOrientation(int orientationX, int orientationY) {
 void Player::setAnimation() {
 	if		(action == IDLE)	this->animation = idleAnimations[orientation];
 	else if (action == MOVING)	this->animation = movingAnimations[orientation];
+}
+
+void Player::printPlayer() {
+	cout << "---- Stats ----" << endl;
+	cout << " HP: " << hp << "/" << maxHp << endl;
+	cout << " Coins: " << coins << endl;
+	cout << " Attack: " << attack << endl;
+	cout << " Speed: " << speed << endl;
+	cout << " Cadence: " << shotCadence << endl;
+	cout << " Projectile: " << shotSize << endl;
+	cout << "---------------" << endl;
 }
 
 void Player::importAnimations() {

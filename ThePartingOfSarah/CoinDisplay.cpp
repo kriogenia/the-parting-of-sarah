@@ -5,7 +5,7 @@ CoinDisplay::CoinDisplay(Game* game) :
 {
 	baseCoins = new Tile("res/hud/coinbar_empty.png", HEIGHT - COIN_WIDTH, WIDTH - 10 * COIN_HEIGHT,
 		COIN_WIDTH, 10 * COIN_HEIGHT, game);
-	currentCoins = new CoinBar(100, 100, 0, game);
+	currentCoins = new CoinBar(HEIGHT - COIN_WIDTH, WIDTH - 10 * COIN_HEIGHT, 0, game);
 	info = new MappedTile("res/hud/coinbar_info.png", HEIGHT - 2*COIN_WIDTH, WIDTH - 14 * COIN_HEIGHT, 
 		COIN_WIDTH, 10 * COIN_HEIGHT, 2 * COIN_WIDTH, 10 * COIN_HEIGHT, 0, game);
 }

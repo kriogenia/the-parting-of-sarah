@@ -7,9 +7,11 @@ HudObserver::HudObserver(Hud* hud) :
 }
 
 void HudObserver::notify(eObserverMessages message, void* publisher) {
+	int* integer;
 	Player* player;
 	Room* room;
 	switch (message) {
+	case NOTIFICATION_POWER_UP:
 	case NOTIFICATION_PLAYER_HIT:
 	case NOTIFICATION_PLAYER_HEAL:
 		player = (Player*) publisher;
@@ -18,6 +20,10 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 	case NOTIFICATION_ENTER_ROOM:
 		room = (Room*) publisher;
 		hud->updateMap(room);
+		break;
+	case NOTIFICATION_PICK_COIN:
+		integer = (int*) publisher;
+		hud->updateCoins(*integer);
 		break;
 	}
 }

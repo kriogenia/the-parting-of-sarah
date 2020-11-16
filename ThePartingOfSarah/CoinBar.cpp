@@ -3,19 +3,19 @@
 CoinBar::CoinBar(float x, float y, int startingHeight, Game* game) : 
 	Actor("res/hud/coinbar_full.png", x, y, COIN_WIDTH, 10 * COIN_HEIGHT, game)
 {
-	this->currentHeight = startingHeight;
+	this->currentHeight = startingHeight * COIN_HEIGHT;
 }
 
 void CoinBar::draw(int scrollX, int scrollY, float rotation) {
 	SDL_Rect source;
 	source.x = 0;
-	source.y = fileHeight - currentHeight;
+	source.y = 0;
 	source.w = fileWidth;	
 	source.h = currentHeight;		
 
 	SDL_Rect destination;
-	destination.x = x;
-	destination.y = y + currentHeight;
+	destination.x = x - width / 2;
+	destination.y = y + 5 * COIN_HEIGHT - currentHeight;
 	destination.w = width;
 	destination.h = currentHeight;
 
