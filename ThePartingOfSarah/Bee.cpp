@@ -1,15 +1,15 @@
 #include "Bee.h"
 
-Bee::Bee(float x, float y, Room* room, Game* game) :
-	Enemy("res/sprites/bird/Bee_Moving_Left.png", x, y, 36, 34, room->player, game) 
+Bee::Bee(float x, float y, Environment* room, Game* game) :
+	Enemy("res/sprites/bird/Bee_Moving_Left.png", x, y, 36, 34, room, game) 
 {
+	importAnimations();
+
 	this->flying = true;
-	this->room = room;
 	this->hp = BEE_HP;
 	this->speed = BEE_SPEED;
 	this->shotTime = BEE_SHOT_CADENCE;
 
-	importAnimations();
 	this->animation = movingAnimations[LEFT];
 }
 
@@ -19,8 +19,8 @@ Bee::~Bee() {
 
 void Bee::draw(int scrollX, int scrollY, float rotation) {
 	// Calculate angle of the vector bee, player
-	float dx = player->x - x;
-	float dy = player->y - y;
+	float dx = room->player->x - x;
+	float dy = room->player->y - y;
 	float angle = acos(-dy / sqrt(pow(dx, 2) + pow(dy, 2)));	// angle of the bee-player vector
 	angle *= (180.0 / 3.14156);									// to grads
 	angle = angle * (dx / abs(dx)) + 180;						// adaptation to sprite direciton
@@ -37,7 +37,7 @@ void Bee::update() {
 
 /* Shoots the projectile */
 void Bee::shoot() {
-	Projectile* projectile = new Projectile(BEE_PROJECTILE_FILE, x, y, player->x, player->y, 8, game);
+	Projectile* projectile = new Projectile(BEE_PROJECTILE_FILE, x, y, room->player->x, room->player->y, 8, game);
 	room->addEnemyProjectile(projectile);
 }
 
@@ -54,7 +54,7 @@ void Bee::setMovement() {
 void Bee::setOrientation() {}
 
 void Bee::setAction(bool endAction) {
-	float distance = sqrt(pow(player->x - x, 2) + pow(player->y - y, 2));
+	float distance = sqrt(pow(room->player->x - x, 2) + pow(room->player->y - y, 2));
 	if (this->action == MOVING && distance < BEE_LOCK_DISTANCE && shotTime < 0) {
 		this->action = SHOOTING;
 		this->animation = shootingAnimation;

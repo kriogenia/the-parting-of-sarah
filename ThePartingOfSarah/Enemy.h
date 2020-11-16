@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Character.h"
+#include "Environment.h"
+
+constexpr auto COIN_RARITY = 4;
 
 class Enemy :
     public Character
 {
 public:
-    Enemy(string filename, float x, float y, int width, int height, Actor* player, Game* game);
+    Enemy(string filename, float x, float y, int width, int height, Environment* room, Game* game);
     ~Enemy();
 
     void collisionedWith(Actor* actor) override;
@@ -17,7 +20,10 @@ protected:
     void setAction(bool endAction) override;
     void setOrientation() override;
 
-    Actor* player;
+    virtual void death();
+    void hit();
+
+    Environment* room;
 
     Animation* dyingAnimation;
     map<eCharacterOrientation, Animation*> hitAnimations;

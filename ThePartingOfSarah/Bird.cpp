@@ -1,19 +1,20 @@
 #include "Bird.h"
 
-Bird::Bird(float x, float y, Actor* player, Game* game) :
-	Enemy("res/sprites/bird/Bird_Moving_Left.png", x, y, 32, 32, player, game)
+Bird::Bird(float x, float y, Environment* room, Game* game) :
+	Enemy("res/sprites/bird/Bird_Moving_Left.png", x, y, 32, 32, room, game)
 {
+	importAnimations();
+
 	this->flying = true;
 	this->hp = BIRD_STARTING_HP;
 	this->speed = BIRD_MAX_SPEED;
 
-	importAnimations();
 	this->animation = movingAnimations[LEFT];
 }
 
 void Bird::setMovement() {
 	float velocity = (BIRD_MAX_SPEED - BIRD_FLOOR_SPEED) / BIRD_MAX_RANGE;
-	this->speed = BIRD_FLOOR_SPEED + velocity * abs(player->x - x + player->y - y) / 2;
+	this->speed = BIRD_FLOOR_SPEED + velocity * abs(room->player->x - x + room->player->y - y) / 2;
 	Enemy::setMovement();
 }
 

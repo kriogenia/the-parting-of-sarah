@@ -41,7 +41,7 @@ public:
 
 protected:
     // Initialization
-    virtual void importAnimations();
+    virtual void importAnimations() = 0;
     // Character update
     virtual void setMovement();
     virtual void setAction(bool endedAction);

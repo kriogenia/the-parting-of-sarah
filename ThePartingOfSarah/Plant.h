@@ -14,7 +14,7 @@ class Plant :
     public Enemy
 {
 public:
-    Plant(float x, float y, Room* room, Game* game);
+    Plant(float x, float y, Environment* room, Game* game);
 
     void update();
 
@@ -25,8 +25,6 @@ private:
     void setAction(bool endAction) override;
 
     void importAnimations() override;
-
-    Room* room;
 
     map<eCharacterOrientation, Animation*> shootingAnimations;
 

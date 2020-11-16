@@ -6,9 +6,6 @@
 #include "Plant.h"
 #include "Snail.h"
 
-#include "Room.h"
-class Room;
-
 constexpr auto NUMBER_OF_ENEMY_TYPES = 4;
 
 enum TYPE_OF_ENEMY {
@@ -25,7 +22,7 @@ class EnemyFactory
 public:
     static EnemyFactory* getInstance();
     /* Enemy generator */
-    Enemy* generateEnemy(float x, float y, Room* room, Game* game);
+    Enemy* generateEnemy(float x, float y, Environment* room, Game* game);
 
 private:
     static EnemyFactory* instance;

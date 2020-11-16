@@ -6,7 +6,6 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	y(y),
 	code(number),
 	space(space),
-	player(player),
 	game(game),
 	spawner(EnemyFactory::getInstance())
 {
@@ -14,6 +13,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	this->filename = "res/rooms/room_1.txt";			// room tests
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
+	this->player = player;
 	// Grid initialization
 	for (int i = 0; i < TILES_PER_ROOM; i++) {
 		for (int j = 0; j < TILES_PER_ROOM; j++) {
@@ -26,6 +26,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 }
 
 Room::~Room() {
+	coins.clear();
 	destructibles.clear();
 	doors.clear();
 	enemies.clear();
@@ -35,21 +36,12 @@ Room::~Room() {
 }
 
 void Room::draw(int scrollX, int scrollY) {
-	for (auto const& tile : tiles) {
-		tile->draw(scrollX, scrollY);
-	}
-	for (auto const& tile : destructibles) {
-		tile->draw(scrollX, scrollY);
-	}
-	for (auto const& tile : doors) {
-		tile->draw(scrollX, scrollY);
-	}
-	for (auto const& enemy : enemies) {
-		enemy->draw(scrollX, scrollY);
-	}
-	for (auto const& projectile : enemyProjectiles) {
-		projectile->draw(scrollX, scrollY);
-	}
+	for (auto const& tile : tiles)					tile->draw(scrollX, scrollY);
+	for (auto const& tile : destructibles)			tile->draw(scrollX, scrollY);
+	for (auto const& tile : doors)					tile->draw(scrollX, scrollY);
+	for (auto const& coin : coins)					coin->draw(scrollX, scrollY);
+	for (auto const& enemy : enemies)				enemy->draw(scrollX, scrollY);
+	for (auto const& projectile : enemyProjectiles)	projectile->draw(scrollX, scrollY);
 }
 
 void Room::update() {
@@ -67,6 +59,17 @@ void Room::update() {
 	}
 	if (!cleared && enemies.empty() && enemiesToSpawn.empty()) {
 		setCleared();
+	}
+	// Deletion of coins
+	list<Coin*> coinsToDelete;
+	for (auto const& coin : coins) {
+		if (coin->destructionFlag) {
+			coinsToDelete.push_back(coin);
+		}
+	}
+	for (auto const& coin : coinsToDelete) {
+		space->removeStaticActor(coin);
+		coins.remove(coin);
 	}
 	// Deletion of projectiles
 	list<Projectile*> projectilesToDelete;
@@ -148,6 +151,12 @@ void Room::closeDoors() {
 void Room::addEnemyProjectile(Projectile* projectile) {
 	enemyProjectiles.push_back(projectile);
 	space->addFlyingDynamicActor(projectile);
+}
+
+void Room::spawnCoin(float x, float y) {
+	Coin* coin = new Coin(x, y, game);
+	coins.push_back(coin);
+	space->addStaticActor(coin);
 }
 
 void Room::loadMap() {

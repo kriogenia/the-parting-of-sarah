@@ -11,7 +11,7 @@ class Bird :
     public Enemy
 {
 public:
-    Bird(float x, float y, Actor* player, Game* game);
+    Bird(float x, float y, Environment* room, Game* game);
 
 private:
     void setMovement() override;

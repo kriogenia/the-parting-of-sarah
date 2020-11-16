@@ -1,16 +1,16 @@
 #include "Plant.h"
 
-Plant::Plant(float x, float y, Room* room, Game* game) :
-	Enemy("res/sprites/plant/Plant_Moving_Left.png", x, y, 42, 42, room->player, game) {
+Plant::Plant(float x, float y, Environment* room, Game* game) :
+	Enemy("res/sprites/plant/Plant_Moving_Left.png", x, y, 42, 42, room, game) {
 
-	this->room = room;
+	importAnimations();
+
 	this->hp = PLANT_HP;
 	this->speed = PLANT_SPEED;
 	this->shotTime = PLANT_SHOT_CADENCE;
 	this->vx = PLANT_SPEED;
 	this->vy = PLANT_SPEED;
 
-	importAnimations();
 	this->animation = movingAnimations[LEFT];
 }
 
@@ -23,7 +23,7 @@ void Plant::update() {
 }
 
 void Plant::shoot() {
-	Projectile* projectile = new Projectile(PLANT_PROJECTILE_FILE, x, y, player->x, player->y, 8, game);
+	Projectile* projectile = new Projectile(PLANT_PROJECTILE_FILE, x, y, room->player->x, room->player->y, 8, game);
 	room->addEnemyProjectile(projectile);
 }
 

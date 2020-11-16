@@ -10,20 +10,20 @@ EnemyFactory* EnemyFactory::getInstance() {
 
 EnemyFactory::EnemyFactory() {}
 
-Enemy* EnemyFactory::generateEnemy(float x, float y, Room* room, Game* game) {
-    return new Snail(x, y, room->player, game);                       // Debug
+Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* game) {
+    return new Snail(x, y, room, game);                       // Debug
     int typeOfEnemy = rand() % NUMBER_OF_ENEMY_TYPES;
     switch (typeOfEnemy) {
     case BEE:
         return new Bee(x, y, room, game);
     case BIRD:
-        return new Bird(x, y, room->player, game);
+        return new Bird(x, y, room, game);
     case PIG:
-        return new Pig(x, y, room->player, game);
+        return new Pig(x, y, room, game);
     case PLANT:
         return new Plant(x, y, room, game);
     case SNAIL:
-        return new Snail(x, y, room->player, game);
+        return new Snail(x, y, room, game);
     }
 
 }

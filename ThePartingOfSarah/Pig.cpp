@@ -1,12 +1,13 @@
 #include "Pig.h"
 
-Pig::Pig(float x, float y, Actor* player, Game* game) :
-	Enemy("res/sprites/pig/Pig_Moving_Left.png", x, y, 36, 30, player, game) 
+Pig::Pig(float x, float y, Environment* room, Game* game) :
+	Enemy("res/sprites/pig/Pig_Moving_Left.png", x, y, 36, 30, room, game) 
 {
+	importAnimations();
+
 	this->hp = PIG_HP;
 	this->speed = PIG_MOVING_SPEED;
 
-	importAnimations();
 	this->animation = movingAnimations[orientation];
 }
 

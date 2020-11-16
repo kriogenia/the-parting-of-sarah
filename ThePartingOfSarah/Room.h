@@ -3,10 +3,10 @@
 #include "Game.h"
 
 #include "Character.h"
+#include "Coin.h"
 #include "DestructibleTile.h"
 #include "Door.h"
-#include "MappedTile.h"
-#include "Projectile.h"
+#include "Environment.h"
 #include "Rock.h"
 #include "Space.h"
 
@@ -27,23 +27,26 @@ enum eRoomType {
 	NO_ROOM
 };
 
-class Room {
+class Room :
+	public Environment
+{
 public:
 	Room(eRoomType type, int x, int y, int number, Space* space, Actor* player, Game* game);
 	~Room();
-	/* Room layout loading */
-	void loadMap();
 
 	void draw(int scrollX, int scrollY);
 	void update();
+	/* Room layout loading */
+	void loadMap();
 	/* Game flow */
 	bool hasPlayerInside();
 	void playerEntered();
 	void setCleared();
 	void openDoors();
 	void closeDoors();
-	/* Enemies actions */
-	void addEnemyProjectile(Projectile* projectile);
+	/* Environment */
+	void addEnemyProjectile(Projectile* projectile) override;
+	void spawnCoin(float x, float y) override;
 	/* Level generation */
 	bool isNeighbour(Room* room);
 	void append(Room* room);
@@ -63,7 +66,6 @@ public:
 	Room* right = nullptr;
 	// Observers
 	list<Observer*> observers;
-	Actor* player;
 
 private:
 	/* Tile creation */
@@ -87,6 +89,7 @@ private:
 	/* Room actors */
 	list<Character*> enemies;
 	list<Character*> enemiesToSpawn;
+	list<Coin*> coins;
 	list<Projectile*> enemyProjectiles;
 	/* Room attributes */
 	int code = -1;

@@ -34,8 +34,6 @@ void Character::damage(float damage) {
 	}
 }
 
-void Character::importAnimations() {}
-
 void Character::setMovement() {
 	this->vx = 0;
 	this->vy = 0;

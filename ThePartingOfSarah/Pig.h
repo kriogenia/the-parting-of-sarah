@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Enemy.h"
+class Enemy;
 
 constexpr auto PIG_MOVING_SPEED = 2;
 constexpr auto PIG_RUNNING_SPEED = 4;
@@ -10,7 +11,7 @@ class Pig :
     public Enemy
 {
 public:
-    Pig(float x, float y, Actor* player, Game* game);
+    Pig(float x, float y, Environment* room, Game* game);
     ~Pig();
 
 private:

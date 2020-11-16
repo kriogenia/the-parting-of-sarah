@@ -161,11 +161,13 @@
     <ClCompile Include="Bee.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Crosshair.cpp" />
     <ClCompile Include="DestructibleTile.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="Hud.cpp" />
@@ -199,11 +201,13 @@
     <ClInclude Include="Bee.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="Crosshair.h" />
     <ClInclude Include="DestructibleTile.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="Environment.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="Hud.h" />
