@@ -22,7 +22,8 @@ using namespace std;
 constexpr auto WIDTH = 480;
 constexpr auto HEIGHT = 480;
 
-constexpr auto OUTLINE_SIZE = 2;
+constexpr auto TITLE_OUTLINE_SIZE = 2;
+constexpr auto SUBTITLE_OUTLINE_SIZE = 1;
 
 class Game
 {
@@ -38,8 +39,10 @@ public:
 	bool loopActive; 
 
 	Layer* gameLayer;
-	TTF_Font* font;
-	TTF_Font* fontOutline;
+	TTF_Font* fontTitle;
+	TTF_Font* fontOutlineTitle;
+	TTF_Font* fontSubtitle;
+	TTF_Font* fontOutlineSubtitle;
 
 	int seed;
 

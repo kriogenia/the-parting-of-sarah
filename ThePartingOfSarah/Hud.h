@@ -19,7 +19,7 @@ public:
 	void updateCrosshair(int mouseX, int mouseY);
 	void updateHealthDisplay(int currentHp, int maxHp);
 	void updateMap(Room* room);
-	void updateText(string message);
+	void updateText(string message, string submessage = "");
 
 private:
 	CoinDisplay* coins;

@@ -21,12 +21,17 @@ Game::Game(int seed) :
 	cout << "SEED: " << seed << endl;
 	srand(seed);
 
+	/* Fonts initilization */
+	TTF_Init();
+	fontTitle = TTF_OpenFont("res/upheavtt.ttf", 36);
+	fontOutlineTitle = TTF_OpenFont("res/upheavtt.ttf", 36);
+	TTF_SetFontOutline(fontOutlineTitle, TITLE_OUTLINE_SIZE);
+	fontSubtitle = TTF_OpenFont("res/upheavtt.ttf", 18);
+	fontOutlineSubtitle = TTF_OpenFont("res/upheavtt.ttf", 18);
+	TTF_SetFontOutline(fontOutlineSubtitle, SUBTITLE_OUTLINE_SIZE);
+
 	gameLayer = new GameLayer(this);
 
-	TTF_Init();
-	font = TTF_OpenFont("res/upheavtt.ttf", 24);
-	fontOutline = TTF_OpenFont("res/upheavtt.ttf", 24);
-	TTF_SetFontOutline(fontOutline, OUTLINE_SIZE);
 
 	loopActive = true;
 	loop();

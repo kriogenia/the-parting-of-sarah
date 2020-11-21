@@ -160,6 +160,7 @@
     <ClCompile Include="BackgroundAudio.cpp" />
     <ClCompile Include="Bee.cpp" />
     <ClCompile Include="Bird.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CoinBar.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="HudObserver.cpp" />
+    <ClCompile Include="Litost.cpp" />
     <ClCompile Include="MapDisplay.cpp" />
     <ClCompile Include="MappedTile.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -204,6 +206,7 @@
     <ClInclude Include="BackgroundAudio.h" />
     <ClInclude Include="Bee.h" />
     <ClInclude Include="Bird.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CoinBar.h" />
@@ -218,6 +221,7 @@
     <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="HudObserver.h" />
+    <ClInclude Include="Litost.h" />
     <ClInclude Include="MapDisplay.h" />
     <ClInclude Include="MappedTile.h" />
     <ClInclude Include="Game.h" />

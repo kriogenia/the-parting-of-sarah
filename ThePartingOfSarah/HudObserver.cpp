@@ -10,6 +10,7 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 	int* integer;
 	Player* player;
 	Room* room;
+	Boss* boss;
 	switch (message) {
 	case NOTIFICATION_POWER_UP:
 		hud->updateText("POWER UP");
@@ -21,6 +22,10 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 	case NOTIFICATION_ENTER_ROOM:
 		room = (Room*) publisher;
 		hud->updateMap(room);
+		break;
+	case NOTIFICATION_ENTER_BOSS_ROOM:
+		boss = (Boss*)publisher;
+		hud->updateText(boss->name, boss->subtitle);
 		break;
 	case NOTIFICATION_PICK_COIN:
 		integer = (int*) publisher;

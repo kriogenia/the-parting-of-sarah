@@ -5,6 +5,14 @@
 
 constexpr auto COIN_RARITY = 1;
 
+enum eBasicEnemyClass {
+    BEE,
+    BIRD,
+    PIG,
+    PLANT,
+    SNAIL
+};
+
 class Enemy :
     public Character
 {
@@ -21,7 +29,7 @@ protected:
     void setOrientation() override;
 
     virtual void death();
-    void hit();
+    virtual void hit();
 
     Environment* room;
 

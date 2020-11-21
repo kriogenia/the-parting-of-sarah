@@ -20,7 +20,8 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->coins = 0;
 	// Debugging
 	printPlayer();
-	//this->speed = 3;
+	this->attack = 5;
+	this->speed = 5;
 	// State initialization
 	this->invulnerabilityTime = 0;
 	this->shotTime = shotCadence;

@@ -42,6 +42,6 @@ void Hud::updateMap(Room* room) {
 	map->update(room);
 }
 
-void Hud::updateText(string message) {
-	text->update(message);
+void Hud::updateText(string message, string submessage) {
+	text->update(message, submessage);
 }

@@ -20,9 +20,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 			grid[i][j] = NO_TILE;
 		}
 	}
-	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
-		cleared = true;
-	}
+	applyType();
 }
 
 Room::~Room() {
@@ -123,6 +121,9 @@ void Room::playerEntered() {
 	}
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_ENTER_ROOM, this);
+		if (this->type == BOSS_ROOM) {
+			observer->notify(NOTIFICATION_ENTER_BOSS_ROOM, enemies.front());
+		}
 	}
 }
 
@@ -166,6 +167,17 @@ void Room::loadMap() {
 	generateTiles();
 }
 
+void Room::applyType() {
+	/* Set not fighting rooms as cleared */
+	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
+		cleared = true;
+	}
+	/* Generate boss on boss rooms */
+	if (type == BOSS_ROOM) {
+		enemiesToSpawn.push_back(spawner->generateBoss(
+			offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2, this, game));
+	}
+}
 
 void Room::readFile() {
 	char character;

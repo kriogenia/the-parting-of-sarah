@@ -67,6 +67,18 @@
     <Filter Include="Archivos de origen\Environment">
       <UniqueIdentifier>{eb010db8-5e14-4fa1-8a14-bfbda145f84f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Actors\Characters\Enemies\Bosses">
+      <UniqueIdentifier>{6043f6a0-8bb5-4e84-aaec-3c8a44704e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\Characters\Enemies\Bosses">
+      <UniqueIdentifier>{8d17fcc9-0fbb-4fd6-a159-103c954a1431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Observers">
+      <UniqueIdentifier>{d96fa7fd-5850-4af0-ba26-bb1578dab2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Observers">
+      <UniqueIdentifier>{4646428f-2c29-46d3-89c1-9b121fe06ec7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -156,9 +168,6 @@
     <ClCompile Include="HealthBar.cpp">
       <Filter>Archivos de origen\Actors\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="HudObserver.cpp">
-      <Filter>Archivos de origen\HUD</Filter>
-    </ClCompile>
     <ClCompile Include="AudioPlayer.cpp">
       <Filter>Archivos de origen\Audio</Filter>
     </ClCompile>
@@ -167,12 +176,6 @@
     </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>Archivos de origen\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioObserver.cpp">
-      <Filter>Archivos de origen\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="MapDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
@@ -194,6 +197,21 @@
     </ClCompile>
     <ClCompile Include="TextDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="Litost.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Archivos de origen\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="HudObserver.cpp">
+      <Filter>Archivos de origen\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioObserver.cpp">
+      <Filter>Archivos de origen\Observers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +299,6 @@
     <ClInclude Include="HealthBar.h">
       <Filter>Archivos de encabezado\Actors\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="HudObserver.h">
-      <Filter>Archivos de encabezado\HUD</Filter>
-    </ClInclude>
     <ClInclude Include="AudioPlayer.h">
       <Filter>Archivos de encabezado\Audio</Filter>
     </ClInclude>
@@ -292,12 +307,6 @@
     </ClInclude>
     <ClInclude Include="AudioClip.h">
       <Filter>Archivos de encabezado\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioObserver.h">
-      <Filter>Archivos de encabezado\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="MapDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
@@ -319,6 +328,21 @@
     </ClInclude>
     <ClInclude Include="TextDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Litost.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Archivos de encabezado\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="HudObserver.h">
+      <Filter>Archivos de encabezado\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioObserver.h">
+      <Filter>Archivos de encabezado\Observers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

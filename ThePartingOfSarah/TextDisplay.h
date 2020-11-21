@@ -2,7 +2,7 @@
 
 #include "Text.h"
 
-constexpr auto TEXT_DURATION = 30;				// 1s
+constexpr auto TEXT_DURATION = 90;				// 3s
 
 class TextDisplay
 {
@@ -11,11 +11,12 @@ public:
 	~TextDisplay();
 
 	void draw();
-	void update(string content);
+	void update(string title, string subtitle);
 
 private:
 	Game* game;
-	Text* frontText;
+	Text* title;
+	Text* subtitle;
 
 	int timer;
 };

@@ -75,6 +75,7 @@ private:
 	void generateCorridors();
 	void readFile();
 	void generateTiles();
+	void applyType();
 
 	EnemyFactory* spawner;
 	Game* game;

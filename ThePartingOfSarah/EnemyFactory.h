@@ -6,15 +6,10 @@
 #include "Plant.h"
 #include "Snail.h"
 
-constexpr auto NUMBER_OF_ENEMY_TYPES = 4;
+#include "Litost.h"
 
-enum TYPE_OF_ENEMY {
-    BEE,
-    BIRD,
-    PIG,
-    PLANT,
-    SNAIL
-};
+constexpr auto NUMBER_OF_ENEMY_TYPES = 4;
+constexpr auto NUMBER_OF_BOSSES = 1;
 
 /* Singleton */
 class EnemyFactory
@@ -23,6 +18,8 @@ public:
     static EnemyFactory* getInstance();
     /* Enemy generator */
     Enemy* generateEnemy(float x, float y, Environment* room, Game* game);
+    /* Boss generator */
+    Boss* generateBoss(float x, float y, Environment* room, Game* game);
 
 private:
     static EnemyFactory* instance;

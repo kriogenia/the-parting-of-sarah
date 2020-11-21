@@ -2,27 +2,30 @@
 
 TextDisplay::TextDisplay(Game* game)
 {
-	TTF_Init();
-	this->frontText = new Text("TEXT", WIDTH / 2, 3 * HEIGHT / 4, game);
+	this->title = new Text("TITLE", WIDTH / 2, 3 * HEIGHT / 4, true, game);
+	this->subtitle = new Text("SUBTITLE", WIDTH / 2, 3 * HEIGHT / 4 + 24, false, game);
 	this->timer = 0;
 }
 
 TextDisplay::~TextDisplay() 
 {
-	delete frontText;
+	delete title;
+	delete subtitle;
 }
 
 void TextDisplay::draw() 
 {
 	//timer = 20;						// Debug
-	timer--;
 	if (timer > 0) {
-		frontText->draw();
+		timer--;
+		title->draw();
+		subtitle->draw();
 	}
 }
 
-void TextDisplay::update(string content)
+void TextDisplay::update(string title, string subtitle)
 {
-	frontText->content = content;
+	this->title->content = title;
+	this->subtitle->content = subtitle;
 	timer = TEXT_DURATION;
 }
