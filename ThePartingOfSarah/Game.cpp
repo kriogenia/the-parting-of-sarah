@@ -23,6 +23,11 @@ Game::Game(int seed) :
 
 	gameLayer = new GameLayer(this);
 
+	TTF_Init();
+	font = TTF_OpenFont("res/upheavtt.ttf", 24);
+	fontOutline = TTF_OpenFont("res/upheavtt.ttf", 24);
+	TTF_SetFontOutline(fontOutline, OUTLINE_SIZE);
+
 	loopActive = true;
 	loop();
 

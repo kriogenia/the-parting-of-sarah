@@ -189,6 +189,12 @@
     <ClCompile Include="CoinDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="TextDisplay.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -306,6 +312,12 @@
       <Filter>Archivos de encabezado\Actors\HUD</Filter>
     </ClInclude>
     <ClInclude Include="CoinDisplay.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="TextDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>

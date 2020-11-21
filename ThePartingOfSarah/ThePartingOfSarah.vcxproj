@@ -190,6 +190,8 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Snail.cpp" />
     <ClCompile Include="Space.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextDisplay.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +233,8 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="Snail.h" />
     <ClInclude Include="Space.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextDisplay.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

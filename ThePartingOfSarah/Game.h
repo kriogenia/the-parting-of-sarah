@@ -22,6 +22,8 @@ using namespace std;
 constexpr auto WIDTH = 480;
 constexpr auto HEIGHT = 480;
 
+constexpr auto OUTLINE_SIZE = 2;
+
 class Game
 {
 public:
@@ -36,9 +38,12 @@ public:
 	bool loopActive; 
 
 	Layer* gameLayer;
+	TTF_Font* font;
+	TTF_Font* fontOutline;
 
 	int seed;
 
 private:
+
 	map<string, SDL_Texture*> mapTextures;
 };

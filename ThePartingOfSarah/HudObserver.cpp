@@ -12,6 +12,7 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 	Room* room;
 	switch (message) {
 	case NOTIFICATION_POWER_UP:
+		hud->updateText("POWER UP");
 	case NOTIFICATION_PLAYER_HIT:
 	case NOTIFICATION_PLAYER_HEAL:
 		player = (Player*) publisher;

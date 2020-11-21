@@ -6,6 +6,7 @@
 #include "MapDisplay.h"
 #include "Player.h"
 #include "Room.h"
+#include "TextDisplay.h"
 
 class Hud
 {
@@ -18,12 +19,15 @@ public:
 	void updateCrosshair(int mouseX, int mouseY);
 	void updateHealthDisplay(int currentHp, int maxHp);
 	void updateMap(Room* room);
+	void updateText(string message);
 
 private:
 	CoinDisplay* coins;
 	Crosshair* crosshair;
 	HealthDisplay* health;
 	MapDisplay* map;
+	TextDisplay* text;
+
 	Game* game;
 };
 

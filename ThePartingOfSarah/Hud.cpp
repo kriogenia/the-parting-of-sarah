@@ -7,6 +7,7 @@ Hud::Hud(Game* game) :
 	crosshair = new Crosshair(game);
 	health = new HealthDisplay(game);
 	map = new MapDisplay(game);
+	text = new TextDisplay(game);
 }
 
 Hud::~Hud() {
@@ -14,6 +15,7 @@ Hud::~Hud() {
 	delete crosshair;
 	delete health;
 	delete map;
+	delete text;
 }
 
 void Hud::draw() {
@@ -21,6 +23,7 @@ void Hud::draw() {
 	coins->draw();
 	health->draw();
 	map->draw();
+	text->draw();
 }
 
 void Hud::updateCoins(int currentCoins) {
@@ -37,4 +40,8 @@ void Hud::updateHealthDisplay(int currentHp, int maxHp) {
 
 void Hud::updateMap(Room* room) {
 	map->update(room);
+}
+
+void Hud::updateText(string message) {
+	text->update(message);
 }
