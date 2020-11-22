@@ -59,12 +59,13 @@ public:
 	int y;
 	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
 	bool cleared = false;
+	Character* boss = nullptr;
 	/* Room neighbours */
 	Room* top = nullptr;
 	Room* left = nullptr;
 	Room* bottom = nullptr;
 	Room* right = nullptr;
-	// Observers
+	/* Observers */
 	list<Observer*> observers;
 
 private:

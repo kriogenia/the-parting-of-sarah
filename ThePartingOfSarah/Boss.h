@@ -15,6 +15,7 @@ public:
 
     string name;
     string subtitle;
+    int maxHp;
 private:
     void setAction(bool endAction) override;
 

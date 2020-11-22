@@ -25,7 +25,12 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		break;
 	case NOTIFICATION_ENTER_BOSS_ROOM:
 		boss = (Boss*)publisher;
+		cout << boss->name << endl;
 		hud->updateText(boss->name, boss->subtitle);
+	case NOTIFICATION_BOSS_KILLED:
+	case NOTIFICATION_BOSS_HIT:
+		boss = (Boss*)publisher;
+		hud->updateBossHealthDisplay(boss->hp, boss->maxHp);
 		break;
 	case NOTIFICATION_PICK_COIN:
 		integer = (int*) publisher;

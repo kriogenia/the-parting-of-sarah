@@ -10,7 +10,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	spawner(EnemyFactory::getInstance())
 {
 	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	this->filename = "res/rooms/room_1.txt";			// room tests
+	this->filename = "res/rooms/room_21.txt";			// Debug
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	this->player = player;
@@ -52,7 +52,9 @@ void Room::update() {
 		}
 	}
 	for (auto const& enemy : enemiesToDelete) {
-		space->removeDynamicActor(enemy);
+		enemy->flying ? 
+			space->removeFlyingDynamicActor(enemy) :
+			space->removeDynamicActor(enemy);
 		enemies.remove(enemy);
 	}
 	if (!cleared && enemies.empty() && enemiesToSpawn.empty()) {
@@ -88,7 +90,7 @@ void Room::update() {
 		}
 	}
 	for (auto const& destructible : destructiblesToDelete) {
-		space->removeVirtualActor(destructible);
+		space->removeStaticActor(destructible);
 		destructibles.remove(destructible);
 	}
 }
@@ -122,7 +124,8 @@ void Room::playerEntered() {
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_ENTER_ROOM, this);
 		if (this->type == BOSS_ROOM) {
-			observer->notify(NOTIFICATION_ENTER_BOSS_ROOM, enemies.front());
+			cout << "Entered the Boss Room - ";
+			observer->notify(NOTIFICATION_ENTER_BOSS_ROOM, boss);
 		}
 	}
 }
@@ -174,8 +177,9 @@ void Room::applyType() {
 	}
 	/* Generate boss on boss rooms */
 	if (type == BOSS_ROOM) {
-		enemiesToSpawn.push_back(spawner->generateBoss(
-			offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2, this, game));
+		boss = spawner->generateBoss(
+			offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2, this, game);
+		enemiesToSpawn.push_back(boss);
 	}
 }
 

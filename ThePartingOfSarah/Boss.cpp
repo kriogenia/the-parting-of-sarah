@@ -19,9 +19,14 @@ void Boss::death()
 {
 	this->action = DYING;
 	this->animation = dyingAnimation;
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_BOSS_KILLED, this);
+	}
 }
 
 void Boss::hit()
 {
-	// notify observer
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_BOSS_HIT, this);
+	}
 }

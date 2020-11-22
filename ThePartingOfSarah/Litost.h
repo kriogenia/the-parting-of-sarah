@@ -11,8 +11,6 @@ class Litost :
 public:
     Litost(float x, float y, Environment* room, Game* game);
 
-    int maxHp;
-
 private:
     void setOrientation() override;
 

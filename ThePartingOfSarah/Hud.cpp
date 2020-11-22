@@ -3,6 +3,7 @@
 Hud::Hud(Game* game) :
 	game(game)
 {
+	boss = new BossHealthDisplay(game);
 	coins = new CoinDisplay(game);
 	crosshair = new Crosshair(game);
 	health = new HealthDisplay(game);
@@ -11,6 +12,7 @@ Hud::Hud(Game* game) :
 }
 
 Hud::~Hud() {
+	delete boss;
 	delete coins;
 	delete crosshair;
 	delete health;
@@ -19,11 +21,17 @@ Hud::~Hud() {
 }
 
 void Hud::draw() {
-	crosshair->draw();
+	boss->draw();
 	coins->draw();
 	health->draw();
 	map->draw();
 	text->draw();
+	crosshair->draw();
+}
+
+void Hud::updateBossHealthDisplay(int currentHp, int maxHp) {
+	boss->show = (currentHp <= 0) ? false : true;
+	boss->update(currentHp, maxHp);
 }
 
 void Hud::updateCoins(int currentCoins) {

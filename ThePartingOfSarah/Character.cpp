@@ -15,8 +15,10 @@ Character::~Character() {
 
 void Character::update() {
 	bool endAnimation = animation->update();
-	if (this->action == DYING && endAnimation)
+	if (this->action == DYING && endAnimation) {
 		this->destructionFlag = true;
+		return;
+	}
 	setMovement();
 	setAction(endAnimation);
 	setOrientation();

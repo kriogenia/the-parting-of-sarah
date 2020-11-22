@@ -213,6 +213,9 @@
     <ClCompile Include="AudioObserver.cpp">
       <Filter>Archivos de origen\Observers</Filter>
     </ClCompile>
+    <ClCompile Include="BossHealthDisplay.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -343,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="AudioObserver.h">
       <Filter>Archivos de encabezado\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHealthDisplay.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

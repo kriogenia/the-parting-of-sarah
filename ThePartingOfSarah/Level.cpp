@@ -67,6 +67,9 @@ void Level::addObserver(Observer* observer) {
 	observers.push_back(observer);
 	for (auto const& room : rooms) {
 		room->observers = observers;
+		if (room->type == BOSS_ROOM) {
+			room->boss->observers = observers;
+		}
 	}
 }
 

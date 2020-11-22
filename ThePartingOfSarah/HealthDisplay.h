@@ -10,10 +10,10 @@ class HealthDisplay
 public:
 	HealthDisplay(Game* game);
 
-	void draw();
-	void update(int currentHp, int maxHp);
+	virtual void draw();
+	virtual void update(int currentHp, int maxHp);
 
-private:
+protected:
 	HealthBar* baseHealth;
 	HealthBar* currentHealth;
 	Game* game;
