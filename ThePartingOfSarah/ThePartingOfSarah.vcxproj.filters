@@ -216,6 +216,9 @@
     <ClCompile Include="BossHealthDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="BossRoom.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -349,6 +352,9 @@
     </ClInclude>
     <ClInclude Include="BossHealthDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="BossRoom.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -162,6 +162,7 @@
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossHealthDisplay.cpp" />
+    <ClCompile Include="BossRoom.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CoinBar.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossHealthDisplay.h" />
+    <ClInclude Include="BossRoom.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CoinBar.h" />

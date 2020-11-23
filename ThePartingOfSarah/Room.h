@@ -40,7 +40,7 @@ public:
 	void loadMap();
 	/* Game flow */
 	bool hasPlayerInside();
-	void playerEntered();
+	virtual void playerEntered();
 	void setCleared();
 	void openDoors();
 	void closeDoors();
@@ -59,7 +59,6 @@ public:
 	int y;
 	int mapWidth = TILES_PER_ROOM * TILE_SIZE;
 	bool cleared = false;
-	Character* boss = nullptr;
 	/* Room neighbours */
 	Room* top = nullptr;
 	Room* left = nullptr;
@@ -68,7 +67,7 @@ public:
 	/* Observers */
 	list<Observer*> observers;
 
-private:
+protected:
 	/* Tile creation */
 	void loadMapObject(char character, int x, int y);
 	/* Room generation */
@@ -76,7 +75,6 @@ private:
 	void generateCorridors();
 	void readFile();
 	void generateTiles();
-	void applyType();
 
 	EnemyFactory* spawner;
 	Game* game;

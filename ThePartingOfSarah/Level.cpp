@@ -15,6 +15,7 @@ Level::Level(int floor, Space* space, Actor* player, Game* game) :
 
 Level::~Level() {
 	rooms.clear();
+	observers.clear();
 	delete startingRoom;
 	delete bossRoom;
 	delete treasureRoom;
@@ -29,6 +30,7 @@ void Level::draw(int scrollX, int scrollY) {
 }
 
 void Level::update() {
+	// Updates background and rooms
 	background->update();
 	for (auto const& room : rooms) {
 		room->update();
@@ -67,10 +69,8 @@ void Level::addObserver(Observer* observer) {
 	observers.push_back(observer);
 	for (auto const& room : rooms) {
 		room->observers = observers;
-		if (room->type == BOSS_ROOM) {
-			room->boss->observers = observers;
-		}
 	}
+	bossRoom->boss->observers = observers;
 }
 
 void Level::generateRooms() {
@@ -109,7 +109,7 @@ void Level::setBossRoom(queue<int>* codes) {
 	// Generate the Boss Room (outer ring)
 	int bossRoomX = ((rand() % 4) / 2) * 4;
 	int bossRoomY = ((rand() % 4) % 2) * 4;
-	bossRoom = new Room(BOSS_ROOM, bossRoomX, bossRoomY, (*codes).front(), space, player, game);
+	bossRoom = new BossRoom(bossRoomX, bossRoomY, (*codes).front(), space, player, game);
 	rooms.push_back(bossRoom);
 	(*codes).pop();
 }

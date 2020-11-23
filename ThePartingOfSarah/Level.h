@@ -3,7 +3,7 @@
 #include <queue>
 #include "Background.h"
 #include "Game.h"
-#include "Room.h"
+#include "BossRoom.h"
 
 constexpr auto FLOOR_SIZE = 5;
 constexpr auto FLOORS_POOL_SIZE = 25;
@@ -41,7 +41,7 @@ private:
 
 	list<Room*> rooms;
 	Room* startingRoom;
-	Room* bossRoom;
+	BossRoom* bossRoom;
 	Room* treasureRoom;
 
 	Background* background;

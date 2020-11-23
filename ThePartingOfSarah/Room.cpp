@@ -9,8 +9,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	game(game),
 	spawner(EnemyFactory::getInstance())
 {
-	//this->filename = "res/rooms/room_" + to_string(code) + ".txt";
-	this->filename = "res/rooms/room_21.txt";			// Debug
+	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
+	//this->filename = "res/rooms/room_21.txt";			// Debug
 	this->offsetRoomX = this->x * TILES_PER_ROOM * TILE_SIZE;
 	this->offsetRoomY = this->y * TILES_PER_ROOM * TILE_SIZE;
 	this->player = player;
@@ -20,7 +20,10 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 			grid[i][j] = NO_TILE;
 		}
 	}
-	applyType();
+	/* Set not fighting rooms as cleared */
+	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
+		cleared = true;
+	}
 }
 
 Room::~Room() {
@@ -123,10 +126,6 @@ void Room::playerEntered() {
 	}
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_ENTER_ROOM, this);
-		if (this->type == BOSS_ROOM) {
-			cout << "Entered the Boss Room - ";
-			observer->notify(NOTIFICATION_ENTER_BOSS_ROOM, boss);
-		}
 	}
 }
 
@@ -168,19 +167,6 @@ void Room::loadMap() {
 	generateWalls();
 	generateCorridors();
 	generateTiles();
-}
-
-void Room::applyType() {
-	/* Set not fighting rooms as cleared */
-	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
-		cleared = true;
-	}
-	/* Generate boss on boss rooms */
-	if (type == BOSS_ROOM) {
-		boss = spawner->generateBoss(
-			offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2, this, game);
-		enemiesToSpawn.push_back(boss);
-	}
 }
 
 void Room::readFile() {

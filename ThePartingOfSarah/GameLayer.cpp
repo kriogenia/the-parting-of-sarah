@@ -73,6 +73,10 @@ void GameLayer::update() {
 	if (player->destructionFlag) {
 		//game->loopActive = false;
 	}
+	// Climb Up check
+	//if (player->beatLevel) {
+		//climbUp();
+	//}
 	// Projectiles deletion
 	list<Projectile*> projectilesToDelete;
 	for (auto const& projectile : projectiles) {
