@@ -89,7 +89,7 @@ protected:
 	/* Room actors */
 	list<Character*> enemies;
 	list<Character*> enemiesToSpawn;
-	list<Coin*> coins;
+	list<Item*> items;
 	list<Projectile*> enemyProjectiles;
 	/* Room attributes */
 	int code = -1;

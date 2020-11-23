@@ -79,6 +79,12 @@
     <Filter Include="Archivos de origen\Observers">
       <UniqueIdentifier>{4646428f-2c29-46d3-89c1-9b121fe06ec7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Actors\Items">
+      <UniqueIdentifier>{2d5d4863-43cc-4d02-b5b4-14c83b607477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Actors\Items">
+      <UniqueIdentifier>{6818b801-55e2-4be7-bf9c-f7011f6d3e4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -180,9 +186,6 @@
     <ClCompile Include="MapDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="Coin.cpp">
-      <Filter>Archivos de origen\Actors</Filter>
-    </ClCompile>
     <ClCompile Include="Environment.cpp">
       <Filter>Archivos de origen\Environment</Filter>
     </ClCompile>
@@ -218,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="BossRoom.cpp">
       <Filter>Archivos de origen\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -317,9 +326,6 @@
     <ClInclude Include="MapDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Archivos de encabezado\Actors</Filter>
-    </ClInclude>
     <ClInclude Include="Environment.h">
       <Filter>Archivos de encabezado\Environment</Filter>
     </ClInclude>
@@ -355,6 +361,12 @@
     </ClInclude>
     <ClInclude Include="BossRoom.h">
       <Filter>Archivos de encabezado\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

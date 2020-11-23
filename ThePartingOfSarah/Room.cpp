@@ -27,7 +27,7 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 }
 
 Room::~Room() {
-	coins.clear();
+	items.clear();
 	destructibles.clear();
 	doors.clear();
 	enemies.clear();
@@ -40,7 +40,7 @@ void Room::draw(int scrollX, int scrollY) {
 	for (auto const& tile : tiles)					tile->draw(scrollX, scrollY);
 	for (auto const& tile : destructibles)			tile->draw(scrollX, scrollY);
 	for (auto const& tile : doors)					tile->draw(scrollX, scrollY);
-	for (auto const& coin : coins)					coin->draw(scrollX, scrollY);
+	for (auto const& item : items)					item->draw(scrollX, scrollY);
 	for (auto const& enemy : enemies)				enemy->draw(scrollX, scrollY);
 	for (auto const& projectile : enemyProjectiles)	projectile->draw(scrollX, scrollY);
 }
@@ -63,16 +63,16 @@ void Room::update() {
 	if (!cleared && enemies.empty() && enemiesToSpawn.empty()) {
 		setCleared();
 	}
-	// Deletion of coins
-	list<Coin*> coinsToDelete;
-	for (auto const& coin : coins) {
-		if (coin->destructionFlag) {
-			coinsToDelete.push_back(coin);
+	// Deletion of items
+	list<Item*> itemsToDelete;
+	for (auto const& item : items) {
+		if (item->destructionFlag) {
+			itemsToDelete.push_back(item);
 		}
 	}
-	for (auto const& coin : coinsToDelete) {
-		space->removeVirtualActor(coin);
-		coins.remove(coin);
+	for (auto const& item : itemsToDelete) {
+		space->removeVirtualActor(item);
+		items.remove(item);
 	}
 	// Deletion of projectiles
 	list<Projectile*> projectilesToDelete;
@@ -157,8 +157,8 @@ void Room::addEnemyProjectile(Projectile* projectile) {
 }
 
 void Room::spawnCoin(float x, float y) {
-	Coin* coin = new Coin(x, y, game);
-	coins.push_back(coin);
+	Item* coin = new Coin(x, y, game);			// TODO move to ItemFactory
+	items.push_back(coin);
 	space->addVirtualActor(coin);
 }
 

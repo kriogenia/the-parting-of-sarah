@@ -177,6 +177,7 @@
     <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="HudObserver.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Litost.cpp" />
     <ClCompile Include="MapDisplay.cpp" />
     <ClCompile Include="MappedTile.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="HudObserver.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Litost.h" />
     <ClInclude Include="MapDisplay.h" />
     <ClInclude Include="MappedTile.h" />

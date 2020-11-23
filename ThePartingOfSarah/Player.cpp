@@ -56,9 +56,6 @@ void Player::collisionedWith(Actor* actor) {
 	if ((actor->type == ENEMY || actor->type == ENEMY_PROJECTILE) && !actor->destructionFlag) {
 		damage();
 	}
-	else if (actor->type == COIN) {
-		coinUp();
-	}
 }
 
 void Player::damage(float damage) {
