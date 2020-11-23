@@ -37,7 +37,7 @@ void Bee::update() {
 
 /* Shoots the projectile */
 void Bee::shoot() {
-	Projectile* projectile = new Projectile(BEE_PROJECTILE_FILE, x, y, room->player->x, room->player->y, 8, game);
+	Projectile* projectile = new Projectile(BEE_PROJECTILE_FILE, x, y, room->player->x, room->player->y, 8, 8, game);
 	room->addEnemyProjectile(projectile);
 }
 

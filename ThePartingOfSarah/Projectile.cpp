@@ -1,8 +1,8 @@
 #include "Projectile.h"
 
 /* Player projectile constructor */
-Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, float damage, Game* game) :
-	Actor(filename, x, y, size, size, game) 
+Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int width, int height, float damage, Game* game) :
+	Actor(filename, x, y, width, height, game)
 {
 	this->type = PROJECTILE;
 	this->damage = damage;
@@ -11,8 +11,8 @@ Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY
 }
 
 /* Enemy projectile constructor */
-Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, Game* game) :
-	Actor(filename, x, y, size, size, game)
+Projectile::Projectile(string filename, int x, int y, int destinyX, int destinyY, int width, int height, Game* game) :
+	Actor(filename, x, y, width, height, game)
 {
 	this->type = ENEMY_PROJECTILE;
 	this->damage = ENEMY_DEFAULT_DAMAGE;

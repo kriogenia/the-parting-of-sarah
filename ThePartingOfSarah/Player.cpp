@@ -180,7 +180,7 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 			observer->notify(NOTIFICATION_PLAYER_SHOOT);
 		}
 		return new Projectile(PLAYER_PROJECTILE_FILE, 
-			x, y, mouseX, mouseY, shotSize, attack, game);
+			x, y, mouseX, mouseY, shotSize, shotSize, attack, game);
 	}
 	return nullptr;
 }

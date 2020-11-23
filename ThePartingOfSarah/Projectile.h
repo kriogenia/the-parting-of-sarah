@@ -10,8 +10,8 @@ class Projectile :
     public Actor
 {
 public:
-    Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, Game* game);
-    Projectile(string filename, int x, int y, int destinyX, int destinyY, int size, float damage, Game* game);
+    Projectile(string filename, int x, int y, int destinyX, int destinyY, int width, int height, Game* game);
+    Projectile(string filename, int x, int y, int destinyX, int destinyY, int width, int height, float damage, Game* game);
 
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
 

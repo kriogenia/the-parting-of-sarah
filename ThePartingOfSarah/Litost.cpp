@@ -74,6 +74,16 @@ void Litost::shootCone()
 {
 	this->animation = shootConeAnimation;
 	this->action = SHOOTING;
+	room->addEnemyProjectile(new Projectile(LITOST_FISH_PROJECTILE_FILE, 
+		x, y, room->player->x, room->player->y, 16, 12, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FISH_PROJECTILE_FILE,
+		x, y, room->player->x, room->player->y + LITOST_SHOT_SPREAD, 16, 12, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FISH_PROJECTILE_FILE,
+		x, y, room->player->x, room->player->y - LITOST_SHOT_SPREAD, 16, 12, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FISH_PROJECTILE_FILE,
+		x, y, room->player->x, room->player->y + LITOST_SHOT_SPREAD * 2, 16, 12, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FISH_PROJECTILE_FILE,
+		x, y, room->player->x, room->player->y - LITOST_SHOT_SPREAD * 2, 16, 12, game));
 }
 
 void Litost::shootFromWalls()
