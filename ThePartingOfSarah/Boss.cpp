@@ -5,14 +5,23 @@ Boss::Boss(string filename, float x, float y, int width, int height, Environment
 {
 }
 
-Boss::~Boss()
+void Boss::update()
 {
-	// delete list of actions
+	cooldown--;
+	Character::update();
 }
 
 void Boss::setAction(bool endAction)
 {
-	// swap actions
+	if (this->action != MOVING && !endAction)
+		return;
+	if (cooldown <= 0) {
+		cooldown = DEFAULT_BOSS_CD;
+		doAction();
+	}
+	else {
+		this->action = MOVING;
+	}
 }
 
 void Boss::death()
