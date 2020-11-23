@@ -90,4 +90,12 @@ void Litost::shootFromWalls()
 {
 	this->animation = shootFromWallAnimation;
 	this->action = SHOOTING;
+	room->addEnemyProjectile(new Projectile(LITOST_FANG_PROJECTILE_FILE,
+		x - 180, y - 180, x - 180, y + 180, 24, 8, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FANG_PROJECTILE_FILE,
+		x + 180, y - 180, x - 180, y - 180, 24, 8, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FANG_PROJECTILE_FILE,
+		x + 180, y + 180, x + 180, y - 180, 24, 8, game));
+	room->addEnemyProjectile(new Projectile(LITOST_FANG_PROJECTILE_FILE,
+		x - 180, y + 180, x + 180, y + 180, 24, 8, game));
 }

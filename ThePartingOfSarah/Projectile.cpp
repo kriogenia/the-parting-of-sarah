@@ -37,6 +37,6 @@ void Projectile::collisionedWith(Actor* actor) {
 
 void Projectile::setVector(int destinyX, int destinyY) {
 	float vectorLength = sqrt(pow(destinyX - x, 2) + pow(destinyY - y, 2));
-	this->vx = (destinyX - x) / vectorLength * speed;
+	this->vx = (destinyX == x) ? this->vx = 0.1 : this->vx = (destinyX - x) / vectorLength * speed;		// Protect from div0
 	this->vy = (destinyY - y) / vectorLength * speed;
 }
