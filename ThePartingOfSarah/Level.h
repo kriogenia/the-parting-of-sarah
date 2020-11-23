@@ -20,7 +20,7 @@ public:
 	/* Screen update */
 	void moveScroll(int* scrollX, int* scrollY);
 	/* Observers */
-	void addObserver(Observer* observer);
+	void expandObservers();
 	list<Observer*> observers;
 	/* Key room pointers */
 	BossRoom* bossRoom;

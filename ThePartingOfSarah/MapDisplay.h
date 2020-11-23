@@ -11,7 +11,8 @@ class MapDisplay
 public:
 	MapDisplay(Game* game);
 	~MapDisplay();
-
+	/* Game cycle */
+	void init();
 	void draw();
 	void update(Room* room);
 

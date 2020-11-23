@@ -53,3 +53,7 @@ void Hud::updateMap(Room* room) {
 void Hud::updateText(string message, string submessage) {
 	text->update(message, submessage);
 }
+
+void Hud::resetMap() {
+	map->init();
+}

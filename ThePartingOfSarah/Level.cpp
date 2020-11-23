@@ -62,8 +62,7 @@ void Level::moveScroll(int* scrollX, int* scrollY) {
 	}
 }
 
-void Level::addObserver(Observer* observer) {
-	observers.push_back(observer);
+void Level::expandObservers() {
 	for (auto const& room : rooms) {
 		room->observers = observers;
 	}

@@ -3,6 +3,14 @@
 MapDisplay::MapDisplay(Game* game) :
 	game(game)
 {
+	init();
+}
+
+MapDisplay::~MapDisplay() {
+	tiles.clear();
+}
+
+void MapDisplay::init() {
 	for (int i = 0; i < MAP_SIZE; i++) {
 		for (int j = 0; j < MAP_SIZE; j++) {
 			grid[i][j] = NO_ROOM;
@@ -12,10 +20,6 @@ MapDisplay::MapDisplay(Game* game) :
 	currentY = MAP_SIZE / 2;
 	grid[currentX][currentY] = STARTING_ROOM;
 	regenerateTiles();
-}
-
-MapDisplay::~MapDisplay() {
-	tiles.clear();
 }
 
 void MapDisplay::draw() {

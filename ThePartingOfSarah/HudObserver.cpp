@@ -19,6 +19,11 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		player = (Player*) publisher;
 		hud->updateHealthDisplay(player->hp, player->maxHp);
 		break;
+	case NOTIFICATION_ENTER_NEW_FLOOR:
+		integer = (int*)publisher;
+		hud->updateText("Floor " + to_string(*integer));
+		hud->resetMap();
+		break;
 	case NOTIFICATION_ENTER_ROOM:
 		room = (Room*) publisher;
 		hud->updateMap(room);

@@ -37,10 +37,15 @@ void GameLayer::init()
 	player->x = level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 	player->y = level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 	// Create environment observers
-	level->addObserver(new AudioObserver(audio));
-	level->addObserver(new HudObserver(hud));
+	level->observers.push_back(new AudioObserver(audio));
+	level->observers.push_back(new HudObserver(hud));
+	level->expandObservers();
 	// Clean actors list
 	projectiles.clear();
+	// Notify new floor
+	for (auto const& observer : level->observers) {
+		observer->notify(NOTIFICATION_ENTER_NEW_FLOOR, &floor);
+	}
 }
 
 void GameLayer::processControls() 
