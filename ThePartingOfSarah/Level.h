@@ -14,18 +14,20 @@ class Level {
 public:
 	Level(int floor, Space* space, Actor* player, Game* game);
 	~Level();
-
+	/* Game cycle */
 	void draw(int scrollX, int scrollY);
 	void update();
-
+	/* Screen update */
 	void moveScroll(int* scrollX, int* scrollY);
+	/* Observers */
 	void addObserver(Observer* observer);
-
-	Room* currentRoom;
-	// Observers
 	list<Observer*> observers;
+	/* Key room pointers */
+	BossRoom* bossRoom;
+	Room* currentRoom;
 
 private:
+	/* Level generation */
 	void generateRooms();
 	queue<int> getCodes();
 	void setStartingRoom(queue<int>* codes);
@@ -33,17 +35,17 @@ private:
 	void setTreasureRoom(queue<int>* codes);
 	void generateCommonRooms(queue<int> codes);
 	void loadRoomMaps();
+	/* Debug */
 	void printFloor();
-
+	/* Modules */
 	Game* game;
-	Actor* player;
 	Space* space;
-
+	/* Room pointers */
 	list<Room*> rooms;
 	Room* startingRoom;
-	BossRoom* bossRoom;
 	Room* treasureRoom;
-
+	/* Actors */
+	Actor* player;
 	Background* background;
 };
 

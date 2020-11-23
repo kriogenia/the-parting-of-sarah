@@ -21,6 +21,7 @@ AudioPlayer::AudioPlayer() {
 
 AudioPlayer::~AudioPlayer() {
 	delete mainTheme;
+	clips.clear();
 }
 
 void AudioPlayer::start() {

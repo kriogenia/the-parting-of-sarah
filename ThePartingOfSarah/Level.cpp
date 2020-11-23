@@ -10,16 +10,13 @@ Level::Level(int floor, Space* space, Actor* player, Game* game) :
 	generateRooms();
 	currentRoom = startingRoom;
 	currentRoom->openDoors();
-	//currentRoom->printGrid();
+	//currentRoom->printGrid();					// Debug
 }
 
 Level::~Level() {
 	rooms.clear();
 	observers.clear();
-	delete startingRoom;
-	delete bossRoom;
-	delete treasureRoom;
-	delete background;
+	//delete background;						// idk why but this breaks the background on future floors
 }
 
 void Level::draw(int scrollX, int scrollY) {

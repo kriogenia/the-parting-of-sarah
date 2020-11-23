@@ -217,7 +217,7 @@
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
     <ClCompile Include="BossRoom.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Environment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,7 +354,7 @@
       <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
     <ClInclude Include="BossRoom.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Environment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

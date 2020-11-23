@@ -1,11 +1,22 @@
 #include "GameLayer.h"
 
 GameLayer::GameLayer(Game* game) :
-	Layer(game) {
+	Layer(game) 
+{
+	/* Initiates global game instances */
+	audio = AudioPlayer::getInstance();
+	hud = new Hud(game);
+	player = new Player(0, 0, &mouseX, &mouseY, &scrollX, &scrollY, game);
+	player->observers.push_back(new HudObserver(hud));
+	player->observers.push_back(new AudioObserver(audio));
+	/* Starts audio and first level */
+	audio->start();
 	init();
 }
 
-GameLayer::~GameLayer() {
+GameLayer::~GameLayer() 
+{
+	delete audio;
 	delete hud;
 	delete level;
 	delete player;
@@ -14,42 +25,29 @@ GameLayer::~GameLayer() {
 	projectiles.clear();
 }
 
-void GameLayer::init() {
-
-	this->scrollX = 0;
-	this->scrollY = 0;
-
+void GameLayer::init() 
+{
+	// Start space and add player
 	delete space;
 	space = new Space();
-
-	delete player;
-	player = new Player(0, 0, &mouseX, &mouseY, &scrollX, &scrollY, game);
 	space->addDynamicActor(player);
-
+	// Start new level floor
 	delete level;
 	level = new Level(floor, space, player, game);
 	player->x = level->currentRoom->x * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
 	player->y = level->currentRoom->y * level->currentRoom->mapWidth + level->currentRoom->mapWidth / 2;
-
-	delete hud;
-	hud = new Hud(game);
-
-	delete audio;
-	audio = AudioPlayer::getInstance();
-	audio->start();
-
-	player->observers.push_back(new HudObserver(hud));
-	player->observers.push_back(new AudioObserver(audio));
+	// Create environment observers
 	level->addObserver(new AudioObserver(audio));
 	level->addObserver(new HudObserver(hud));
-
+	// Clean actors list
 	projectiles.clear();
-
 }
 
-void GameLayer::processControls() {
+void GameLayer::processControls() 
+{
 	SDL_GetMouseState(&mouseX, &mouseY);
 	SDL_Event event;
+	// Register input
 	while (SDL_PollEvent(&event)) {
 		keysToControl(event);
 		mouseToControl(event);
@@ -63,7 +61,9 @@ void GameLayer::processControls() {
 	}
 }
 
-void GameLayer::update() {
+void GameLayer::update() 
+{
+	// Modules updates
 	space->update();
 	player->update();
 	level->update();
@@ -73,10 +73,10 @@ void GameLayer::update() {
 	if (player->destructionFlag) {
 		//game->loopActive = false;
 	}
-	// Climb Up check
-	//if (player->beatLevel) {
-		//climbUp();
-	//}
+	// Climb Up floor check
+	if (level->bossRoom->completed) {
+		climbUp();
+	}
 	// Projectiles deletion
 	list<Projectile*> projectilesToDelete;
 	for (auto const& projectile : projectiles) {
@@ -91,7 +91,8 @@ void GameLayer::update() {
 
 }
 
-void GameLayer::draw() {
+void GameLayer::draw() 
+{
 	// Calculate the scroll
 	level->moveScroll(&scrollX, &scrollY);
 	// Draw the level
@@ -104,7 +105,15 @@ void GameLayer::draw() {
 	hud->draw();
 }
 
-void GameLayer::keysToControl(SDL_Event event) {
+void GameLayer::climbUp()
+{
+	cout << "Floor " << floor << " completed, going up" << endl;
+	floor++;
+	init();
+}
+
+void GameLayer::keysToControl(SDL_Event event) 
+{
 	int code = event.key.keysym.sym;
 	if (event.type == SDL_KEYDOWN) {
 		if (code == SDLK_ESCAPE) {
@@ -118,7 +127,8 @@ void GameLayer::keysToControl(SDL_Event event) {
 	}
 }
 
-void GameLayer::mouseToControl(SDL_Event event) {
+void GameLayer::mouseToControl(SDL_Event event) 
+{
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		player->enterInput(event.type);
 	}

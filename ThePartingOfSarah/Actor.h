@@ -19,29 +19,26 @@ public:
 	Actor(string filename, float x, float y, int width, int height, Game* game);
 	Actor(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game);
 	~Actor();
-
+	/* Game cycle */
 	virtual void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0);
-
+	/* Actor interactions */
 	bool isOverlap(Actor* actor);
-	virtual void collisionedWith(Actor* actor);
-
-	SDL_Texture* texture;
+	virtual void collisionedWith(Actor* actor) {};
+	/* Game modules*/
 	Game* game;
-
-	eActorType type;
-
-	float x;						
-	float y;		
-
-	float vx = 0;				// movement on X axis
-	float vy = 0;				// movement on Y axis
-
-	int width;					// actor width
-	int height;					// actor height
-
-	int fileWidth;				
+	/* Drawing*/
+	SDL_Texture* texture;
+	int fileWidth;
 	int fileHeight;
 
+	/* Attributes */
+	eActorType type;
 	bool destructionFlag;		
+	float x;					// position on X axis
+	float y;					// position on Y axis
+	float vx = 0;				// movement on X axis
+	float vy = 0;				// movement on Y axis
+	int width;					// actor width
+	int height;					// actor height
 
 };

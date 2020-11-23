@@ -11,6 +11,22 @@ BossRoom::BossRoom(int x, int y, int number, Space* space, Actor* player, Game* 
 BossRoom::~BossRoom()
 {
 	delete boss;
+	delete stair;
+}
+
+void BossRoom::spawnStair()
+{
+	stair = new Tile("res/tiles/stair.png", offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2,
+		16, 16, game);
+	tiles.push_back(stair);
+}
+
+void BossRoom::update()
+{
+	if (stair != nullptr && player->isOverlap(stair)) {
+		this->completed = true;
+	}
+	Room::update();
 }
 
 void BossRoom::playerEntered() {

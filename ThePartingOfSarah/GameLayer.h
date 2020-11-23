@@ -15,28 +15,30 @@ class GameLayer :
 public:
 	GameLayer(Game* game);
 	~GameLayer();
-	// Game cycle
+	/* Layer */
 	void init() override;
 	void processControls() override;
 	void update() override;
 	void draw() override;
 
 private:
-	// Input control
+	/* Game progression */
+	void climbUp();
+	/* Input control */
 	void keysToControl(SDL_Event event);
 	void mouseToControl(SDL_Event event);
 
+	/* Game modules */
 	AudioPlayer* audio;
 	Hud* hud;
 	Level* level;
 	Space* space;
-	
-	// Actors
+	/* Player actors */
 	Player* player;
 	list<Projectile*> projectiles;
-
+	/* Level */
 	int floor = 0;
-
+	/* Screen */
 	int scrollX = 0;
 	int scrollY = 0;
 	int mouseX = 0;

@@ -48,5 +48,3 @@ bool Actor::isOverlap(Actor* actor) {
 	}
 	return overlap;
 }
-
-void Actor::collisionedWith(Actor* actor) {}

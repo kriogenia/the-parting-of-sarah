@@ -24,7 +24,7 @@ void Projectile::draw(int scrollX, int scrollY, float rotation) {
 	// Calculate angle of the shot to rotate the sprite
 	float angle = acos(-vy / sqrt(pow(vx, 2) + pow(vy, 2)));	// angle of the shot
 	angle *= (180.0 / 3.14156);									// to grads
-	angle = angle * (vx / abs(vx)) + 90;						// adaptation to sprite direciton
+	angle = angle * (vx / abs(vx)) + 90;						// adaptation to sprite direction
 	Actor::draw(scrollX, scrollY, angle);
 }
 

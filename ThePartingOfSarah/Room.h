@@ -35,7 +35,7 @@ public:
 	~Room();
 
 	void draw(int scrollX, int scrollY);
-	void update();
+	void update() override;
 	/* Room layout loading */
 	void loadMap();
 	/* Game flow */
