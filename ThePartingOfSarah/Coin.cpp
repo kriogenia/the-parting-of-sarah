@@ -22,3 +22,10 @@ void Coin::applyEffect(Player* player)
 {
 	player->coinUp();
 }
+
+void Coin::notify(Player* player)
+{
+	for (auto const& observer : player->observers) {
+		observer->notify(NOTIFICATION_PICK_COIN, &player->coins);
+	}
+}

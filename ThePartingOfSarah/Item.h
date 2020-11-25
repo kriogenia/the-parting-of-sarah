@@ -19,4 +19,5 @@ public:
 
 protected:
 	virtual void applyEffect(Player* player) = 0;
+	virtual void notify(Player* player);
 };

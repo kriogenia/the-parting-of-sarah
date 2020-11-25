@@ -14,7 +14,9 @@ public:
 	Item* getCopy(float x, float y) override;
 
 private:
+	/* Item */
 	void applyEffect(Player* player) override;
+	void notify(Player* player) override;
 
 	Animation* animation;
 };

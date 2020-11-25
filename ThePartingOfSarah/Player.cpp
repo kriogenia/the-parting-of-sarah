@@ -95,9 +95,6 @@ void Player::coinUp() {
 		powerUp();
 		coins -= 10;
 	}
-	for (auto const& observer : observers) {
-		observer->notify(NOTIFICATION_PICK_COIN, &coins);
-	}
 }
 
 void Player::powerUp() {

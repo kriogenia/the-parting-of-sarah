@@ -7,10 +7,6 @@ HudObserver::HudObserver(Hud* hud) :
 }
 
 void HudObserver::notify(eObserverMessages message, void* publisher) {
-	int* integer;
-	Player* player;
-	Room* room;
-	Boss* boss;
 	switch (message) {
 	case NOTIFICATION_POWER_UP:
 		hud->updateText("POWER UP");
@@ -38,8 +34,12 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		hud->updateBossHealthDisplay(boss->hp, boss->maxHp);
 		break;
 	case NOTIFICATION_PICK_COIN:
-		integer = (int*) publisher;
+		integer = (int*)publisher;
 		hud->updateCoins(*integer);
+		break;
+	case NOTIFICATION_PICK_ITEM:
+		item = (Item*)publisher;
+		hud->updateText(item->name, item->subtitle);
 		break;
 	}
 }

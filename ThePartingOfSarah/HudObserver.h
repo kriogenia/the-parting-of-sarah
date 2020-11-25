@@ -14,4 +14,11 @@ public:
     void notify(eObserverMessages message, void* publisher = nullptr) override;
 private:
     Hud* hud;
+
+    // predeclared pointers
+    int* integer;
+    Item* item;
+    Player* player;
+    Room* room;
+    Boss* boss;
 };

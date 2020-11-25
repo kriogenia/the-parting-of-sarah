@@ -8,7 +8,16 @@ Item::Item(string filename, float x, float y, Game* game) :
 
 void Item::collisionedWith(Actor* actor) {
 	if (actor->type == PLAYER) {
+		Player* player = (Player*)actor;
 		destructionFlag = true;
-		applyEffect((Player*)actor);
+		applyEffect(player);
+		notify(player);
+	}
+}
+
+void Item::notify(Player* player)
+{
+	for (auto const& observer : player->observers) {
+		observer->notify(NOTIFICATION_PICK_ITEM, this);
 	}
 }
