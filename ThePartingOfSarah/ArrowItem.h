@@ -2,15 +2,13 @@
 
 #include "Item.h"
 
-constexpr auto DEFAULT_SHIELD_CD = 480;
-constexpr auto SHIELD_CD_REDUCTION = 30;
-constexpr auto SHIELD_CD_CAP = 240;
+constexpr auto ARROW_ATTACK_MULTIPLIER = 1.25;
 
-class ShieldItem :
+class ArrowItem :
     public Item
 {
 public:
-    ShieldItem(float x, float y, Game* game);
+    ArrowItem(float x, float y, Game* game);
     /* Item */
     Item* getCopy(float x, float y) override;
 

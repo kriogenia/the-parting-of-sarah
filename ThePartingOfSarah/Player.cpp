@@ -21,8 +21,8 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->shieldCd = -1;
 	this->coins = 0;
 	// Debugging
-	printPlayer();
-	this->attack = 5;
+	print();
+	//this->attack = 5;
 	this->speed = 5;
 	// Cooldowns initialization
 	this->invulnerabilityTime = 0;
@@ -128,7 +128,7 @@ void Player::powerUp() {
 		break;
 	}
 	cout << "Player powered up" << endl;
-	printPlayer();
+	print();
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_POWER_UP, this);
 	}
@@ -257,7 +257,7 @@ void Player::updateShield() {
 	}
 }
 
-void Player::printPlayer() {
+void Player::print() {
 	cout << "---- Stats ----" << endl;
 	cout << " HP: " << hp << "/" << maxHp << endl;
 	cout << " Coins: " << coins << endl;

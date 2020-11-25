@@ -1,9 +1,9 @@
 #pragma once
 
+#include "ArrowItem.h"
 #include "Coin.h"
+#include "FlagItem.h"
 #include "ShieldItem.h"
-
-constexpr auto NUMBER_OF_ITEMS = 1;
 
 /* Singleton */
 class ItemFactory
@@ -21,6 +21,6 @@ private:
 
     Game* game;
 
-    map<int, Item*> items;
+    vector<Item*> items;
 
 };

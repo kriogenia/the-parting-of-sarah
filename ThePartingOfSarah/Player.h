@@ -57,6 +57,8 @@ public:
     void stopInput(int code);
     void move();
     Projectile* shoot(int mouseX, int mouseY);
+    // Debug
+    void print();
     
 private:
     // Initialization
@@ -69,8 +71,6 @@ private:
     void setAnimation() override;
     /* Player update */
     void updateShield();
-    // Debug
-    void printPlayer();
     // Animations
     map<eCharacterOrientation, Animation*> idleAnimations;
     map<eCharacterOrientation, Animation*> shootingAnimations;
