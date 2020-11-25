@@ -7,7 +7,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	code(number),
 	space(space),
 	game(game),
-	spawner(EnemyFactory::getInstance())
+	spawner(EnemyFactory::getInstance()),
+	dropper(ItemFactory::getInstance(game))
 {
 	this->filename = "res/rooms/room_" + to_string(code) + ".txt";
 	//this->filename = "res/rooms/room_21.txt";			// Debug
@@ -23,6 +24,9 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	/* Set not fighting rooms as cleared */
 	if (type == STARTING_ROOM || type == TREASURE_ROOM) {
 		cleared = true;
+		if (type == TREASURE_ROOM) {
+			spawnItem(offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2, offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2);
+		}
 	}
 }
 
@@ -157,9 +161,15 @@ void Room::addEnemyProjectile(Projectile* projectile) {
 }
 
 void Room::spawnCoin(float x, float y) {
-	Item* coin = new Coin(x, y, game);			// TODO move to ItemFactory
-	items.push_back(coin);
-	space->addVirtualActor(coin);
+	Item* item = dropper->generateCoin(x, y);
+	items.push_back(item);
+	space->addVirtualActor(item);
+}
+
+void Room::spawnItem(float x, float y) {
+	Item* item = dropper->generateItem(x, y);	
+	items.push_back(item);
+	space->addVirtualActor(item);
 }
 
 void Room::loadMap() {
@@ -286,7 +296,10 @@ void Room::generateTiles() {
 			loadMapObject(grid[j][i], i, j);
 		}
 	}
-	// TODO spawn chest if it is a treasure room
+	if (type == TREASURE_ROOM) {
+		tiles.push_back(new Tile("res/items/item_brightness.png", offsetRoomX + TILES_PER_ROOM * TILE_SIZE / 2,
+			offsetRoomY + TILES_PER_ROOM * TILE_SIZE / 2, 48, 48, game));
+	}
 }
 
 void Room::loadMapObject(char character, int i, int j) {

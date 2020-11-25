@@ -15,16 +15,20 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->hp = STARTING_PLAYER_HP;
 	this->maxHp = STARTING_PLAYER_HP;
 	this->shotCadence = STARTING_PLAYER_SHOT_CADENCE;
-	this->speed = STARTING_PLAYER_SPEED;
 	this->shotSize = STARTING_PLAYER_PROJECTILE_SIZE;
+	this->speed = STARTING_PLAYER_SPEED;
+	// Item related values
+	this->shieldCd = -1;
 	this->coins = 0;
 	// Debugging
 	printPlayer();
 	this->attack = 5;
 	this->speed = 5;
-	// State initialization
+	// Cooldowns initialization
 	this->invulnerabilityTime = 0;
 	this->shotTime = shotCadence;
+	this->shieldTime = shieldCd;
+	// State initialization
 	this->action = IDLE;
 	this->orientation = DOWN;
 	this->animation = idleAnimations[orientation];
@@ -37,9 +41,11 @@ Player::~Player() {
 
 void Player::update() {
 	bool endAnimation = animation->update();
+	/* Player update */
 	shotTime--;
 	invulnerabilityTime--;
-	/* Player update */
+	updateShield();
+	/* Character update */
 	setAction(endAnimation);			// Sets the action performed by the player
 	setOrientation();					// Sets the orientation towards the cursor
 	setAnimation();						// Sets the new animation
@@ -60,10 +66,16 @@ void Player::collisionedWith(Actor* actor) {
 
 void Player::damage(float damage) {
 	if (invulnerabilityTime <= 0) {
-		invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
-		Character::damage();
-		for (auto const& observer : observers) {
-			observer->notify(NOTIFICATION_PLAYER_HIT, this);
+		if (shieldUp) {
+			shieldUp = false;
+			// NOTIFY BLOCKED SHOT
+		}
+		else {
+			invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
+			Character::damage();
+			for (auto const& observer : observers) {
+				observer->notify(NOTIFICATION_PLAYER_HIT, this);
+			}
 		}
 	}
 }
@@ -231,6 +243,17 @@ void Player::setDiagonalOrientation(int orientationX, int orientationY) {
 void Player::setAnimation() {
 	if		(action == IDLE)	this->animation = idleAnimations[orientation];
 	else if (action == MOVING)	this->animation = movingAnimations[orientation];
+}
+
+void Player::updateShield() {
+	if (shieldCd > 0) {
+		if (!shieldUp) {
+			shieldTime--;
+			if (shieldTime <= 0) {
+				shieldUp = true;
+			}
+		}
+	}
 }
 
 void Player::printPlayer() {

@@ -178,6 +178,7 @@
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="HudObserver.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="Litost.cpp" />
     <ClCompile Include="MapDisplay.cpp" />
     <ClCompile Include="MappedTile.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="Snail.cpp" />
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -227,6 +229,7 @@
     <ClInclude Include="Hud.h" />
     <ClInclude Include="HudObserver.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Litost.h" />
     <ClInclude Include="MapDisplay.h" />
     <ClInclude Include="MappedTile.h" />
@@ -241,6 +244,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="Snail.h" />
     <ClInclude Include="Space.h" />
     <ClInclude Include="Text.h" />

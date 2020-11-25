@@ -8,7 +8,7 @@
 
 #include "Litost.h"
 
-constexpr auto NUMBER_OF_ENEMY_TYPES = 4;
+constexpr auto NUMBER_OF_ENEMY_TYPES = 5;
 constexpr auto NUMBER_OF_BOSSES = 1;
 
 /* Singleton */

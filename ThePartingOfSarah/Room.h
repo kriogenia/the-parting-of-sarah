@@ -3,10 +3,10 @@
 #include "Game.h"
 
 #include "Character.h"
-#include "Coin.h"
 #include "DestructibleTile.h"
 #include "Door.h"
 #include "Environment.h"
+#include "ItemFactory.h"
 #include "Rock.h"
 #include "Space.h"
 
@@ -47,6 +47,7 @@ public:
 	/* Environment */
 	void addEnemyProjectile(Projectile* projectile) override;
 	void spawnCoin(float x, float y) override;
+	void spawnItem(float x, float y) override;
 	/* Level generation */
 	bool isNeighbour(Room* room);
 	void append(Room* room);
@@ -77,6 +78,7 @@ protected:
 	void generateTiles();
 
 	EnemyFactory* spawner;
+	ItemFactory* dropper;
 	Game* game;
 	Space* space;
 	/* Room generators */

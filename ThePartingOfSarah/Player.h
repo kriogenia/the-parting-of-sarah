@@ -35,17 +35,23 @@ class Player :
 public:
     Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* scrollY, Game* game);
     ~Player();
-
+    /* Game cycle */
     void update() override;
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
-
+    /* Character */
     void collisionedWith(Actor* actor) override;
     void damage(float damage = 1.0) override;
-    
+    /* Player */
     void coinUp();
     void powerUp();
-    // Attributes
+    /* Base attributes */
     int maxHp;
+    float attack;
+    int shotCadence;
+    int shotSize;
+    /* Items related atts */
+    int coins;
+    int shieldCd;
     // Controls
     void enterInput(int code);
     void stopInput(int code);
@@ -55,12 +61,14 @@ public:
 private:
     // Initialization
     void importAnimations() override;
-    // Update
+    /* Character update */
     void setAction(bool endedAction) override;
     void setOrientation() override;
     void setAxisOrientation(int orientationX, int orientationY);
     //void setDiagonalOrientation(int orientationX, int orientationY);
     void setAnimation() override;
+    /* Player update */
+    void updateShield();
     // Debug
     void printPlayer();
     // Animations
@@ -72,14 +80,11 @@ private:
     int moveRight = 0;
     int moveDown = 0;
     bool shooting = false;
-    // Attributes
-    float attack;
-    int shotCadence;
-    int coins;
-    int shotSize;
-    // States
-    int shotTime;
+    // Cooldowns
     int invulnerabilityTime;
+    bool shieldUp;
+    int shieldTime;
+    int shotTime;
     // Mouse and screen reference
     int* mouseX;
     int* mouseY;
