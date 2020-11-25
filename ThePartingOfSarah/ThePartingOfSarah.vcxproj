@@ -159,6 +159,7 @@
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BackgroundAudio.cpp" />
+    <ClCompile Include="Barrelwood.cpp" />
     <ClCompile Include="Bee.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Boss.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="BackgroundAudio.h" />
+    <ClInclude Include="Barrelwood.h" />
     <ClInclude Include="Bee.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="Boss.h" />

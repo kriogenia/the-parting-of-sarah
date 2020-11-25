@@ -46,6 +46,7 @@ public:
 	void closeDoors();
 	/* Environment */
 	void addEnemyProjectile(Projectile* projectile) override;
+	void addTile(Tile* tile) override;
 	void spawnCoin(float x, float y) override;
 	void spawnItem(float x, float y) override;
 	/* Level generation */
@@ -87,7 +88,7 @@ protected:
 	/* Room tiles */
 	list<Tile*> tiles;
 	list<Door*> doors;
-	list<DestructibleTile*> destructibles;
+	list<Tile*> destructibles;
 	/* Room actors */
 	list<Character*> enemies;
 	list<Character*> enemiesToSpawn;

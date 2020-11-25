@@ -22,7 +22,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	this->coins = 0;
 	// Debugging
 	print();
-	//this->attack = 5;
+	this->attack = 5;
 	this->speed = 5;
 	// Cooldowns initialization
 	this->invulnerabilityTime = 0;

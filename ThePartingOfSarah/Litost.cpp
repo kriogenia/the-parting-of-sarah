@@ -56,7 +56,7 @@ void Litost::importAnimations()
 
 void Litost::doAction()
 {
-	int actionIndex = rand() % LITOST_ACTIONS;
+	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
 	switch (actionIndex) {
 	case SHIELD_UP:
 		shieldUp();

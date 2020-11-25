@@ -6,10 +6,11 @@
 #include "Plant.h"
 #include "Snail.h"
 
+#include "Barrelwood.h"
 #include "Litost.h"
 
 constexpr auto NUMBER_OF_ENEMY_TYPES = 5;
-constexpr auto NUMBER_OF_BOSSES = 1;
+constexpr auto NUMBER_OF_BOSSES = 2;
 
 /* Singleton */
 class EnemyFactory

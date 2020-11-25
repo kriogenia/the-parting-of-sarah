@@ -30,7 +30,8 @@ Room::Room(eRoomType type, int x, int y, int number, Space* space, Actor* player
 	}
 }
 
-Room::~Room() {
+Room::~Room() 
+{
 	items.clear();
 	destructibles.clear();
 	doors.clear();
@@ -40,7 +41,8 @@ Room::~Room() {
 	tiles.clear();
 }
 
-void Room::draw(int scrollX, int scrollY) {
+void Room::draw(int scrollX, int scrollY) 
+{
 	for (auto const& tile : tiles)					tile->draw(scrollX, scrollY);
 	for (auto const& tile : destructibles)			tile->draw(scrollX, scrollY);
 	for (auto const& tile : doors)					tile->draw(scrollX, scrollY);
@@ -49,7 +51,8 @@ void Room::draw(int scrollX, int scrollY) {
 	for (auto const& projectile : enemyProjectiles)	projectile->draw(scrollX, scrollY);
 }
 
-void Room::update() {
+void Room::update() 
+{
 	// Enemies update
 	list<Character*> enemiesToDelete;
 	for (auto const& enemy : enemies) {
@@ -90,7 +93,7 @@ void Room::update() {
 		enemyProjectiles.remove(projectile);
 	}
 	// Deletion of destructibles
-	list<DestructibleTile*> destructiblesToDelete;
+	list<Tile*> destructiblesToDelete;
 	for (auto const& destructible : destructibles) {
 		if (destructible->destructionFlag) {
 			destructiblesToDelete.push_back(destructible);
@@ -102,7 +105,8 @@ void Room::update() {
 	}
 }
 
-bool Room::hasPlayerInside() {
+bool Room::hasPlayerInside() 
+{
 	int topLimit = offsetRoomY + FLOOR_OFFSET;
 	int leftLimit = offsetRoomX + FLOOR_OFFSET;
 	int rightLimit = offsetRoomX + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
@@ -116,11 +120,13 @@ bool Room::hasPlayerInside() {
 	return false;
 }
 
-void Room::playerEntered() {
+void Room::playerEntered() 
+{
 	if (!cleared) {
 		this->closeDoors();
 		// Spawn enemies
 		for (auto const& enemy : enemiesToSpawn) {
+			enemy->observers = observers;
 			enemies.push_back(enemy);
 			(enemy->flying) ? 
 				space->addFlyingDynamicActor(enemy) :
@@ -133,7 +139,8 @@ void Room::playerEntered() {
 	}
 }
 
-void Room::setCleared() {
+void Room::setCleared() 
+{
 	cleared = true;
 	openDoors();
 	for (auto const& observer : observers) {
@@ -141,26 +148,36 @@ void Room::setCleared() {
 	}
 }
 
-void Room::openDoors() {
+void Room::openDoors() 
+{
 	for (auto const& door : doors) {
 		door->open();
 		space->removeStaticActor(door);
 	}
 }
 
-void Room::closeDoors() {
+void Room::closeDoors() 
+{
 	for (auto const& door : doors) {
 		door->close();
 		space->addStaticActor(door);
 	}
 }
 
-void Room::addEnemyProjectile(Projectile* projectile) {
+void Room::addEnemyProjectile(Projectile* projectile) 
+{
 	enemyProjectiles.push_back(projectile);
 	space->addFlyingDynamicActor(projectile);
 }
 
-void Room::spawnCoin(float x, float y) {
+void Room::addTile(Tile* tile)
+{
+	destructibles.push_back(tile);
+	space->addStaticActor(tile);
+}
+
+void Room::spawnCoin(float x, float y) 
+{
 	Item* item = dropper->generateCoin(x, y);
 	items.push_back(item);
 	space->addVirtualActor(item);

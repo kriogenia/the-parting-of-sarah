@@ -2,9 +2,11 @@
 
 #include "Enemy.h"
 
+constexpr auto DEFAULT_BOSS_ACTIONS = 3;
 constexpr auto DEFAULT_BOSS_CD = 60;
 
 enum eBossList {
+    BARRELWOOD,
     LITOST
 };
 
