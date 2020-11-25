@@ -68,7 +68,10 @@ void Player::damage(float damage) {
 	if (invulnerabilityTime <= 0) {
 		if (shieldUp) {
 			shieldUp = false;
-			// NOTIFY BLOCKED SHOT
+			invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
+			for (auto const& observer : observers) {
+				observer->notify(NOTIFICATION_BLOCKED_SHOT);
+			}
 		}
 		else {
 			invulnerabilityTime = PLAYER_INVULNERABILITY_TIME;
@@ -247,6 +250,7 @@ void Player::updateShield() {
 		if (!shieldUp) {
 			shieldTime--;
 			if (shieldTime <= 0) {
+				shieldTime = shieldCd;
 				shieldUp = true;
 			}
 		}

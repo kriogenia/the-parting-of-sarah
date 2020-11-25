@@ -17,6 +17,7 @@ AudioPlayer::AudioPlayer() {
 	clips.insert_or_assign(TRACK_DOOR_OPEN, new AudioClip("res/audio/door_open.wav"));
 	clips.insert_or_assign(TRACK_DOOR_CLOSE, new AudioClip("res/audio/door_close.wav"));
 	clips.insert_or_assign(TRACK_COIN, new AudioClip("res/audio/coin.wav"));
+	clips.insert_or_assign(TRACK_BLOCKED_SHOT, new AudioClip("res/audio/blocked_shot.wav"));
 }
 
 AudioPlayer::~AudioPlayer() {

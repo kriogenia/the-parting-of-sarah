@@ -13,6 +13,7 @@ AudioObserver::AudioObserver(AudioPlayer* audio) :
 	relatedClip.insert_or_assign(NOTIFICATION_ENTER_ROOM, TRACK_DOOR_CLOSE);
 	relatedClip.insert_or_assign(NOTIFICATION_PICK_COIN, TRACK_COIN);
 	relatedClip.insert_or_assign(NOTIFICATION_PICK_ITEM, TRACK_POWERUP);
+	relatedClip.insert_or_assign(NOTIFICATION_BLOCKED_SHOT, TRACK_BLOCKED_SHOT);
 }
 
 void AudioObserver::notify(eObserverMessages message, void* publisher) {

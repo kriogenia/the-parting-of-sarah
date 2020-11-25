@@ -11,7 +11,8 @@ enum eAudioClips {
 	TRACK_POWERUP,
 	TRACK_DOOR_OPEN,
 	TRACK_DOOR_CLOSE,
-	TRACK_COIN
+	TRACK_COIN,
+	TRACK_BLOCKED_SHOT
 };
 
 /* Singleton */

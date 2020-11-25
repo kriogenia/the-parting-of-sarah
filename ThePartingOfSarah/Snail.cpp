@@ -23,9 +23,14 @@ void Snail::update() {
 }
 
 void Snail::damage(float damage) {
-	if (this->action == HIDING)
-		return;
-	Enemy::damage(damage);
+	if (this->action == HIDING) {
+		for (auto const& observer : observers) {
+			observer->notify(NOTIFICATION_BLOCKED_SHOT);
+		}
+	}
+	else {
+		Enemy::damage(damage);
+	}
 }
 
 void Snail::setMovement() {

@@ -25,8 +25,14 @@ Litost::~Litost()
 
 void Litost::damage(float damage)
 {
-	if (this->action != HIDING)
+	if (this->action != HIDING) {
 		Boss::damage(damage);
+	}
+	else {
+		for (auto const& observer : observers) {
+			observer->notify(NOTIFICATION_BLOCKED_SHOT);
+		}
+	}
 }
 
 void Litost::setOrientation()
