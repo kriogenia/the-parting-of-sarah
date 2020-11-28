@@ -29,6 +29,7 @@ private:
     /* Character */
     void importAnimations() override;
     /* Enemy*/
+    void setMovement() override;
     void setOrientation() override {};
     /* Boss */
     void doAction() override;

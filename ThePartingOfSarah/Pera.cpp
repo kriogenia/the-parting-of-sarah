@@ -25,13 +25,22 @@ Pera::~Pera()
 }
 
 void Pera::draw(int scrollX, int scrollY, float rotation) {
-	// Calculate angle of the vector Pera, player
-	float dx = room->player->x - x;
-	float dy = room->player->y - y;
-	float angle = acos(-dy / sqrt(pow(dx, 2) + pow(dy, 2)));	// angle of the pera-player vector
-	angle *= (180.0 / 3.14156);									// to grads
-	angle = angle * (dx / abs(dx)) + 180;						// adaptation to sprite direciton
-	animation->draw(x - scrollX, y - scrollY, angle);
+	if (this->action == RUNNING) {
+		// Calculate the velocity angle
+		float angle = acos(-vy / sqrt(pow(vx, 2) + pow(vy, 2)));	// angle of the velocity vector
+		angle *= (180.0 / 3.14156);									// to grads
+		angle = angle * (vx / abs(vx)) + 180;						// adaptation to sprite direciton
+		animation->draw(x - scrollX, y - scrollY, angle);
+	}
+	else {
+		// Calculate angle of the vector Pera, player
+		float dx = room->player->x - x;
+		float dy = room->player->y - y;
+		float angle = acos(-dy / sqrt(pow(dx, 2) + pow(dy, 2)));	// angle of the pera-player vector
+		angle *= (180.0 / 3.14156);									// to grads
+		angle = angle * (dx / abs(dx)) + 180;						// adaptation to sprite direciton
+		animation->draw(x - scrollX, y - scrollY, angle);
+	}
 }
 
 void Pera::collisionedWith(Actor* actor) {
@@ -56,15 +65,22 @@ void Pera::importAnimations()
 	reflectAnimation = new Animation("res/sprites/pera/Pera_Reflecting.png",
 		width, height, 176, 64, 4, 4, false, game);
 	sprintAnimation = new Animation("res/sprites/pera/Pera_Running.png",
-		width, height, 176, 64, 4, 4, false, game);
+		width, height, 176, 64, 8, 4, false, game);
 	throwMinesAnimation = new Animation("res/sprites/pera/Pera_Throwing.png",
 		width, height, 176, 64, 4, 4, false, game);
+}
+
+void Pera::setMovement()
+{
+	if (this->action != RUNNING) {
+		Enemy::setMovement();
+	}
 }
 
 void Pera::doAction()
 {
 	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
-	actionIndex = REFLECT;				// Debug
+	actionIndex = SPRINT;				// Debug
 	switch (actionIndex) {
 	case REFLECT:
 		reflect();
@@ -86,7 +102,11 @@ void Pera::reflect()
 
 void Pera::sprint()
 {
-
+	this->animation = sprintAnimation;
+	this->action = RUNNING;
+	float vectorLength = sqrt(pow(room->player->x - x, 2) + pow(room->player->y - y, 2));
+	this->vx = (room->player->x - x) / vectorLength * PERA_MAX_SPEED;
+	this->vy = (room->player->y - y) / vectorLength * PERA_MAX_SPEED;
 }
 
 void Pera::throwMines()
