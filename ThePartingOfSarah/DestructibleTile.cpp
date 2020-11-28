@@ -2,6 +2,7 @@
 
 DestructibleTile::DestructibleTile(string filename, int x, int y, int width, int hp, Game* game) :
 	MappedTile(filename, x, y, width, hp, game) {
+	this->type = DESTRUCTIBLE_TILE;
 	this->hp = hp;
 }
 

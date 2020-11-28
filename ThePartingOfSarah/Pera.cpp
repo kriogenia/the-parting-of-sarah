@@ -13,6 +13,7 @@ Pera::Pera(float x, float y, Environment* room, Game* game) :
 	this->hp = maxHp;
 	this->speed = PERA_SPEED;
 	this->flying = true;
+	this->mineCooldown = 0;
 
 	this->animation = movingAnimations[LEFT];
 }
@@ -41,6 +42,18 @@ void Pera::draw(int scrollX, int scrollY, float rotation) {
 		angle = angle * (dx / abs(dx)) + 180;						// adaptation to sprite direciton
 		animation->draw(x - scrollX, y - scrollY, angle);
 	}
+}
+
+void Pera::update()
+{
+	if (this->action == SHOOTING) {
+		mineCooldown--;
+		if (mineCooldown <= 0) {
+			mineCooldown = PERA_MINE_COOLDOWN;
+			room->addTile(new MineTile(x, y, game));
+		}
+	}
+	Boss::update();
 }
 
 void Pera::collisionedWith(Actor* actor) {
@@ -80,7 +93,7 @@ void Pera::setMovement()
 void Pera::doAction()
 {
 	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
-	actionIndex = SPRINT;				// Debug
+	actionIndex = THROW_MINES;				// Debug
 	switch (actionIndex) {
 	case REFLECT:
 		reflect();
@@ -111,5 +124,31 @@ void Pera::sprint()
 
 void Pera::throwMines()
 {
+	this->animation = throwMinesAnimation;
+	this->action = SHOOTING;
+	this->mineCooldown = 0;
+}
 
+/* Mine tile */
+
+Pera::MineTile::MineTile(float x, float y, Game* game) :
+	Tile("res/sprites/pera/Pera_Mine.png", x, y, 16, 16, game)
+{
+	this->time = 120;
+}
+
+void Pera::MineTile::draw(int scrollX, int scrollY, float rotation)
+{
+	time--;
+	if (time <= 0) {
+		this->destructionFlag = true;
+	}
+	Tile::draw(scrollX, scrollY, rotation);
+}
+
+void Pera::MineTile::collisionedWith(Actor* actor)
+{
+	if (actor->type == PLAYER) {
+		((Player*)actor)->damage();
+	}
 }

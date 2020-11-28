@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Boss.h"
+#include "Player.h"
 
 constexpr auto PERA_HP = 29;
 constexpr auto PERA_SPEED = 2;
 constexpr auto PERA_MAX_SPEED = 4;
+constexpr auto PERA_MINE_COOLDOWN = 15;
 constexpr auto DEFLECTED_PROJECTILE_FILE = "res/sprites/pera/Reflected_Projectile.png";
 
 enum ePeraActions {
@@ -22,7 +24,7 @@ public:
     ~Pera();
     /* Actor */
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
-    //void update() override;
+    void update() override;
     void collisionedWith(Actor* actor) override;
 
 private:
@@ -41,6 +43,20 @@ private:
     Animation* reflectAnimation;
     Animation* sprintAnimation;
     Animation* throwMinesAnimation;
+    /* Attributes */
+    int mineCooldown;
+
+    /* Internal classes */
+    class MineTile :
+        public Tile
+    {
+    public:
+        MineTile(float x, float y, Game* game);
+        void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
+        void collisionedWith(Actor* actor) override;
+    private:
+        int time;
+    };
 
 };
 

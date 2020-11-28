@@ -100,7 +100,12 @@ void Room::update()
 		}
 	}
 	for (auto const& destructible : destructiblesToDelete) {
-		space->removeStaticActor(destructible);
+		if (destructible->type == DESTRUCTIBLE_TILE) {
+			space->removeStaticActor(destructible);
+		}
+		else {
+			space->removeLowStaticActor(destructible);
+		}
 		destructibles.remove(destructible);
 	}
 }
@@ -173,7 +178,7 @@ void Room::addEnemyProjectile(Projectile* projectile)
 void Room::addTile(Tile* tile)
 {
 	destructibles.push_back(tile);
-	space->addStaticActor(tile);
+	space->addLowStaticActor(tile);
 }
 
 void Room::spawnCoin(float x, float y) 
