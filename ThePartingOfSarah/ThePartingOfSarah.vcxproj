@@ -191,6 +191,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Pera.cpp" />
     <ClCompile Include="Pig.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="Pera.h" />
     <ClInclude Include="Pig.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Player.h" />

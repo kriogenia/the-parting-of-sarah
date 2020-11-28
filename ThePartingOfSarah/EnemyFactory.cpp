@@ -30,12 +30,14 @@ Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* ga
 
 Boss* EnemyFactory::generateBoss(float x, float y, Environment* room, Game* game) {
     int typeOfEnemy = rand() % NUMBER_OF_BOSSES;
-    typeOfEnemy = BARRELWOOD;               // Debug
+    typeOfEnemy = PERA;               // Debug
     switch (typeOfEnemy) {
     case LITOST:
         return new Litost(x, y, room, game);
     case BARRELWOOD:
         return new Barrelwood(x, y, room, game);
+    case PERA:
+        return new Pera(x, y, room, game);
     }
 
 }

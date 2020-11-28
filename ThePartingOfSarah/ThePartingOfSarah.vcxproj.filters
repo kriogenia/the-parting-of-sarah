@@ -243,6 +243,9 @@
     <ClCompile Include="Barrelwood.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
     </ClCompile>
+    <ClCompile Include="Pera.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -396,6 +399,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Barrelwood.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Pera.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
     </ClInclude>
   </ItemGroup>

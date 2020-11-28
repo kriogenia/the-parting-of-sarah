@@ -7,7 +7,8 @@ constexpr auto DEFAULT_BOSS_CD = 60;
 
 enum eBossList {
     BARRELWOOD,
-    LITOST
+    LITOST,
+    PERA
 };
 
 class Boss :

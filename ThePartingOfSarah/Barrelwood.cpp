@@ -57,7 +57,7 @@ void Barrelwood::importAnimations()
 void Barrelwood::doAction()
 {
 	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
-	actionIndex = SMOKING;			// Debug
+	//actionIndex = SMOKING;			// Debug
 	switch (actionIndex) {
 	case SPREADING_ACID:
 		spreadAcid();

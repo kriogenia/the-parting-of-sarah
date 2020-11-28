@@ -8,6 +8,7 @@
 
 #include "Barrelwood.h"
 #include "Litost.h"
+#include "Pera.h"
 
 constexpr auto NUMBER_OF_ENEMY_TYPES = 5;
 constexpr auto NUMBER_OF_BOSSES = 2;
