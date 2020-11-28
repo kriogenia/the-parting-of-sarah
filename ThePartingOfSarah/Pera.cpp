@@ -24,6 +24,28 @@ Pera::~Pera()
 	delete throwMinesAnimation;
 }
 
+void Pera::draw(int scrollX, int scrollY, float rotation) {
+	// Calculate angle of the vector Pera, player
+	float dx = room->player->x - x;
+	float dy = room->player->y - y;
+	float angle = acos(-dy / sqrt(pow(dx, 2) + pow(dy, 2)));	// angle of the pera-player vector
+	angle *= (180.0 / 3.14156);									// to grads
+	angle = angle * (dx / abs(dx)) + 180;						// adaptation to sprite direciton
+	animation->draw(x - scrollX, y - scrollY, angle);
+}
+
+void Pera::collisionedWith(Actor* actor) {
+	if (actor->type == PROJECTILE && !actor->destructionFlag) {
+		if (this->action == HIDING) {
+			room->addEnemyProjectile(new Projectile(DEFLECTED_PROJECTILE_FILE,
+				actor->x, actor->y, actor->x - actor->vx, actor->y - actor->vy, 7, 7, game));
+		}
+		else {
+			damage(((Projectile*)actor)->damage);
+		}
+	}
+}
+
 void Pera::importAnimations()
 {
 	dyingAnimation = new Animation("res/sprites/pera/Pera_Dying.png",
@@ -42,6 +64,7 @@ void Pera::importAnimations()
 void Pera::doAction()
 {
 	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
+	actionIndex = REFLECT;				// Debug
 	switch (actionIndex) {
 	case REFLECT:
 		reflect();
@@ -57,7 +80,8 @@ void Pera::doAction()
 
 void Pera::reflect()
 {
-
+	this->animation = reflectAnimation;
+	this->action = HIDING;
 }
 
 void Pera::sprint()

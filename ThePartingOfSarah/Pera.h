@@ -3,8 +3,9 @@
 #include "Boss.h"
 
 constexpr auto PERA_HP = 29;
-constexpr auto PERA_SPEED = 3;
-constexpr auto PERA_MAX_SPEED = 5;
+constexpr auto PERA_SPEED = 2;
+constexpr auto PERA_MAX_SPEED = 4;
+constexpr auto DEFLECTED_PROJECTILE_FILE = "res/sprites/pera/Reflected_Projectile.png";
 
 enum ePeraActions {
     FLY,
@@ -20,8 +21,9 @@ public:
     Pera(float x, float y, Environment* room, Game* game);
     ~Pera();
     /* Actor */
+    void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
     //void update() override;
-    //void collisionedWith(Actor* actor) override;
+    void collisionedWith(Actor* actor) override;
 
 private:
     /* Character */
