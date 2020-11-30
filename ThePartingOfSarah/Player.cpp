@@ -20,6 +20,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	// Item related values
 	this->shieldCd = -1;
 	this->coins = 0;
+	this->numberOfProjectiles = STARTING_PLAYER_PROJECTILES;
 	this->projectileFile = PLAYER_PROJECTILE_FILE;
 	// Debugging
 	print();
@@ -181,7 +182,8 @@ void Player::move() {
 	vy = (moveUp + moveDown) * speed;
 }
 
-Projectile* Player::shoot(int mouseX, int mouseY) {
+vector<Projectile*> Player::shoot(int mouseX, int mouseY) {
+	vector<Projectile*> projectiles;
 	if (shooting && shotTime <= 0) {
 		shotTime = shotCadence;
 		this->action = SHOOTING;
@@ -189,10 +191,18 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		for (auto const& observer : observers) {
 			observer->notify(NOTIFICATION_PLAYER_SHOOT);
 		}
-		return new Projectile(projectileFile, 
-			x, y, mouseX, mouseY, shotSize, shotSize, attack, game);
+		for(int i = 0; i < numberOfProjectiles; i++) {
+			if (this->orientation == RIGHT || this->orientation == LEFT) {
+				projectiles.push_back(new Projectile(projectileFile,
+					x, y, mouseX, mouseY + (i + 1)/2 * 10 * pow(-1, i + 1), shotSize, shotSize, attack, game));
+			}
+			else {
+				projectiles.push_back(new Projectile(projectileFile,
+					x, y, mouseX + (i + 1) / 2 * 10 * pow(-1, i + 1), mouseY, shotSize, shotSize, attack, game));
+			}
+		}
 	}
-	return nullptr;
+	return projectiles;
 }
 
 void Player::setAction(bool endAction) {

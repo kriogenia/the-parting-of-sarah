@@ -8,18 +8,20 @@ constexpr auto STARTING_PLAYER_HP = 3;
 constexpr auto STARTING_PLAYER_SHOT_CADENCE = 30;
 constexpr auto STARTING_PLAYER_SPEED = 3;
 constexpr auto STARTING_PLAYER_PROJECTILE_SIZE = 7;
+constexpr auto STARTING_PLAYER_PROJECTILES = 1;
+constexpr auto PLAYER_PROJECTILE_FILE = "res/sprites/player/Player_Projectile.png";
 /* Max values*/
 constexpr auto CAP_PLAYER_ATTACK = 5.0;
 constexpr auto CAP_PLAYER_HP = 10;
 constexpr auto CAP_PLAYER_SHOT_CADENCE = 16;
 constexpr auto CAP_PLAYER_SPEED = 6.5;
 constexpr auto CAP_PLAYER_PROJECTILE_SIZE = 14;
+constexpr auto CAP_PLAYER_PROJECTILES = 5;
 /* Fixed values */
 constexpr auto POWER_UP_COIN_COST = 10;
 constexpr auto HEAL_COIN_COST = 5;
 constexpr auto PLAYER_INVULNERABILITY_TIME = 30;
 constexpr auto PLAYER_VISUAL_SIZE = 32;
-constexpr auto PLAYER_PROJECTILE_FILE = "res/sprites/player/Player_Projectile.png";
 
 enum ePlayerStats {
     ATTACK_DAMAGE,
@@ -52,12 +54,13 @@ public:
     /* Items related atts */
     int coins;
     int shieldCd;
+    int numberOfProjectiles;
     string projectileFile;
     // Controls
     void enterInput(int code);
     void stopInput(int code);
     void move();
-    Projectile* shoot(int mouseX, int mouseY);
+    vector<Projectile*> shoot(int mouseX, int mouseY);
     // Debug
     void print();
     

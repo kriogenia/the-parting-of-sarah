@@ -56,9 +56,9 @@ void GameLayer::processControls()
 
 void GameLayer::update() 
 {
-	// Register player shot
-	Projectile* projectile = player->shoot(mouseX + scrollX, mouseY + scrollY);
-	if (projectile != nullptr) {
+	// Register player shots
+	vector<Projectile*> newProjectiles = player->shoot(mouseX + scrollX, mouseY + scrollY);
+	for (auto const& projectile : newProjectiles) {
 		projectiles.push_back(projectile);
 		space->addFlyingDynamicActor(projectile);
 	}

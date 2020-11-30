@@ -4,7 +4,7 @@ ArrowItem::ArrowItem(float x, float y, Game* game) :
 	Item("res/items/arrow.png", x, y, game)
 {
 	this->name = "Green Arrow GRP";
-	this->subtitle = "Damage goes brrrrrrr";
+	this->subtitle = "The more, the better";
 }
 
 Item* ArrowItem::getCopy(float x, float y)
@@ -14,6 +14,7 @@ Item* ArrowItem::getCopy(float x, float y)
 
 void ArrowItem::applyEffect(Player* player)
 {
-	player->attack *= ARROW_ATTACK_MULTIPLIER;
-	player->print();
+	if (player->numberOfProjectiles <= CAP_PLAYER_PROJECTILES) {
+		player->numberOfProjectiles++;
+	}
 }

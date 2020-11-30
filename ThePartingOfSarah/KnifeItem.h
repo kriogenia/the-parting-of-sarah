@@ -2,11 +2,13 @@
 
 #include "Item.h"
 
-class ArrowItem :
+constexpr auto KNIFE_ATTACK_MULTIPLIER = 1.25;
+
+class KnifeItem :
     public Item
 {
 public:
-    ArrowItem(float x, float y, Game* game);
+    KnifeItem(float x, float y, Game* game);
     /* Item */
     Item* getCopy(float x, float y) override;
 
