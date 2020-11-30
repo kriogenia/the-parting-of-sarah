@@ -203,6 +203,7 @@
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
+    <ClCompile Include="SkeletonItem.cpp" />
     <ClCompile Include="Snail.cpp" />
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -261,6 +262,7 @@
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="ShieldItem.h" />
+    <ClInclude Include="SkeletonItem.h" />
     <ClInclude Include="Snail.h" />
     <ClInclude Include="Space.h" />
     <ClInclude Include="Text.h" />

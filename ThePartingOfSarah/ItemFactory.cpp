@@ -7,6 +7,7 @@
 #include "HeartItem.h"
 #include "KnifeItem.h"
 #include "ShieldItem.h"
+#include "SkeletonItem.h"
 
 ItemFactory* ItemFactory::instance = 0;
 
@@ -25,12 +26,13 @@ ItemFactory::ItemFactory(Game* game) :
     items.push_back(new HeartItem(0, 0, game));
     items.push_back(new FireItem(0, 0, game));
     items.push_back(new KnifeItem(0, 0, game));
+    items.push_back(new SkeletonItem(0, 0, game));
 }
 
 Item* ItemFactory::generateItem(float x, float y) 
 {
     int pointer = rand() % items.size();
-    pointer = 1;                                        // Debug
+    pointer = 6;                                        // Debug
     return items[pointer]->getCopy(x, y);
 }
 

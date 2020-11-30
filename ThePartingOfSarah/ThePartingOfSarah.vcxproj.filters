@@ -258,6 +258,9 @@
     <ClCompile Include="KnifeItem.cpp">
       <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletonItem.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -426,6 +429,9 @@
       <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
     <ClInclude Include="KnifeItem.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonItem.h">
       <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
   </ItemGroup>

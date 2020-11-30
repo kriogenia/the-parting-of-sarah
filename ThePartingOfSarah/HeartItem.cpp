@@ -3,7 +3,7 @@
 HeartItem::HeartItem(float x, float y, Game* game) :
 	Item("res/items/potion.png", x, y, game)
 {
-	this->name = "Nareda";
+	this->name = "Gift of An";
 	this->subtitle = "<3 <3 <3";
 }
 
