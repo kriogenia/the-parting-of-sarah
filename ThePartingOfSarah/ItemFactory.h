@@ -1,9 +1,6 @@
 #pragma once
 
-#include "ArrowItem.h"
-#include "Coin.h"
-#include "FlagItem.h"
-#include "ShieldItem.h"
+#include "Item.h"
 
 /* Singleton */
 class ItemFactory

@@ -3,7 +3,7 @@
 ArrowItem::ArrowItem(float x, float y, Game* game) :
 	Item("res/items/arrow.png", x, y, game)
 {
-	this->name = "Saeta";
+	this->name = "Green Arrow GRP";
 	this->subtitle = "Damage goes brrrrrrr";
 }
 

@@ -3,7 +3,7 @@
 ShieldItem::ShieldItem(float x, float y, Game* game) :
 	Item("res/items/shield.png", x, y, game)
 {
-	this->name = "S.H.I.E.L.D.";
+	this->name = "Shield of Xur";
 	this->subtitle = "It blocks! ... sometimes, I think?";
 }
 

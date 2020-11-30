@@ -1,5 +1,11 @@
 #include "ItemFactory.h"
 
+#include "ArrowItem.h"
+#include "Coin.h"
+#include "FlagItem.h"
+#include "HeartItem.h"
+#include "ShieldItem.h"
+
 ItemFactory* ItemFactory::instance = 0;
 
 ItemFactory* ItemFactory::getInstance(Game* game) {
@@ -14,12 +20,13 @@ ItemFactory::ItemFactory(Game* game) :
     items.push_back(new ShieldItem(0, 0, game));
     items.push_back(new ArrowItem(0, 0, game));
     items.push_back(new FlagItem(0, 0, game));
+    items.push_back(new HeartItem(0, 0, game));
 }
 
 Item* ItemFactory::generateItem(float x, float y) 
 {
     int pointer = rand() % items.size();
-    pointer = 2;                                        // Debug
+    pointer = 3;                                        // Debug
     return items[pointer]->getCopy(x, y);
 }
 

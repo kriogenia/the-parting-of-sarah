@@ -178,6 +178,7 @@
     <ClCompile Include="FlagItem.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="HealthDisplay.cpp" />
+    <ClCompile Include="HeartItem.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="HudObserver.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="FlagItem.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="HealthDisplay.h" />
+    <ClInclude Include="HeartItem.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="HudObserver.h" />
     <ClInclude Include="Item.h" />

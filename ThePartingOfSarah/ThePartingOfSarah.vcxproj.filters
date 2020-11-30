@@ -237,9 +237,6 @@
     <ClCompile Include="ArrowItem.cpp">
       <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
-    <ClCompile Include="FlagItem.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Barrelwood.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
     </ClCompile>
@@ -248,6 +245,12 @@
     </ClCompile>
     <ClCompile Include="MenuLayer.cpp">
       <Filter>Archivos de origen\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="HeartItem.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FlagItem.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +401,6 @@
     <ClInclude Include="ArrowItem.h">
       <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
-    <ClInclude Include="FlagItem.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Barrelwood.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
     </ClInclude>
@@ -409,6 +409,12 @@
     </ClInclude>
     <ClInclude Include="MenuLayer.h">
       <Filter>Archivos de encabezado\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="HeartItem.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagItem.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

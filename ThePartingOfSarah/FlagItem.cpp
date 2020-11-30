@@ -3,7 +3,7 @@
 FlagItem::FlagItem(float x, float y, Game* game) :
 	Item("res/items/flag.png", x, y, game)
 {
-	this->name = "Banner";
+	this->name = "Banner of Rox Q.";
 	this->subtitle = "PROMOTION, PROMOTION, PROMOTION";
 }
 
