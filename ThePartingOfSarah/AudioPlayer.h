@@ -5,14 +5,15 @@
 #include <map>
 
 enum eAudioClips {
-	TRACK_PLAYER_HIT,
-	TRACK_PLAYER_HEAL,
-	TRACK_PLAYER_SHOT,
-	TRACK_POWERUP,
+	TRACK_BLOCKED_SHOT,
+	TRACK_BOSS_KILLED,
 	TRACK_DOOR_OPEN,
 	TRACK_DOOR_CLOSE,
 	TRACK_COIN,
-	TRACK_BLOCKED_SHOT
+	TRACK_PLAYER_HIT,
+	TRACK_PLAYER_HEAL,
+	TRACK_PLAYER_SHOT,
+	TRACK_POWERUP
 };
 
 /* Singleton */
@@ -23,6 +24,7 @@ public:
 	~AudioPlayer();
 
 	void start();
+	void swap();
 	void play(eAudioClips key);
 
 private:
@@ -30,7 +32,10 @@ private:
 
 	AudioPlayer();
 
+	BackgroundAudio* currentTheme;
+	BackgroundAudio* bossTheme;
 	BackgroundAudio* mainTheme;
+
 	map<eAudioClips, AudioClip*> clips;
 
 };

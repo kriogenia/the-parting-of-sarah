@@ -32,7 +32,7 @@ ItemFactory::ItemFactory(Game* game) :
 Item* ItemFactory::generateItem(float x, float y) 
 {
     int pointer = rand() % items.size();
-    pointer = 6;                                        // Debug
+    //pointer = 6;                                        // Debug
     return items[pointer]->getCopy(x, y);
 }
 

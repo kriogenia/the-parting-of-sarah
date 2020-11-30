@@ -13,8 +13,11 @@ public:
     ~BackgroundAudio();
 
     void play();
+    void stop();
 
 private:
     Mix_Music* mix;
+
+    string filename;
 };
 

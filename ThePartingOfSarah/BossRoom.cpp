@@ -35,6 +35,7 @@ void BossRoom::playerEntered() {
 	for (auto const& observer : observers) {
 		cout << "Entered the Boss Room - ";
 		observer->notify(NOTIFICATION_ENTER_BOSS_ROOM, boss);
+		observer->notify(NOTIFICATION_ENTER_ROOM, this);
 	}
 }
 
