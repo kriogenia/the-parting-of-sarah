@@ -175,6 +175,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="FireItem.cpp" />
     <ClCompile Include="FlagItem.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="HealthDisplay.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="FireItem.h" />
     <ClInclude Include="FlagItem.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="HealthDisplay.h" />

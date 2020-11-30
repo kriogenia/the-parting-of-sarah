@@ -2,6 +2,7 @@
 
 #include "ArrowItem.h"
 #include "Coin.h"
+#include "FireItem.h"
 #include "FlagItem.h"
 #include "HeartItem.h"
 #include "ShieldItem.h"
@@ -21,12 +22,13 @@ ItemFactory::ItemFactory(Game* game) :
     items.push_back(new ArrowItem(0, 0, game));
     items.push_back(new FlagItem(0, 0, game));
     items.push_back(new HeartItem(0, 0, game));
+    items.push_back(new FireItem(0, 0, game));
 }
 
 Item* ItemFactory::generateItem(float x, float y) 
 {
     int pointer = rand() % items.size();
-    pointer = 3;                                        // Debug
+    pointer = 4;                                        // Debug
     return items[pointer]->getCopy(x, y);
 }
 

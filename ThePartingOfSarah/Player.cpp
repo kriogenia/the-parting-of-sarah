@@ -20,6 +20,7 @@ Player::Player(float x, float y, int* mouseX, int* mouseY, int* scrollX, int* sc
 	// Item related values
 	this->shieldCd = -1;
 	this->coins = 0;
+	this->projectileFile = PLAYER_PROJECTILE_FILE;
 	// Debugging
 	print();
 	this->attack = 5;
@@ -188,7 +189,7 @@ Projectile* Player::shoot(int mouseX, int mouseY) {
 		for (auto const& observer : observers) {
 			observer->notify(NOTIFICATION_PLAYER_SHOOT);
 		}
-		return new Projectile(PLAYER_PROJECTILE_FILE, 
+		return new Projectile(projectileFile, 
 			x, y, mouseX, mouseY, shotSize, shotSize, attack, game);
 	}
 	return nullptr;

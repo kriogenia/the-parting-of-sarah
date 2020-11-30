@@ -52,6 +52,7 @@ public:
     /* Items related atts */
     int coins;
     int shieldCd;
+    string projectileFile;
     // Controls
     void enterInput(int code);
     void stopInput(int code);

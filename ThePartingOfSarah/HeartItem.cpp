@@ -22,4 +22,5 @@ void HeartItem::applyEffect(Player* player)
 	for (auto const& observer : player->observers) {
 		observer->notify(NOTIFICATION_PLAYER_HEAL, player);
 	}
+	player->print();
 }

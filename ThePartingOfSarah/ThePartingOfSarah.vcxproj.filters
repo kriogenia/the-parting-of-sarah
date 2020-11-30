@@ -252,6 +252,9 @@
     <ClCompile Include="FlagItem.cpp">
       <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
+    <ClCompile Include="FireItem.cpp">
+      <Filter>Archivos de origen\Actors\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -414,6 +417,9 @@
       <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
     <ClInclude Include="FlagItem.h">
+      <Filter>Archivos de encabezado\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FireItem.h">
       <Filter>Archivos de encabezado\Actors\Items</Filter>
     </ClInclude>
   </ItemGroup>
