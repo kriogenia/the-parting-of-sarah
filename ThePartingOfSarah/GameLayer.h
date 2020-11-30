@@ -23,6 +23,8 @@ public:
 	/* Layer */
 	void keysToControl(SDL_Event event) override;
 	void mouseToControl(SDL_Event event) override;
+	/* State */
+	int pause = false;
 
 private:
 	/* Game progression */

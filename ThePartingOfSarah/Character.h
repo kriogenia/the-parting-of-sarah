@@ -36,6 +36,7 @@ public:
     // Attributes
     int hp;
     bool flying;
+    float speed;
     // Observers
     list<Observer*> observers;
 
@@ -53,7 +54,5 @@ protected:
     // Animations
     Animation* animation;
     map<eCharacterOrientation, Animation*> movingAnimations;
-    // Attributes
-    float speed;
 };
 

@@ -9,7 +9,9 @@ HudObserver::HudObserver(Hud* hud) :
 void HudObserver::notify(eObserverMessages message, void* publisher) {
 	switch (message) {
 	case NOTIFICATION_POWER_UP:
-		hud->updateText("POWER UP");
+		hud->updateText("POWER UP"); 
+		player = (Player*)publisher;
+		hud->updateStats(player);
 	case NOTIFICATION_PLAYER_HIT:
 	case NOTIFICATION_PLAYER_HEAL:
 		player = (Player*) publisher;
@@ -42,4 +44,5 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		hud->updateText(item->name, item->subtitle);
 		break;
 	}
+
 }

@@ -26,6 +26,7 @@ void GameLayer::init()
 	/* Initiates global game instances */
 	audio = AudioPlayer::getInstance();
 	hud = new Hud(game);
+	hud->updateStats(player);
 	/* Starts audio and first level */
 	audio->start();
 	initFloor();
@@ -39,6 +40,7 @@ void GameLayer::processControls()
 
 void GameLayer::update() 
 {
+	if (pause) return;
 	// Register player shots
 	vector<Projectile*> newProjectiles = player->shoot(mouseX + scrollX, mouseY + scrollY);
 	for (auto const& projectile : newProjectiles) {
@@ -85,7 +87,7 @@ void GameLayer::draw()
 	for (auto const& projectile : projectiles)
 		projectile->draw(scrollX, scrollY);
 	// Draw the HUD
-	hud->draw();
+	hud->draw(pause);
 }
 
 void GameLayer::initFloor()
@@ -124,6 +126,10 @@ void GameLayer::keysToControl(SDL_Event event)
 	if (event.type == SDL_KEYDOWN) {
 		if (code == SDLK_ESCAPE) {
 			game->loopActive = false;
+			return;
+		}
+		else if (code == SDLK_RETURN) {
+			pause = !pause;
 			return;
 		}
 		player->enterInput(code);

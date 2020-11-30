@@ -261,6 +261,9 @@
     <ClCompile Include="SkeletonItem.cpp">
       <Filter>Archivos de origen\Actors\Items</Filter>
     </ClCompile>
+    <ClCompile Include="PauseDisplay.cpp">
+      <Filter>Archivos de origen\HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="SkeletonItem.h">
       <Filter>Archivos de encabezado\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseDisplay.h">
+      <Filter>Archivos de encabezado\HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

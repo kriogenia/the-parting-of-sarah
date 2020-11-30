@@ -8,6 +8,7 @@ Hud::Hud(Game* game) :
 	crosshair = new Crosshair(game);
 	health = new HealthDisplay(game);
 	map = new MapDisplay(game);
+	pause = new PauseDisplay(game);
 	text = new TextDisplay(game);
 }
 
@@ -20,13 +21,16 @@ Hud::~Hud() {
 	delete text;
 }
 
-void Hud::draw() {
+void Hud::draw(bool isPaused) {
 	boss->draw();
 	coins->draw();
 	health->draw();
 	map->draw();
 	text->draw();
 	crosshair->draw();
+	if (isPaused) {
+		pause->draw();
+	}
 }
 
 void Hud::updateBossHealthDisplay(int currentHp, int maxHp) {
@@ -48,6 +52,11 @@ void Hud::updateHealthDisplay(int currentHp, int maxHp) {
 
 void Hud::updateMap(Room* room) {
 	map->update(room);
+}
+
+void Hud::updateStats(Player* player)
+{
+	pause->update(player);
 }
 
 void Hud::updateText(string message, string submessage) {
