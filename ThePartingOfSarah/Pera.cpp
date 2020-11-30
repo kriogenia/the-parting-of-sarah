@@ -93,7 +93,7 @@ void Pera::setMovement()
 void Pera::doAction()
 {
 	int actionIndex = rand() % DEFAULT_BOSS_ACTIONS;
-	actionIndex = THROW_MINES;				// Debug
+	//actionIndex = THROW_MINES;				// Debug
 	switch (actionIndex) {
 	case REFLECT:
 		reflect();

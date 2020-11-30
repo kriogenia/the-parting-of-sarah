@@ -38,7 +38,10 @@ public:
 	SDL_Renderer* renderer;
 	bool loopActive; 
 
+	Layer* layer;
+	Layer* menuLayer;
 	Layer* gameLayer;
+
 	TTF_Font* fontTitle;
 	TTF_Font* fontOutlineTitle;
 	TTF_Font* fontSubtitle;

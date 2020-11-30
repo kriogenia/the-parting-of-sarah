@@ -50,24 +50,18 @@ void GameLayer::init()
 
 void GameLayer::processControls() 
 {
-	SDL_GetMouseState(&mouseX, &mouseY);
-	SDL_Event event;
-	// Register input
-	while (SDL_PollEvent(&event)) {
-		keysToControl(event);
-		mouseToControl(event);
-	}
+	Layer::processControls();
 	player->move();
+}
+
+void GameLayer::update() 
+{
 	// Register player shot
 	Projectile* projectile = player->shoot(mouseX + scrollX, mouseY + scrollY);
 	if (projectile != nullptr) {
 		projectiles.push_back(projectile);
 		space->addFlyingDynamicActor(projectile);
 	}
-}
-
-void GameLayer::update() 
-{
 	// Modules updates
 	space->update();
 	player->update();

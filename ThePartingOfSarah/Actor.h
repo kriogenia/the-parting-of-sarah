@@ -23,6 +23,7 @@ public:
 	/* Game cycle */
 	virtual void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0);
 	/* Actor interactions */
+	bool containsPoint(int pointX, int pointY);
 	bool isOverlap(Actor* actor);
 	virtual void collisionedWith(Actor* actor) {};
 	/* Game modules*/

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "GameLayer.h"
+#include "MenuLayer.h"
 
 Game::Game(int seed) :
 	seed(seed) {
@@ -30,7 +31,9 @@ Game::Game(int seed) :
 	fontOutlineSubtitle = TTF_OpenFont("res/upheavtt.ttf", 18);
 	TTF_SetFontOutline(fontOutlineSubtitle, SUBTITLE_OUTLINE_SIZE);
 
+	menuLayer = new MenuLayer(this);
 	gameLayer = new GameLayer(this);
+	layer = menuLayer;
 
 
 	loopActive = true;
@@ -48,9 +51,9 @@ void Game::loop() {
 	while (loopActive) {
 		initTick = SDL_GetTicks();
 
-		gameLayer->processControls();
-		gameLayer->update();
-		gameLayer->draw();
+		layer->processControls();
+		layer->update();
+		layer->draw();
 
 		SDL_RenderPresent(renderer);
 

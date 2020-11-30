@@ -1,7 +1,10 @@
 #include "Actor.h"
 
 Actor::Actor(string filename, float x, float y, int width, int height, Game* game)
-	: Actor(filename, x, y, width, height, width, height, game) { }
+	: Actor(filename, x, y, width, height, width, height, game) 
+{ 
+
+}
 
 Actor::Actor(string filename, float x, float y, int width, int height, 
 	int fileWidth, int fileHeight, Game* game) :
@@ -17,11 +20,13 @@ Actor::Actor(string filename, float x, float y, int width, int height,
 	texture = game->getTexture(filename);
 }
 
-Actor::~Actor() {
+Actor::~Actor() 
+{
 	SDL_DestroyTexture(texture);
 }
 
-void Actor::draw(int scrollX, int scrollY, float rotation) {
+void Actor::draw(int scrollX, int scrollY, float rotation) 
+{
 	SDL_Rect source;
 	source.x = 0;
 	source.y = 0;
@@ -38,7 +43,17 @@ void Actor::draw(int scrollX, int scrollY, float rotation) {
 		texture, &source, &destination, rotation, NULL, SDL_FLIP_NONE);
 }
 
-bool Actor::isOverlap(Actor* actor) {
+bool Actor::containsPoint(int pointX, int pointY)
+{
+	return (pointY >= y - height / 2 &&
+		pointY <= y + height / 2 &&
+		pointX <= x + width / 2 &&
+		pointX >= x - width / 2);
+
+}
+
+bool Actor::isOverlap(Actor* actor) 
+{
 	bool overlap = false;
 	if (actor->x - actor->width / 2 <= x + width / 2
 		&& actor->x + actor->width / 2 >= x - width / 2

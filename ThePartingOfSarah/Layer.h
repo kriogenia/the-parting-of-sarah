@@ -8,9 +8,15 @@ public:
 	Layer(Game* game);
 	/* Game cycle */
 	virtual void init() = 0;
-	virtual void processControls() = 0;
+	virtual void processControls();
 	virtual void update() = 0;
 	virtual void draw() = 0;
+	/* Input control */
+	virtual void keysToControl(SDL_Event event) = 0;
+	virtual void mouseToControl(SDL_Event event) = 0;
+	/* Controls */
+	int mouseX = 0;
+	int mouseY = 0;
 
 	Game* game;
 };

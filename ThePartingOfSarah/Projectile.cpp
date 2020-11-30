@@ -29,7 +29,7 @@ void Projectile::draw(int scrollX, int scrollY, float rotation) {
 }
 
 void Projectile::collisionedWith(Actor* actor) {
-	if (actor->type == TILE ||
+	if (actor->type == TILE || actor->type == DESTRUCTIBLE_TILE ||
 		(type == PROJECTILE && actor->type == ENEMY) ||
 		(type == ENEMY_PROJECTILE && actor->type == PLAYER))
 		this->destructionFlag = true;

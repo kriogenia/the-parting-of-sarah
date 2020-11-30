@@ -15,18 +15,18 @@ class GameLayer :
 public:
 	GameLayer(Game* game);
 	~GameLayer();
-	/* Layer */
+	/* Game cycle */
 	void init() override;
 	void processControls() override;
 	void update() override;
 	void draw() override;
+	/* Layer */
+	void keysToControl(SDL_Event event) override;
+	void mouseToControl(SDL_Event event) override;
 
 private:
 	/* Game progression */
 	void climbUp();
-	/* Input control */
-	void keysToControl(SDL_Event event);
-	void mouseToControl(SDL_Event event);
 
 	/* Game modules */
 	AudioPlayer* audio;
@@ -41,7 +41,5 @@ private:
 	/* Screen */
 	int scrollX = 0;
 	int scrollY = 0;
-	int mouseX = 0;
-	int mouseY = 0;
 
 };
