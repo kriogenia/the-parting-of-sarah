@@ -39,8 +39,9 @@ public:
 	bool loopActive; 
 
 	Layer* layer;
-	Layer* menuLayer;
 	Layer* gameLayer;
+	Layer* startLayer;
+	Layer* restartLayer;
 
 	TTF_Font* fontTitle;
 	TTF_Font* fontOutlineTitle;

@@ -31,9 +31,10 @@ Game::Game(int seed) :
 	fontOutlineSubtitle = TTF_OpenFont("res/upheavtt.ttf", 18);
 	TTF_SetFontOutline(fontOutlineSubtitle, SUBTITLE_OUTLINE_SIZE);
 
-	menuLayer = new MenuLayer(this);
 	gameLayer = new GameLayer(this);
-	layer = menuLayer;
+	startLayer = new MenuLayer(this, true);
+	restartLayer = new MenuLayer(this, false);
+	layer = startLayer;
 
 
 	loopActive = true;

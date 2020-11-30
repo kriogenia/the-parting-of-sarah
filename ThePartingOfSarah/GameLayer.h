@@ -26,6 +26,7 @@ public:
 
 private:
 	/* Game progression */
+	void initFloor();
 	void climbUp();
 
 	/* Game modules */

@@ -8,7 +8,7 @@ class MenuLayer :
     public Layer
 {
 public:
-	MenuLayer(Game* game);
+	MenuLayer(Game* game, bool first);
 	/* Game cycle */
 	void init() override;
 	void draw() override;
@@ -17,6 +17,7 @@ public:
 	void keysToControl(SDL_Event event) override;
 	void mouseToControl(SDL_Event event) override;
 private:
+	bool first;
 	/* Actors */
 	Actor* background;
 	Actor* button;
