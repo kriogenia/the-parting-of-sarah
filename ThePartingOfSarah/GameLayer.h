@@ -1,9 +1,7 @@
 #pragma once
 
-#include "AudioObserver.h"
 #include "AudioPlayer.h"
 #include "Hud.h"
-#include "HudObserver.h"
 #include "Layer.h"
 #include "Level.h"
 #include "Player.h"
@@ -40,7 +38,7 @@ private:
 	Player* player;
 	list<Projectile*> projectiles;
 	/* Level */
-	int floor = 0;
+	unsigned int floor = 0;
 	/* Screen */
 	int scrollX = 0;
 	int scrollY = 0;

@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Actor.h"
-#include "Layer.h"
 #include "Crosshair.h"
+#include "Layer.h"
+#include "Text.h"
 
 class MenuLayer :
     public Layer
@@ -18,9 +19,10 @@ public:
 	void mouseToControl(SDL_Event event) override;
 private:
 	bool first;
-	/* Actors */
+	/* Modules */
 	Actor* background;
 	Actor* button;
+	Text* points;
 	Crosshair* crosshair;
 };
 

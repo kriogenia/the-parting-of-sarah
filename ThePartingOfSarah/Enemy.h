@@ -24,6 +24,8 @@ public:
     void collisionedWith(Actor* actor) override;
     void damage(float damage = 1.0) override;
 
+    unsigned int points = 0;
+
 protected:
     void setMovement() override;
     void setAction(bool endAction) override;

@@ -60,6 +60,9 @@ void Enemy::death() {
 	if (rand() % COIN_RARITY == 0) {
 		room->spawnCoin(x, y);
 	}
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
+	}
 }
 
 void Enemy::hit() {

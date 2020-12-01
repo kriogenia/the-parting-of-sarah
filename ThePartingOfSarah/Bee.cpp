@@ -6,6 +6,7 @@ Bee::Bee(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->flying = true;
+	this->points = BEE_POINTS;
 	this->hp = BEE_HP;
 	this->speed = BEE_SPEED;
 	this->shotTime = BEE_SHOT_CADENCE;

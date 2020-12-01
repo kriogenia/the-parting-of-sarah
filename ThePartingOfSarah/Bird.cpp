@@ -6,6 +6,7 @@ Bird::Bird(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->flying = true;
+	this->points = BIRD_POINTS;
 	this->hp = BIRD_STARTING_HP;
 	this->speed = BIRD_MAX_SPEED;
 

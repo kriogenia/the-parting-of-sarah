@@ -2,6 +2,16 @@
 
 #include "Enemy.h"
 
+constexpr auto ROCK_LARGE_POINTS = 3;
+constexpr auto ROCK_MEDIUM_POINTS = 2;
+constexpr auto ROCK_SMALL_POINTS = 1;
+constexpr auto ROCK_LARGE_HP = 6;
+constexpr auto ROCK_MEDIUM_HP = 4;
+constexpr auto ROCK_SMALL_HP = 2;
+constexpr auto ROCK_LARGE_SPEED = 1;
+constexpr auto ROCK_MEDIUM_SPEED = 1.5;
+constexpr auto ROCK_SMALL_SPEED = 2;
+
 class Stone :
     public Enemy
 {

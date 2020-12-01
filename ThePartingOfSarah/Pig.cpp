@@ -5,6 +5,7 @@ Pig::Pig(float x, float y, Environment* room, Game* game) :
 {
 	importAnimations();
 
+	this->points = PIG_POINTS;
 	this->hp = PIG_HP;
 	this->speed = PIG_MOVING_SPEED;
 

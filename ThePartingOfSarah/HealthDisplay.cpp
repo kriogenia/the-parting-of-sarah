@@ -1,7 +1,6 @@
 #include "HealthDisplay.h"
 
-HealthDisplay::HealthDisplay(Game* game) :
-	game(game)
+HealthDisplay::HealthDisplay(Game* game)
 {
 	baseHealth = new HealthBar("res/hud/health_empty.png", 10, 10, 3 * HEART_WIDTH, HEART_HEIGHT, game);
 	currentHealth = new HealthBar("res/hud/health_full.png", 10, 10, 3 * HEART_WIDTH, HEART_HEIGHT, game);

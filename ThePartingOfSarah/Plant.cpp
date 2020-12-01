@@ -5,6 +5,7 @@ Plant::Plant(float x, float y, Environment* room, Game* game) :
 
 	importAnimations();
 
+	this->points = PLANT_POINTS;
 	this->hp = PLANT_HP;
 	this->speed = PLANT_SPEED;
 	this->shotTime = PLANT_SHOT_CADENCE;

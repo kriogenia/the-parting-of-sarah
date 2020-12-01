@@ -15,5 +15,4 @@ private:
 	Tile* baseCoins;
 	CoinBar* currentCoins;
 	MappedTile* info;
-	Game* game;
 };

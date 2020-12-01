@@ -1,6 +1,7 @@
 #include "PauseDisplay.h"
 
-PauseDisplay::PauseDisplay(Game* game)
+PauseDisplay::PauseDisplay(Game* game) :
+	points(&game->gameLayer->points)
 {
 	this->bg = new Actor("res/backgrounds/bg_pause.png", WIDTH * 0.5, HEIGHT * 0.5, 480, 480, game);
 	this->hp = new Text("HP", WIDTH / 2, HEIGHT / 2 - 50, true, game);
@@ -8,6 +9,7 @@ PauseDisplay::PauseDisplay(Game* game)
 	this->speed = new Text("SPEED", WIDTH / 2, HEIGHT / 2, true, game);
 	this->cadence = new Text("SHOT CADENCE", WIDTH / 2, HEIGHT / 2 + 25, true, game);
 	this->projectile = new Text("PROJECTILE", WIDTH / 2, HEIGHT / 2 + 50, true, game);
+	this->score = new Text("SCORE", WIDTH / 2, 3* HEIGHT / 4, true, game);
 }
 
 PauseDisplay::~PauseDisplay()
@@ -18,6 +20,7 @@ PauseDisplay::~PauseDisplay()
 	delete speed;
 	delete cadence;
 	delete projectile;
+	delete score;
 }
 
 void PauseDisplay::draw()
@@ -28,6 +31,9 @@ void PauseDisplay::draw()
 	speed->draw();
 	cadence->draw();
 	projectile->draw();
+
+	this->score->content = "Score: " + to_string(*points);
+	score->draw();
 }
 
 void PauseDisplay::update(Player* player)

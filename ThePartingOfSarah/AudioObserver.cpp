@@ -23,6 +23,7 @@ void AudioObserver::notify(eObserverMessages message, void* publisher) {
 	case NOTIFICATION_ENTER_NEW_FLOOR:
 	case NOTIFICATION_BOSS_HEAL:
 	case NOTIFICATION_BOSS_HIT:
+	case NOTIFICATION_ENEMY_KILLED:
 		return;
 	case NOTIFICATION_BOSS_KILLED:
 		audio->play(relatedClip[message]);

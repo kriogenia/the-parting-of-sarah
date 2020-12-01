@@ -13,7 +13,7 @@ public:
 	void draw();
 	void update(Player* player);
 private:
-	Game* game;
+	int* points;
 	/* Background */
 	Actor* bg;
 	/* Texts */
@@ -21,6 +21,7 @@ private:
 	Text* attack;
 	Text* speed;
 	Text* cadence;
+	Text* score;
 	Text* projectile;
 };
 

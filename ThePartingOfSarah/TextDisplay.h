@@ -14,7 +14,6 @@ public:
 	void update(string title, string subtitle);
 
 private:
-	Game* game;
 	Text* title;
 	Text* subtitle;
 

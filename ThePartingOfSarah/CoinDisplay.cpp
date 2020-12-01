@@ -1,7 +1,6 @@
 #include "CoinDisplay.h"
 
-CoinDisplay::CoinDisplay(Game* game) :
-	game(game)
+CoinDisplay::CoinDisplay(Game* game)
 {
 	baseCoins = new Tile("res/hud/coinbar_empty.png", HEIGHT - COIN_WIDTH, WIDTH - 10 * COIN_HEIGHT,
 		COIN_WIDTH, 10 * COIN_HEIGHT, game);

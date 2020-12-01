@@ -16,5 +16,4 @@ public:
 protected:
 	HealthBar* baseHealth;
 	HealthBar* currentHealth;
-	Game* game;
 };

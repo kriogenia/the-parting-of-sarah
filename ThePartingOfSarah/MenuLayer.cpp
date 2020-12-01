@@ -17,6 +17,7 @@ void MenuLayer::init()
 	else {
 		background = new Actor("res/backgrounds/bg_defeat.png", WIDTH * 0.5, HEIGHT * 0.5, 480, 480, game);
 		button = new Actor("res/hud/restart_button.png", WIDTH * 0.5, HEIGHT * 0.7, 300, 77, game);
+		points = new Text("SCORE: " + to_string(game->gameLayer->points), WIDTH / 2, HEIGHT * 0.9, true, game);
 	}
 	crosshair = new Crosshair(game);
 }
@@ -31,7 +32,9 @@ void MenuLayer::draw()
 	background->draw();
 	button->draw();
 	crosshair->draw();
-
+	if (!first) {
+		points->draw();
+	}
 	SDL_RenderPresent(game->renderer);
 }
 

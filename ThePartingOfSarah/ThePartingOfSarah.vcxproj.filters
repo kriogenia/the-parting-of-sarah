@@ -267,6 +267,9 @@
     <ClCompile Include="Stone.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="PointsObserver.cpp">
+      <Filter>Archivos de origen\Observers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="Stone.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PointsObserver.h">
+      <Filter>Archivos de encabezado\Observers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

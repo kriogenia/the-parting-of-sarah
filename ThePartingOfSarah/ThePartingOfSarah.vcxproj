@@ -201,6 +201,7 @@
     <ClCompile Include="Pig.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PointsObserver.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="Pig.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PointsObserver.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="Room.h" />

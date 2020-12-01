@@ -1,17 +1,11 @@
 #include "Stone.h"
 
-constexpr auto ROCK_LARGE_HP = 6;
-constexpr auto ROCK_MEDIUM_HP = 4;
-constexpr auto ROCK_SMALL_HP = 2;
-constexpr auto ROCK_LARGE_SPEED = 1;
-constexpr auto ROCK_MEDIUM_SPEED = 1.5;
-constexpr auto ROCK_SMALL_SPEED = 2;
-
 Stone::Stone(float x, float y, Environment* room, Game* game) :
 	Enemy("res/sprites/rock/Rock_Large_Moving_Left.png", x, y, 38, 34, room, game)
 {
 	importAnimations();
 
+	this->points = ROCK_LARGE_POINTS;
 	this->hp = ROCK_LARGE_HP;
 	this->speed = ROCK_LARGE_SPEED;
 
@@ -38,6 +32,9 @@ void Stone::death()
 {
 	this->action = DYING;
 	this->animation = dyingAnimation;
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
+	}
 	room->addEnemy(new MediumStone(x + 20, y, room, game));
 	room->addEnemy(new MediumStone(x - 20, y, room, game));
 }
@@ -49,6 +46,7 @@ Stone::MediumStone::MediumStone(float x, float y, Environment* room, Game* game)
 {
 	importAnimations();
 
+	this->points = ROCK_MEDIUM_POINTS;
 	this->hp = ROCK_MEDIUM_HP;
 	this->speed = ROCK_MEDIUM_SPEED;
 
@@ -75,6 +73,9 @@ void Stone::MediumStone::death()
 {
 	this->action = DYING;
 	this->animation = dyingAnimation;
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
+	}
 	room->addEnemy(new SmallStone(x + 10, y, room, game));
 	room->addEnemy(new SmallStone(x - 10, y, room, game));
 }
@@ -86,6 +87,7 @@ Stone::SmallStone::SmallStone(float x, float y, Environment* room, Game* game) :
 {
 	importAnimations();
 
+	this->points = ROCK_SMALL_POINTS;
 	this->hp = ROCK_SMALL_HP;
 	this->speed = ROCK_SMALL_SPEED;
 
@@ -112,6 +114,9 @@ void Stone::SmallStone::death()
 {
 	this->action = DYING;
 	this->animation = dyingAnimation;
+	for (auto const& observer : observers) {
+		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
+	}
 	// 1 out 4 chances to drop a coin
 	if (rand() % COIN_RARITY * 4 == 0) {
 		room->spawnCoin(x, y);

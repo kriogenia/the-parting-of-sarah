@@ -19,4 +19,5 @@ public:
 	int mouseY = 0;
 
 	Game* game;
+	int points = 0;
 };

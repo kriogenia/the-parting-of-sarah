@@ -4,6 +4,7 @@
 
 constexpr auto DEFAULT_BOSS_ACTIONS = 3;
 constexpr auto DEFAULT_BOSS_CD = 60;
+constexpr auto DEFAULT_BOSS_POINTS = 50;
 
 enum eBossList {
     BARRELWOOD,

@@ -6,6 +6,7 @@ Snail::Snail(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->hp = SNAIL_HP;
+	this->points = SNAIL_POINTS;
 	this->speed = SNAIL_SPEED;
 	this->timeToHide = SNAIL_INVULNERATIBILITY_CD;
 

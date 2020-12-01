@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+constexpr auto BEE_POINTS = 10;
 constexpr auto BEE_SPEED = 1.5;
 constexpr auto BEE_HP = 3;
 constexpr auto BEE_SHOT_CADENCE = 55;

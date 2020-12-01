@@ -3,6 +3,7 @@
 #include "Enemy.h"
 class Enemy;
 
+constexpr auto PIG_POINTS = 12;
 constexpr auto PIG_MOVING_SPEED = 2;
 constexpr auto PIG_RUNNING_SPEED = 4;
 constexpr auto PIG_HP = 5;

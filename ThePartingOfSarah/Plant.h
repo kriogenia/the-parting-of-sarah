@@ -4,6 +4,7 @@
 #include "Room.h"
 class Room;
 
+constexpr auto PLANT_POINTS = 10;
 constexpr auto PLANT_HP = 6;
 constexpr auto PLANT_SPEED = 0;
 constexpr auto PLANT_SHOT_CADENCE = 75;

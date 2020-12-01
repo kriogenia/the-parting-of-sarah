@@ -1,5 +1,9 @@
 #include "GameLayer.h"
 
+#include "AudioObserver.h"
+#include "HudObserver.h"
+#include "PointsObserver.h"
+
 GameLayer::GameLayer(Game* game) :
 	Layer(game) 
 {
@@ -19,12 +23,14 @@ GameLayer::~GameLayer()
 void GameLayer::init() 
 {
 	/* Initiates global game instances */
+	this->points = 0;
 	audio = AudioPlayer::getInstance();
 	hud = new Hud(game);
 	// Initiates player
 	player = new Player(0, 0, &mouseX, &mouseY, &scrollX, &scrollY, game);
 	player->observers.push_back(new HudObserver(hud));
 	player->observers.push_back(new AudioObserver(audio));
+	player->observers.push_back(new PointsObserver(&points));
 	hud->updateStats(player);
 	/* Starts audio and first level */
 	audio->start();
@@ -54,6 +60,7 @@ void GameLayer::update()
 	space->checkDynamicCollisions();
 	// Game Over check
 	if (player->destructionFlag) {
+		game->restartLayer->init();
 		game->layer = game->restartLayer;
 		return;
 	}
@@ -103,6 +110,7 @@ void GameLayer::initFloor()
 	// Create environment observers
 	level->observers.push_back(new AudioObserver(audio));
 	level->observers.push_back(new HudObserver(hud));
+	level->observers.push_back(new PointsObserver(&points));
 	level->expandObservers();
 	// Clean actors list
 	projectiles.clear();
@@ -116,7 +124,7 @@ void GameLayer::climbUp()
 {
 	cout << "Floor " << floor << " completed, going up" << endl;
 	floor++;
-	init();
+	initFloor();
 }
 
 void GameLayer::keysToControl(SDL_Event event) 
