@@ -31,6 +31,7 @@ public:
 	Game(int seed = -1);
 
 	void loop();
+	void scale();
 
 	SDL_Texture* getTexture(string filename);
 
@@ -49,8 +50,12 @@ public:
 	TTF_Font* fontOutlineSubtitle;
 
 	int seed;
+	float scaleLower = 1;
 
 private:
 
 	map<string, SDL_Texture*> mapTextures;
+
+	bool scaledToMax;
+
 };

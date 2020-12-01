@@ -44,7 +44,7 @@ void MenuLayer::keysToControl(SDL_Event event) {
 			game->loopActive = false;
 			break;
 		case SDLK_1:
-			//game->scale();
+			game->scale();
 			break;
 		case SDLK_SPACE: 
 			game->layer = game->gameLayer;

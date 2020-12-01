@@ -128,7 +128,11 @@ void GameLayer::keysToControl(SDL_Event event)
 			game->loopActive = false;
 			return;
 		}
-		else if (code == SDLK_RETURN) {
+		if (code == SDLK_1) {
+			game->scale();
+			return;
+		}
+		if (code == SDLK_RETURN) {
 			pause = !pause;
 			return;
 		}
