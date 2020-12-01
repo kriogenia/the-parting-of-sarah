@@ -21,6 +21,7 @@ void AudioObserver::notify(eObserverMessages message, void* publisher) {
 	Room* room;
 	switch (message) {
 	case NOTIFICATION_ENTER_NEW_FLOOR:
+	case NOTIFICATION_BOSS_HEAL:
 	case NOTIFICATION_BOSS_HIT:
 		return;
 	case NOTIFICATION_BOSS_KILLED:

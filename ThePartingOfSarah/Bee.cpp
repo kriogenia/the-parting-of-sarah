@@ -51,8 +51,6 @@ void Bee::setMovement() {
 	}
 }
 
-void Bee::setOrientation() {}
-
 void Bee::setAction(bool endAction) {
 	float distance = sqrt(pow(room->player->x - x, 2) + pow(room->player->y - y, 2));
 	if (this->action == MOVING && distance < BEE_LOCK_DISTANCE && shotTime < 0) {

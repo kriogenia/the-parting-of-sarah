@@ -24,7 +24,7 @@ public:
     void damage(float damage = 1.0) override;
 
 private:
-    void setOrientation() override;
+    void setOrientation() override {}
 
     void importAnimations() override;
 

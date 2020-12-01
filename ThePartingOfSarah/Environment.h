@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Character.h"
 #include "Projectile.h"
 #include "Tile.h"
 
@@ -7,6 +8,7 @@
 class Environment
 {
 public:
+	virtual void addEnemy(Character* enemy) = 0;
 	virtual void addEnemyProjectile(Projectile* projectile) = 0;
 	virtual void addTile(Tile* tile) = 0;
 	virtual void spawnCoin(float x, float y) = 0;

@@ -131,11 +131,7 @@ void Room::playerEntered()
 		this->closeDoors();
 		// Spawn enemies
 		for (auto const& enemy : enemiesToSpawn) {
-			enemy->observers = observers;
-			enemies.push_back(enemy);
-			(enemy->flying) ? 
-				space->addFlyingDynamicActor(enemy) :
-				space->addDynamicActor(enemy);
+			addEnemy(enemy);
 		}
 		enemiesToSpawn.clear();
 	}
@@ -167,6 +163,15 @@ void Room::closeDoors()
 		door->close();
 		space->addStaticActor(door);
 	}
+}
+
+void Room::addEnemy(Character* enemy)
+{
+	enemy->observers = observers;
+	enemies.push_back(enemy);
+	(enemy->flying) ?
+		space->addFlyingDynamicActor(enemy) :
+		space->addDynamicActor(enemy);
 }
 
 void Room::addEnemyProjectile(Projectile* projectile) 
@@ -393,7 +398,7 @@ void Room::loadMapObject(char character, int i, int j) {
 		break;
 	}
 	case ROCK: {
-		Tile* tile = new Rock(x, y, game);
+		Tile* tile = new Tile("res/tiles/rock.png", x, y, 16, 16, game);
 		tiles.push_back(new MappedTile("res/tiles/floor.png", x, y, 160, rand() % 10, game));
 		tiles.push_back(tile);
 		space->addStaticActor(tile);

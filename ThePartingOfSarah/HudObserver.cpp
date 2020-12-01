@@ -12,8 +12,8 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		hud->updateText("POWER UP"); 
 		player = (Player*)publisher;
 		hud->updateStats(player);
-	case NOTIFICATION_PLAYER_HIT:
 	case NOTIFICATION_PLAYER_HEAL:
+	case NOTIFICATION_PLAYER_HIT:
 		player = (Player*) publisher;
 		hud->updateHealthDisplay(player->hp, player->maxHp);
 		break;
@@ -30,8 +30,9 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		boss = (Boss*)publisher;
 		cout << boss->name << endl;
 		hud->updateText(boss->name, boss->subtitle);
-	case NOTIFICATION_BOSS_KILLED:
+	case NOTIFICATION_BOSS_HEAL:
 	case NOTIFICATION_BOSS_HIT:
+	case NOTIFICATION_BOSS_KILLED:
 		boss = (Boss*)publisher;
 		hud->updateBossHealthDisplay(boss->hp, boss->maxHp);
 		break;

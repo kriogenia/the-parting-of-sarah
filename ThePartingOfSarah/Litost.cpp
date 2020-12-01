@@ -11,7 +11,7 @@ Litost::Litost(float x, float y, Environment* room, Game* game) :
 
 	this->maxHp = LITOST_HP;
 	this->hp = maxHp;
-	this->speed = 0;
+	this->speed = LITOST_SPEED;
 
 	this->animation = movingAnimations[LEFT];
 }
@@ -33,10 +33,6 @@ void Litost::damage(float damage)
 			observer->notify(NOTIFICATION_BLOCKED_SHOT);
 		}
 	}
-}
-
-void Litost::setOrientation()
-{
 }
 
 void Litost::importAnimations()

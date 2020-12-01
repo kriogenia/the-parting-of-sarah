@@ -24,7 +24,7 @@ public:
 private:
     void setMovement() override;
     void setAction(bool endAction) override;
-    void setOrientation() override;
+    void setOrientation() override {};
 
     void importAnimations() override;
 

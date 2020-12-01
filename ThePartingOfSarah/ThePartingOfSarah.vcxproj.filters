@@ -120,9 +120,6 @@
     <ClCompile Include="MappedTile.cpp">
       <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>Archivos de origen\Actors\Tiles</Filter>
-    </ClCompile>
     <ClCompile Include="DestructibleTile.cpp">
       <Filter>Archivos de origen\Actors\Tiles</Filter>
     </ClCompile>
@@ -264,6 +261,9 @@
     <ClCompile Include="PauseDisplay.cpp">
       <Filter>Archivos de origen\HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Bore.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -294,9 +294,6 @@
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="MappedTile.h">
-      <Filter>Archivos de encabezado\Actors\Tiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock.h">
       <Filter>Archivos de encabezado\Actors\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="DestructibleTile.h">
@@ -439,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="PauseDisplay.h">
       <Filter>Archivos de encabezado\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Bore.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

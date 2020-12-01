@@ -20,7 +20,7 @@ public:
     /* Attributes */
     float damage;
 
-private:
+protected:
     void setVector(int destinyX, int destinyY);
     /* Attributes */
     float speed;

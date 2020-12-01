@@ -1,5 +1,16 @@
 #include "EnemyFactory.h"
 
+#include "Bee.h"
+#include "Bird.h"
+#include "Pig.h"
+#include "Plant.h"
+#include "Snail.h"
+
+#include "Barrelwood.h"
+#include "Bore.h"
+#include "Litost.h"
+#include "Pera.h"
+
 EnemyFactory* EnemyFactory::instance = 0;
 
 EnemyFactory* EnemyFactory::getInstance() {
@@ -31,12 +42,14 @@ Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* ga
 
 Boss* EnemyFactory::generateBoss(float x, float y, Environment* room, Game* game) {
     int typeOfEnemy = rand() % NUMBER_OF_BOSSES;
-    typeOfEnemy = LITOST;               // Debug
+    //typeOfEnemy = BORE;               // Debug
     switch (typeOfEnemy) {
-    case LITOST:
-        return new Litost(x, y, room, game);
     case BARRELWOOD:
         return new Barrelwood(x, y, room, game);
+    case BORE:
+        return new Bore(x, y, room, game);
+    case LITOST:
+        return new Litost(x, y, room, game);
     case PERA:
         return new Pera(x, y, room, game);
     }

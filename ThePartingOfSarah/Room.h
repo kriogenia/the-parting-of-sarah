@@ -7,7 +7,6 @@
 #include "Door.h"
 #include "Environment.h"
 #include "ItemFactory.h"
-#include "Rock.h"
 #include "Space.h"
 
 #include "EnemyFactory.h"
@@ -45,7 +44,8 @@ public:
 	void openDoors();
 	void closeDoors();
 	/* Environment */
-	void addEnemyProjectile(Projectile* projectile) override;
+	void addEnemy(Character* projectile) override;
+	void addEnemyProjectile(Projectile* enemy) override;
 	void addTile(Tile* tile) override;
 	void spawnCoin(float x, float y) override;
 	void spawnItem(float x, float y) override;

@@ -3,7 +3,6 @@
 GameLayer::GameLayer(Game* game) :
 	Layer(game) 
 {
-	init();
 }
 
 GameLayer::~GameLayer() 
@@ -19,13 +18,13 @@ GameLayer::~GameLayer()
 
 void GameLayer::init() 
 {
+	/* Initiates global game instances */
+	audio = AudioPlayer::getInstance();
+	hud = new Hud(game);
 	// Initiates player
 	player = new Player(0, 0, &mouseX, &mouseY, &scrollX, &scrollY, game);
 	player->observers.push_back(new HudObserver(hud));
 	player->observers.push_back(new AudioObserver(audio));
-	/* Initiates global game instances */
-	audio = AudioPlayer::getInstance();
-	hud = new Hud(game);
 	hud->updateStats(player);
 	/* Starts audio and first level */
 	audio->start();
@@ -124,19 +123,22 @@ void GameLayer::keysToControl(SDL_Event event)
 {
 	int code = event.key.keysym.sym;
 	if (event.type == SDL_KEYDOWN) {
-		if (code == SDLK_ESCAPE) {
-			game->loopActive = false;
-			return;
+		switch(code) {
+			case SDLK_ESCAPE :
+				game->loopActive = false;
+				break;
+			case SDLK_1 :
+				game->scale();
+				break;
+			case SDLK_2:
+				this->init();
+				break;
+			case SDLK_RETURN :
+				pause = !pause;
+				break;
+			default:
+				player->enterInput(code);
 		}
-		if (code == SDLK_1) {
-			game->scale();
-			return;
-		}
-		if (code == SDLK_RETURN) {
-			pause = !pause;
-			return;
-		}
-		player->enterInput(code);
 	}
 	if (event.type == SDL_KEYUP) {
 		player->stopInput(code);
