@@ -5,6 +5,7 @@
 #include "Pig.h"
 #include "Plant.h"
 #include "Snail.h"
+#include "Stone.h"
 
 #include "Barrelwood.h"
 #include "Bore.h"
@@ -23,7 +24,7 @@ EnemyFactory::EnemyFactory() {}
 
 // TODO change to map
 Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* game) {
-    //return new Bee(x, y, room, game);                       // Debug
+    return new Stone(x, y, room, game);                       // Debug
     int typeOfEnemy = rand() % NUMBER_OF_ENEMY_TYPES;
     switch (typeOfEnemy) {
     case BEE:
@@ -36,6 +37,8 @@ Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* ga
         return new Plant(x, y, room, game);
     case SNAIL:
         return new Snail(x, y, room, game);
+    case STONE:
+        return new Stone(x, y, room, game);
     }
 
 }

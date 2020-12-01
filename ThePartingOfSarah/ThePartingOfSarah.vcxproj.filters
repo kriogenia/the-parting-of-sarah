@@ -264,6 +264,9 @@
     <ClCompile Include="Bore.cpp">
       <Filter>Archivos de origen\Actors\Characters\Enemies\Bosses</Filter>
     </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -439,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="Bore.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

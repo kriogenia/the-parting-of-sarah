@@ -10,7 +10,8 @@ enum eBasicEnemyClass {
     BIRD,
     PIG,
     PLANT,
-    SNAIL
+    SNAIL,
+    STONE
 };
 
 class Enemy :

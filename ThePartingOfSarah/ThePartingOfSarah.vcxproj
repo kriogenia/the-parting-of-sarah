@@ -202,6 +202,7 @@
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
     <ClCompile Include="SkeletonItem.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Stone.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="ShieldItem.h" />
     <ClInclude Include="SkeletonItem.h" />
