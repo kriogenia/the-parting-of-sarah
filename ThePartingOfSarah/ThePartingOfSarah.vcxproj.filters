@@ -270,6 +270,9 @@
     <ClCompile Include="PointsObserver.cpp">
       <Filter>Archivos de origen\Observers</Filter>
     </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>Archivos de origen\Actors\Characters\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="PointsObserver.h">
       <Filter>Archivos de encabezado\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

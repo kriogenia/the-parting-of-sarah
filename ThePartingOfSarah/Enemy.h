@@ -8,6 +8,7 @@ constexpr auto COIN_RARITY = 1;
 enum eBasicEnemyClass {
     BEE,
     BIRD,
+    GHOST,
     PIG,
     PLANT,
     SNAIL,

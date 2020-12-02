@@ -28,8 +28,6 @@ void Plant::shoot() {
 	room->addEnemyProjectile(projectile);
 }
 
-void Plant::setMovement() {}
-
 void Plant::setAction(bool endAction) {
 	if (this->action == MOVING && shotTime < 0) {
 		this->action = SHOOTING;

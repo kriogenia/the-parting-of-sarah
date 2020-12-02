@@ -30,7 +30,7 @@ void Enemy::damage(float damage) {
 }
 
 void Enemy::setMovement() {
-	if (this->action == HIT || this->action == DYING) {
+	if (this->action == IDLE || this->action == HIT || this->action == DYING) {
 		this->vx = 0;
 		this->vy = 0;
 	}

@@ -22,7 +22,7 @@ public:
     void shoot();
 
 private:
-    void setMovement() override;
+    void setMovement() override {};
     void setAction(bool endAction) override;
 
     void importAnimations() override;

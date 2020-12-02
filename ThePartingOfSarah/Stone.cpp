@@ -35,8 +35,8 @@ void Stone::death()
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
 	}
-	room->addEnemy(new MediumStone(x + 20, y, room, game));
-	room->addEnemy(new MediumStone(x - 20, y, room, game));
+	room->addEnemy(new MediumStone(x + 5, y, room, game));
+	room->addEnemy(new MediumStone(x - 5, y, room, game));
 }
 
 /* Medium Stone */
@@ -76,8 +76,8 @@ void Stone::MediumStone::death()
 	for (auto const& observer : observers) {
 		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
 	}
-	room->addEnemy(new SmallStone(x + 10, y, room, game));
-	room->addEnemy(new SmallStone(x - 10, y, room, game));
+	room->addEnemy(new SmallStone(x + 5, y, room, game));
+	room->addEnemy(new SmallStone(x - 5, y, room, game));
 }
 
 /* Small Stone */
@@ -118,7 +118,7 @@ void Stone::SmallStone::death()
 		observer->notify(NOTIFICATION_ENEMY_KILLED, this);
 	}
 	// 1 out 4 chances to drop a coin
-	if (rand() % COIN_RARITY * 4 == 0) {
+	if (rand() % (COIN_RARITY * 4) == 0) {
 		room->spawnCoin(x, y);
 	}
 }
