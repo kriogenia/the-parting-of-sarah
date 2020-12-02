@@ -2,13 +2,15 @@
 
 #include "Boss.h"
 
+/* Attributes */
 constexpr auto BORE_HP = 40;
 constexpr auto BORE_SPEED = 1;
 constexpr auto BORE_HEALING = 2;
+/* Projectile attributes */
 constexpr auto BORE_PROJECTILE_SIZE = 8;
 constexpr auto BORE_PROJECTILE_SPEED = 3;
 constexpr auto BORE_PROJECTILE_LIFE = 150;          // 5s
-// Franky
+/* Franky attributes */
 constexpr auto FRANKY_SPEED = 2;
 constexpr auto FRANKY_HP = 3;
 

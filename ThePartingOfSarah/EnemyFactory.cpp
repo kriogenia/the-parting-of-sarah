@@ -5,6 +5,7 @@
 #include "Ghost.h"
 #include "Pig.h"
 #include "Plant.h"
+#include "Radish.h"
 #include "Snail.h"
 #include "Stone.h"
 
@@ -25,7 +26,7 @@ EnemyFactory::EnemyFactory() {}
 
 // TODO change to map with prototype/clone
 Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* game) {
-    return new Ghost(x, y, room, game);                       // Debug
+    //return new Radish(x, y, room, game);                       // Debug
     int typeOfEnemy = rand() % NUMBER_OF_ENEMY_TYPES;
     switch (typeOfEnemy) {
     case BEE:
@@ -38,6 +39,8 @@ Enemy* EnemyFactory::generateEnemy(float x, float y, Environment* room, Game* ga
         return new Pig(x, y, room, game);
     case PLANT:
         return new Plant(x, y, room, game);
+    case RADISH:
+        return new Radish(x, y, room, game);
     case SNAIL:
         return new Snail(x, y, room, game);
     case STONE:

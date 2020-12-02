@@ -2,7 +2,7 @@
 
 #include "Boss.h"
 
-constexpr auto NUMBER_OF_ENEMY_TYPES = 7;
+constexpr auto NUMBER_OF_ENEMY_TYPES = 8;
 constexpr auto NUMBER_OF_BOSSES = 2;
 
 /* Singleton */

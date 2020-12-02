@@ -204,6 +204,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PointsObserver.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Radish.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ShieldItem.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PointsObserver.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Radish.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="ShieldItem.h" />

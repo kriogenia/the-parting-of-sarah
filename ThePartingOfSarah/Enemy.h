@@ -11,6 +11,7 @@ enum eBasicEnemyClass {
     GHOST,
     PIG,
     PLANT,
+    RADISH,
     SNAIL,
     STONE
 };

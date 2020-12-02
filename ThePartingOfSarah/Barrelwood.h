@@ -3,11 +3,13 @@
 #include "Boss.h"
 #include "Player.h"
 
+/* Attributes */
 constexpr auto BARRELWOOD_HP = 25;
 constexpr auto BARRELWOOD_SPEED = 3;
 constexpr auto BARRELWOOD_PROJECTILE_SIZE = 13;
 
-enum eBarrelwoodActions {
+/* Moveset */
+enum eBarrelwoodMoveset {
     SPREADING_ACID,
     ROLLING,
     SMOKING
@@ -28,7 +30,7 @@ private:
     void setOrientation() override {};
     /* Boss */
     void doAction() override;
-    /* Pool of actions of the boss */
+    /* Moveset */
     void spreadAcid();
     void roll();
     void smoke();
@@ -41,7 +43,10 @@ private:
     int directionX;
     int directionY;
 
-    /* Internal classes */
+    /***************
+    Internal classes
+    ****************/
+
     class AcidTile :
         public Tile
     {

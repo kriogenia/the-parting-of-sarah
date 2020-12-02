@@ -1,7 +1,7 @@
 #include "Ghost.h"
 
 Ghost::Ghost(float x, float y, Environment* room, Game* game) :
-	Enemy("res/sprites/gohst/Ghost_Moving_Left.png", x, y, 44, 30, room, game)
+	Enemy("res/sprites/ghost/Ghost_Moving_Left.png", x, y, 44, 30, room, game)
 {
 	importAnimations();
 
