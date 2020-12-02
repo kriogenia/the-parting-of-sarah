@@ -10,7 +10,6 @@ Character::Character(string filename, float x, float y, int width, int height, G
 Character::~Character() {
 	movingAnimations.clear();
 	observers.clear();
-	delete animation;
 }
 
 void Character::update() {

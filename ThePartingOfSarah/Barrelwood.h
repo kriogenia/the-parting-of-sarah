@@ -58,11 +58,14 @@ private:
         int time;
     };
 
+    /*****************************/
+
     class SmokeProjectile :
         public Projectile
     {
     public:
         SmokeProjectile(float x, float y, Game* game);
+        ~SmokeProjectile();
         void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
     private:
         Animation* animation;

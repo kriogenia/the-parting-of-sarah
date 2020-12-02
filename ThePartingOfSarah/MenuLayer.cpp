@@ -8,6 +8,14 @@ MenuLayer::MenuLayer(Game* game, bool first)
 	init();
 }
 
+MenuLayer::~MenuLayer()
+{
+	delete background;
+	delete button;
+	delete points;
+	delete crosshair;
+}
+
 void MenuLayer::init() 
 {
 	if (first) {

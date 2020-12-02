@@ -139,6 +139,11 @@ Barrelwood::SmokeProjectile::SmokeProjectile(float x, float y, Game* game) :
 		BARRELWOOD_PROJECTILE_SIZE, BARRELWOOD_PROJECTILE_SIZE, 65, 13, 2, 5, true, game);
 }
 
+Barrelwood::SmokeProjectile::~SmokeProjectile()
+{
+	delete animation;
+}
+
 void Barrelwood::SmokeProjectile::draw(int scrollX, int scrollY, float rotation)
 {
 	this->animation->update();

@@ -7,10 +7,10 @@ class BossHealthDisplay :
 {
 public:
     BossHealthDisplay(Game* game);
-
+    /* Game cycle */
     void draw() override;
     void update(int currentHp, int maxHp) override;
-
+    /* State */
     bool show;
 };
 

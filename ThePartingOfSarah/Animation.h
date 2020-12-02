@@ -6,10 +6,10 @@ class Animation {
 public:
 	Animation(string filename, float actorWidth, float actorHeight, float fileWidth, float fileHeight, 
 		int updateFrequence, int totalFrames, bool loop, Game* game);
-
+	/* Game cycle */
 	bool update();
 	void draw(float x, float y, float rotation = 0);
-
+	/* Counters */
 	int currentFrame;
 	int totalFrames;
 

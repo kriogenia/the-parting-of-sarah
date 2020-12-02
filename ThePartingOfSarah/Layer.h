@@ -3,6 +3,7 @@
 #include "Game.h"
 class Game;
 
+/* interface */
 class Layer {
 public:
 	Layer(Game* game);
@@ -17,7 +18,8 @@ public:
 	/* Controls */
 	int mouseX = 0;
 	int mouseY = 0;
+	/* Score */
+	int points = 0;
 
 	Game* game;
-	int points = 0;
 };

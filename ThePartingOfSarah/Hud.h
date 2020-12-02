@@ -27,6 +27,7 @@ public:
 	void resetMap();
 
 private:
+	/* HUD modules */
 	BossHealthDisplay* boss;
 	CoinDisplay* coins;
 	Crosshair* crosshair;

@@ -15,6 +15,11 @@ Plant::Plant(float x, float y, Environment* room, Game* game) :
 	this->animation = movingAnimations[LEFT];
 }
 
+Plant::~Plant()
+{
+	shootingAnimations.clear();
+}
+
 void Plant::update() {
 	shotTime--;
 	if (this->action == SHOOTING &&

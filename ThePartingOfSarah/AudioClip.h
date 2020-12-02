@@ -10,7 +10,7 @@ class AudioClip
 public:
 	AudioClip(string filename);
 	~AudioClip();
-
+	/* Actions */
 	void play();
 private:
 	SDL_AudioSpec wavSpec;

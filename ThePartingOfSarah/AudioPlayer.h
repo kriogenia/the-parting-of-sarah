@@ -22,7 +22,7 @@ class AudioPlayer
 public:
 	static AudioPlayer* getInstance();
 	~AudioPlayer();
-
+	/* Actions */
 	void start();
 	void swap();
 	void play(eAudioClips key);
@@ -31,11 +31,11 @@ private:
 	static AudioPlayer* instance;
 
 	AudioPlayer();
-
+	/* Background tracks */
 	BackgroundAudio* currentTheme;
 	BackgroundAudio* bossTheme;
 	BackgroundAudio* mainTheme;
-
+	/* Sound effects */
 	map<eAudioClips, AudioClip*> clips;
 
 };

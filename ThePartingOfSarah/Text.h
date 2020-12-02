@@ -9,18 +9,19 @@ class Text
 {
 public:
 	Text(string content, float x, float y, bool title, Game* game);
-
+	/* Game cycle */
 	void draw();
 
 	string content;
 
 private:
+	/* Attributes */
 	int outlineSize;
 	int x;
 	int y;
 	int width;
 	int height;
-
+	/* Modules */
 	Game* game;
 	TTF_Font* bgFont;
 	TTF_Font* fgFont;

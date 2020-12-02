@@ -12,6 +12,7 @@
 #include "EnemyFactory.h"
 class EnemyFactory;
 
+/* Size */
 constexpr auto TILES_PER_ROOM = 30;
 constexpr auto TILES_PER_FILE = 24;
 constexpr auto FLOOR_OFFSET = 3*TILE_SIZE;
@@ -32,7 +33,7 @@ class Room :
 public:
 	Room(eRoomType type, int x, int y, int number, Space* space, Actor* player, Game* game);
 	~Room();
-
+	/* Game cycle */
 	void draw(int scrollX, int scrollY);
 	void update() override;
 	/* Room layout loading */
@@ -85,18 +86,18 @@ protected:
 	/* Room generators */
 	string filename;
 	char grid[TILES_PER_ROOM][TILES_PER_ROOM];
-	/* Room tiles */
+	/* Tiles */
 	list<Tile*> tiles;
 	list<Door*> doors;
 	list<Tile*> destructibles;
-	/* Room actors */
+	/* Actors */
 	list<Character*> enemies;
 	list<Character*> enemiesToSpawn;
 	list<Item*> items;
 	list<Projectile*> enemyProjectiles;
-	/* Room attributes */
+	/* attributes */
 	int code = -1;
-	/* Room global position*/
+	/* Global position*/
 	int offsetRoomX;
 	int offsetRoomY;
 };

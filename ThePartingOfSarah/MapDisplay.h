@@ -17,14 +17,15 @@ public:
 	void update(Room* room);
 
 private:
+	/* Map update */
 	void regenerateTiles();
-
+	/* Map */
 	int grid[MAP_SIZE][MAP_SIZE];
 	list<Actor*> tiles;
-
-	Game* game;
-
+	/* Placer current position */
 	int currentX;
 	int currentY;
+
+	Game* game;
 };
 

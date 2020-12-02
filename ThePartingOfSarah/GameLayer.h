@@ -28,7 +28,6 @@ private:
 	/* Game progression */
 	void initFloor();
 	void climbUp();
-
 	/* Game modules */
 	AudioPlayer* audio;
 	Hud* hud;

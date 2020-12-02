@@ -6,6 +6,12 @@ HealthDisplay::HealthDisplay(Game* game)
 	currentHealth = new HealthBar("res/hud/health_full.png", 10, 10, 3 * HEART_WIDTH, HEART_HEIGHT, game);
 }
 
+HealthDisplay::~HealthDisplay()
+{
+	delete baseHealth;
+	delete currentHealth;
+}
+
 void HealthDisplay::draw() {
 	baseHealth->draw();
 	currentHealth->draw();

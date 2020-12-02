@@ -9,11 +9,13 @@ class HealthDisplay
 {
 public:
 	HealthDisplay(Game* game);
-
+	~HealthDisplay();
+	/* Game cycle */
 	virtual void draw();
 	virtual void update(int currentHp, int maxHp);
 
 protected:
+	/* Components */
 	HealthBar* baseHealth;
 	HealthBar* currentHealth;
 };

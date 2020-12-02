@@ -12,6 +12,11 @@ Radish::Radish(float x, float y, Environment* room, Game* game) :
 	this->animation = movingAnimations[LEFT];
 }
 
+Radish::~Radish()
+{
+	delete idleAnimation;
+}
+
 void Radish::setAction(bool endedAction)
 {
 	if (endedAction) {

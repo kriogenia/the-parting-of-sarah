@@ -17,6 +17,6 @@ private:
 	/* Item */
 	void applyEffect(Player* player) override;
 	void notify(Player* player) override;
-
+	/* Animation */
 	Animation* animation;
 };

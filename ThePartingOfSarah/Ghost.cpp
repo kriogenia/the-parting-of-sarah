@@ -15,6 +15,11 @@ Ghost::Ghost(float x, float y, Environment* room, Game* game) :
 	this->animation = movingAnimations[LEFT];
 }
 
+Ghost::~Ghost()
+{
+	hideAnimations.clear();
+}
+
 void Ghost::draw(int scrollX, int scrollY, float rotation)
 {
 	if (this->action == HIDING) {
@@ -47,6 +52,9 @@ void Ghost::setAction(bool endedAction)
 	else if (this->action == HIDING && hidingDuration <= 0) {
 		hidingDuration = GHOST_HIDING_DURATION;
 		this->action = MOVING;
+	}
+	else {
+		Enemy::setAction(endedAction);
 	}
 }
 

@@ -5,10 +5,10 @@
 #include "Game.h"
 #include "BossRoom.h"
 
+/* Size */
 constexpr auto FLOOR_SIZE = 5;
+/* Pool of rooms */
 constexpr auto FLOORS_POOL_SIZE = 25;
-
-using namespace std;
 
 class Level {
 public:
@@ -25,6 +25,7 @@ public:
 	/* Key room pointers */
 	BossRoom* bossRoom;
 	Room* currentRoom;
+	Room* safetyPointer;
 
 private:
 	/* Level generation */

@@ -27,7 +27,8 @@ enum eTileType {
 };
 
 class Tile :
-    public Actor {
+    public Actor 
+{
 public:
     Tile(string filename, float x, float y, int width, int height, Game* game);
     Tile(string filename, float x, float y, int width, int height, int fileWidth, int fileHeight, Game* game);

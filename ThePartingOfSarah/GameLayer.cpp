@@ -139,6 +139,10 @@ void GameLayer::keysToControl(SDL_Event event)
 				game->scale();
 				break;
 			case SDLK_2:
+				player->x = (level->safetyPointer->x + 0.5) * TILES_PER_ROOM * TILE_SIZE;
+				player->y = (level->safetyPointer->y + 0.5) * TILES_PER_ROOM * TILE_SIZE;
+				break;
+			case SDLK_3:
 				this->init();
 				break;
 			case SDLK_RETURN :

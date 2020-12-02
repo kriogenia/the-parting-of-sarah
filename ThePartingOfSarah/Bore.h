@@ -14,7 +14,7 @@ constexpr auto BORE_PROJECTILE_LIFE = 150;          // 5s
 constexpr auto FRANKY_SPEED = 2;
 constexpr auto FRANKY_HP = 3;
 
-enum eBoreActions {
+enum eBoreMoveset {
     SHOOT,
     SLEEP,
     SUMMON_FRANKY
@@ -30,12 +30,12 @@ public:
     void update() override;
 
 private:
-    void setOrientation() override {};
-
+    /* Character */
     void importAnimations() override;
-
+    void setOrientation() override {};
+    /* Boss */
     void doAction() override;
-    /* Pool of actions of the boss */
+    /* Moveset */
     void shoot();
     void sleep();
     void summonFranky();
@@ -44,23 +44,9 @@ private:
     Animation* sleepAnimation;
     Animation* summonFrankyAnimation;
 
-    /* Internal classes */
-    class ChasingProjectile :
-        public Projectile
-    {
-    public:
-        ChasingProjectile(float x, float y, Actor* player, Game* game);
-
-        void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
-    private:
-
-        void update();
-
-        Animation* animation;
-        Actor* player;
-
-        int aliveTime;
-    };
+    /***************
+    Internal classes
+    ****************/
 
     class Franky :
         public Enemy
@@ -69,8 +55,21 @@ private:
         Franky(float x, float y, Environment* room, Game* game);
     private:
         void importAnimations() override;
-
         void death() override;
+    };
+
+    /*****************************/
+
+    class ChasingProjectile :
+        public Projectile
+    {
+    public:
+        ChasingProjectile(float x, float y, Actor* player, Game* game);
+        void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
+    private:
+        void update();
+        Actor* player;
+        int aliveTime;
     };
 };
 

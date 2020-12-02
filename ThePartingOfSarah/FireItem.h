@@ -2,6 +2,7 @@
 
 #include "Item.h"
 
+/* Files */
 constexpr auto PLAYER_PROJECTILE_FILE_ALT = "res/sprites/player/Player_Projectile_Alt.png";
 
 class FireItem :

@@ -13,10 +13,10 @@ public:
     /* Room */
     void update() override;
     void playerEntered() override;
-
+    /* Key actors */
     Tile* stair = nullptr;
     Character* boss = nullptr;
-
+    /* State */
     bool completed = false;
 };
 

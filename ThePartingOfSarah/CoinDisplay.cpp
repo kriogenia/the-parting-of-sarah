@@ -9,6 +9,13 @@ CoinDisplay::CoinDisplay(Game* game)
 		COIN_WIDTH, 10 * COIN_HEIGHT, 2 * COIN_WIDTH, 10 * COIN_HEIGHT, 0, game);
 }
 
+CoinDisplay::~CoinDisplay()
+{
+	delete baseCoins;
+	delete currentCoins;
+	delete info;
+}
+
 void CoinDisplay::draw() {
 	baseCoins->draw();
 	currentCoins->draw();

@@ -32,7 +32,6 @@ public:
 	SDL_Texture* texture;
 	int fileWidth;
 	int fileHeight;
-
 	/* Attributes */
 	eActorType type;
 	bool destructionFlag;		

@@ -9,6 +9,7 @@ Level::Level(int floor, Space* space, Actor* player, Game* game) :
 	background = new Background(game);
 	generateRooms();
 	currentRoom = startingRoom;
+	safetyPointer = startingRoom;
 	currentRoom->openDoors();
 	//currentRoom->printGrid();					// Debug
 }
@@ -37,6 +38,7 @@ void Level::update() {
 		for (auto const& room : rooms) {
 			if (room->hasPlayerInside()) {
 				currentRoom = room;
+				safetyPointer = room;
 				currentRoom->playerEntered();
 			}
 		}

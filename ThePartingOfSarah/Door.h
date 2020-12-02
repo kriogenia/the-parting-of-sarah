@@ -12,11 +12,9 @@ class Door :
 {
 public:
     Door(string filename, int x, int y, int width, int height, int fileWidth, int fileHeight, Game* game);
-
+    /* Actions */
     void open();
     void close();
 
-private:
-    int type;
 };
 

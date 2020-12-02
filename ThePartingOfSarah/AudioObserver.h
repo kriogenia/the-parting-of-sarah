@@ -10,10 +10,10 @@ class AudioObserver :
 {
 public:
     AudioObserver(AudioPlayer* audio);
-
+    /* Observer */
     void notify(eObserverMessages message, void* publisher = nullptr) override;
 private:
     AudioPlayer* audio;
-
+    /* Effect - sound map*/
     map<eObserverMessages, eAudioClips> relatedClip;
 };

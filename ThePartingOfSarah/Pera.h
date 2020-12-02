@@ -3,14 +3,15 @@
 #include "Boss.h"
 #include "Player.h"
 
+/* Attributes */
 constexpr auto PERA_HP = 29;
 constexpr auto PERA_SPEED = 2;
 constexpr auto PERA_MAX_SPEED = 4;
 constexpr auto PERA_MINE_COOLDOWN = 15;
+/* Files */
 constexpr auto DEFLECTED_PROJECTILE_FILE = "res/sprites/pera/Reflected_Projectile.png";
 
-enum ePeraActions {
-    FLY,
+enum ePeraMoveset {
     REFLECT,
     SPRINT,
     THROW_MINES
@@ -22,9 +23,10 @@ class Pera :
 public:
     Pera(float x, float y, Environment* room, Game* game);
     ~Pera();
-    /* Actor */
+    /* Game cycle */
     void draw(int scrollX = 0, int scrollY = 0, float rotation = 0.0) override;
     void update() override;
+    /* Actor */
     void collisionedWith(Actor* actor) override;
 
 private:
@@ -35,7 +37,7 @@ private:
     void setOrientation() override {};
     /* Boss */
     void doAction() override;
-    /* Pool of actions of the boss */
+    /* Moveset */
     void reflect();
     void sprint();
     void throwMines();
@@ -46,7 +48,10 @@ private:
     /* Attributes */
     int mineCooldown;
 
-    /* Internal classes */
+    /***************
+    Internal classes
+    ****************/
+
     class MineTile :
         public Tile
     {

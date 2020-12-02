@@ -17,7 +17,7 @@ private:
     ItemFactory(Game* game);
 
     Game* game;
-
+    /* Copies of items to clone */
     vector<Item*> items;
 
 };

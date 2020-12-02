@@ -10,6 +10,7 @@ class MenuLayer :
 {
 public:
 	MenuLayer(Game* game, bool first);
+	~MenuLayer();
 	/* Game cycle */
 	void init() override;
 	void draw() override;

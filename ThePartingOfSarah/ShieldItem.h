@@ -2,6 +2,7 @@
 
 #include "Item.h"
 
+/* Adjustment values */
 constexpr auto DEFAULT_SHIELD_CD = 480;
 constexpr auto SHIELD_CD_REDUCTION = 30;
 constexpr auto SHIELD_CD_CAP = 240;

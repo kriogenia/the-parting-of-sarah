@@ -56,18 +56,17 @@ public:
     int shieldCd;
     int numberOfProjectiles;
     string projectileFile;
-    // Controls
+    /* Control */
     void enterInput(int code);
     void stopInput(int code);
     void move();
     vector<Projectile*> shoot(int mouseX, int mouseY);
-    // Debug
+    /* Debug */
     void print();
     
 private:
-    // Initialization
+    /* Character */
     void importAnimations() override;
-    /* Character update */
     void setAction(bool endedAction) override;
     void setOrientation() override;
     void setAxisOrientation(int orientationX, int orientationY);
@@ -75,21 +74,21 @@ private:
     void setAnimation() override;
     /* Player update */
     void updateShield();
-    // Animations
+    /* Extra actions animations */
     map<eCharacterOrientation, Animation*> idleAnimations;
     map<eCharacterOrientation, Animation*> shootingAnimations;
-    // Movement and controls
+    /* Movement and controls */
     int moveUp = 0;
     int moveLeft = 0;
     int moveRight = 0;
     int moveDown = 0;
     bool shooting = false;
-    // Cooldowns
+    /* Counters */
     int invulnerabilityTime;
     bool shieldUp;
     int shieldTime;
     int shotTime;
-    // Mouse and screen reference
+    /* Mouse and screen reference */
     int* mouseX;
     int* mouseY;
     int* scrollX;

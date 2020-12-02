@@ -10,7 +10,7 @@ class HudObserver :
 {
 public:
     HudObserver(Hud* hud);
-
+    /* Observer */
     void notify(eObserverMessages message, void* publisher = nullptr) override;
 private:
     Hud* hud;

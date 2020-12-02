@@ -2,6 +2,7 @@
 
 #include "Item.h"
 
+/* Adjustment values */
 constexpr auto KNIFE_ATTACK_MULTIPLIER = 1.25;
 
 class KnifeItem :
