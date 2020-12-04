@@ -269,6 +269,7 @@
     <ClInclude Include="PointsObserver.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Radish.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="ShieldItem.h" />
@@ -278,6 +279,14 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextDisplay.h" />
     <ClInclude Include="Tile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ThePartingOfSarah.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Descargas\favicon.ico" />
+    <Image Include="E:\Descargas\icon.ico" />
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

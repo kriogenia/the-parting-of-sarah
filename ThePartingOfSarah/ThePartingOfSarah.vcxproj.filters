@@ -464,5 +464,24 @@
     <ClInclude Include="Radish.h">
       <Filter>Archivos de encabezado\Actors\Characters\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ThePartingOfSarah.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="E:\Descargas\favicon.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="E:\Descargas\icon.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>
