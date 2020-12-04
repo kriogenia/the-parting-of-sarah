@@ -4,6 +4,7 @@ BackgroundAudio::BackgroundAudio(string filename) :
 	filename(filename)
 {
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096); // 2 channels
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 }
 
 BackgroundAudio::~BackgroundAudio() {

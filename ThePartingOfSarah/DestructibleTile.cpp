@@ -7,7 +7,7 @@ DestructibleTile::DestructibleTile(string filename, int x, int y, int width, int
 }
 
 void DestructibleTile::collisionedWith(Actor* actor) {
-	if (actor->type == PROJECTILE) {
+	if (actor->type == PROJECTILE || actor->type == ENEMY_PROJECTILE) {
 		this->hp--;
 		this->position = hp;
 		if (hp <= 0) {
