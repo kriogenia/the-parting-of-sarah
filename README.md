@@ -11,6 +11,8 @@ The goal is to reach the deepest floor you can killing the bosses of each one an
 
 The game is developed in C++ only using the SDL2 library for handling audio and grahpics, that's all. Everything else will be pure manfactured C++.
 
+![Screen](https://i.imgur.com/GbZWPSg.jpg)
+
 # Controls
 
 The game is controlled with mouse and keyboard. The mouse is used to aim and shoot and the keyboard to move the character.
