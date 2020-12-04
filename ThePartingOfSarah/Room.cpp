@@ -116,8 +116,8 @@ bool Room::hasPlayerInside()
 	int leftLimit = offsetRoomX + FLOOR_OFFSET;
 	int rightLimit = offsetRoomX + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
 	int bottomLimit = offsetRoomY + TILES_PER_ROOM * TILE_SIZE - FLOOR_OFFSET;
-	if (player->x + player->width / 2 >= leftLimit &&
-		player->x - player->width / 2 <= rightLimit &&
+	if (player->x - player->width / 2 >= leftLimit &&
+		player->x + player->width / 2 <= rightLimit &&
 		player->y - player->height / 2 >= topLimit &&
 		player->y + player->height / 2 <= bottomLimit) {
 		return true;

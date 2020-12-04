@@ -20,7 +20,7 @@ void MenuLayer::init()
 {
 	if (first) {
 		background = new Actor("res/backgrounds/bg_start.png", WIDTH * 0.5, HEIGHT * 0.5, 480, 480, game);
-		button = new Actor("res/hud/start_button.png", WIDTH * 0.5, HEIGHT * 0.7, 247, 77, game);
+		button = new Actor("res/hud/start_button.png", WIDTH * 0.5, HEIGHT * 0.5, 247, 77, game);
 	}
 	else {
 		background = new Actor("res/backgrounds/bg_defeat.png", WIDTH * 0.5, HEIGHT * 0.5, 480, 480, game);

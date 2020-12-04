@@ -14,6 +14,7 @@ Item* KnifeItem::getCopy(float x, float y)
 
 void KnifeItem::applyEffect(Player* player)
 {
+	// Not affected by the cap
 	player->attack *= KNIFE_ATTACK_MULTIPLIER;
 	player->print();
 }

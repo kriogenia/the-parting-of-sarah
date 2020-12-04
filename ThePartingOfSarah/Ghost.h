@@ -7,7 +7,7 @@ constexpr auto GHOST_POINTS = 9;
 constexpr auto GHOST_HP = 4;
 constexpr auto GHOST_SPEED = 1.5;
 constexpr auto GHOST_HIDING_COOLDOWN = 120;         // 4s
-constexpr auto GHOST_HIDING_DURATION = 60;          // 2s
+constexpr auto GHOST_HIDING_DURATION = 90;          // 2.5s
 
 class Ghost :
     public Enemy

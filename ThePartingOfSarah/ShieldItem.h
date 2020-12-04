@@ -3,9 +3,9 @@
 #include "Item.h"
 
 /* Adjustment values */
-constexpr auto DEFAULT_SHIELD_CD = 480;
-constexpr auto SHIELD_CD_REDUCTION = 30;
-constexpr auto SHIELD_CD_CAP = 240;
+constexpr auto DEFAULT_SHIELD_CD = 480;                 // 16s
+constexpr auto SHIELD_CD_REDUCTION = 30;                //  1s
+constexpr auto SHIELD_CD_CAP = 240;                     //  8s
 
 class ShieldItem :
     public Item

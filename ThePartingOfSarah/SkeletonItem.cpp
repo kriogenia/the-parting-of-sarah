@@ -1,7 +1,7 @@
 #include "SkeletonItem.h"
 
 SkeletonItem::SkeletonItem(float x, float y, Game* game) :
-	Item("res/items/skeleton.png", x, y, game)
+	Item("res/items/iyan.png", x, y, game)
 {
 	this->name = "Iyanel";
 	this->subtitle = "The emo way";
