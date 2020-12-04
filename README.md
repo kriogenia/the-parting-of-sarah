@@ -1,6 +1,8 @@
 # the-parting-of-sarah
 ![The Parting of Sarah Logo](https://i.imgur.com/1Q5CbEP.png)
 
+This game is published on [itchi.io](https://kriogenia.itch.io/the-parting-of-sarah)
+
 Assingment for the Videogames and Entertainment Software 20/21 subject of the University of Oviedo.
 
 This little project intends to be a very light version of The Binding of Isaac with the player control of Enter the Gungeon. That's it.
@@ -42,6 +44,15 @@ Currently the game features a total of seven enemies:
 * **Plant**, it's a ranged static enemy who shoots three beans.
 * **Raddish**, it's a melee enemy with a lot of health that needs to stop to rest.
 * **Stone**, it's a melee enemy that leaves two smaller stones when it diest. Those stones also leave another two smaller ones. Smaller the stone, faster.
+
+# Bosses
+
+Currently the game features a total of four bosses:
+
+* **Barrelwood**, it's a barrelwood. It rolls, smokes and spreads acid, everything barrelwood-like.
+* **Bore**, it's an angry pillow. Shots a chasing projectile so he doesn't have to do the job, sleeps to recover health because he is tired and summons its cat, Franky, to fight for him. Lazy motherfucker.
+* **Litost**, it's static walrus with a pan that protects him. He can shoot fishes and its fangs, because why not.
+* **Pera**, a flying pear, who poops, shoot itself like a dart and has a fucking magic shield, because WHY NOT.
 
 # Items
 
