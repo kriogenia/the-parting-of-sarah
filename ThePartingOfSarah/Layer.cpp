@@ -13,6 +13,9 @@ void Layer::processControls()
 	mouseY = mouseY / game->scaleLower;
 	// Register input
 	while (SDL_PollEvent(&event)) {
+		// Close game
+		if (event.type == SDL_QUIT) game->loopActive = false;
+		// Input
 		keysToControl(event);
 		mouseToControl(event);
 	}
