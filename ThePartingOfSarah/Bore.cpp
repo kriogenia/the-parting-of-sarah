@@ -6,7 +6,7 @@ Bore::Bore(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->name = "Bore";
-	this->subtitle = "and Franky";
+	this->subtitle = "y Franky";
 	this->cooldown = DEFAULT_BOSS_CD;
 
 	this->maxHp = BORE_HP;

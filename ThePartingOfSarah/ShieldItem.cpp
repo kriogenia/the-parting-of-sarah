@@ -3,8 +3,8 @@
 ShieldItem::ShieldItem(float x, float y, Game* game) :
 	Item("res/items/shield.png", x, y, game)
 {
-	this->name = "Shield of Xur";
-	this->subtitle = "It blocks! ... sometimes, I think?";
+	this->name = "Escudo of Xur";
+	this->subtitle = "Ganas un escudo, a veces";
 }
 
 Item* ShieldItem::getCopy(float x, float y) 

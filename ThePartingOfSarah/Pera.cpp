@@ -6,7 +6,7 @@ Pera::Pera(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->name = "Pera";
-	this->subtitle = "A.K.A. Kiko Matamoros";
+	this->subtitle = "Vuela";
 	this->cooldown = DEFAULT_BOSS_CD;
 
 	this->maxHp = PERA_HP;

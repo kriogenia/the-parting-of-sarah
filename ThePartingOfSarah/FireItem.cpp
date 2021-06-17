@@ -4,7 +4,7 @@ FireItem::FireItem(float x, float y, Game* game) :
 	Item("res/items/bluefire.png", x, y, game)
 {
 	this->name = "Kamespren";
-	this->subtitle = "Little, but fast";
+	this->subtitle = "Disparo más pequeño pero más rápido";
 }
 
 Item* FireItem::getCopy(float x, float y)

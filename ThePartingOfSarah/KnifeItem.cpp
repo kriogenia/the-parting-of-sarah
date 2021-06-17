@@ -3,8 +3,8 @@
 KnifeItem::KnifeItem(float x, float y, Game* game) :
 	Item("res/items/knife.png", x, y, game)
 {
-	this->name = "Meru's razor";
-	this->subtitle = "Damage goes brrrrrrr";
+	this->name = "Cuchillo de Meru";
+	this->subtitle = "Más daño";
 }
 
 Item* KnifeItem::getCopy(float x, float y)

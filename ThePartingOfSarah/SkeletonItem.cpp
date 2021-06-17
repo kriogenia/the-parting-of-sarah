@@ -4,7 +4,7 @@ SkeletonItem::SkeletonItem(float x, float y, Game* game) :
 	Item("res/items/iyan.png", x, y, game)
 {
 	this->name = "Iyanel";
-	this->subtitle = "The emo way";
+	this->subtitle = "Menos vida, más de lo demás";
 }
 
 Item* SkeletonItem::getCopy(float x, float y)

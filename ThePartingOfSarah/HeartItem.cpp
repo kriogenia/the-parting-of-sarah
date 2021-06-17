@@ -3,8 +3,8 @@
 HeartItem::HeartItem(float x, float y, Game* game) :
 	Item("res/items/potion.png", x, y, game)
 {
-	this->name = "Gift of An";
-	this->subtitle = "<3 <3 <3";
+	this->name = "Regalo of An";
+	this->subtitle = "Tres más de vida";
 }
 
 Item* HeartItem::getCopy(float x, float y)

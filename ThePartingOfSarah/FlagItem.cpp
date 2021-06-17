@@ -3,8 +3,8 @@
 FlagItem::FlagItem(float x, float y, Game* game) :
 	Item("res/items/flag.png", x, y, game)
 {
-	this->name = "Banner of Rox Q.";
-	this->subtitle = "PROMOTION, PROMOTION, PROMOTION";
+	this->name = "Bandera de Rox Q.";
+	this->subtitle = "Tres niveles arriba";
 }
 
 Item* FlagItem::getCopy(float x, float y)

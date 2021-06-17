@@ -6,7 +6,7 @@ Barrelwood::Barrelwood(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 	
 	this->name = "Barrelwood";
-	this->subtitle = "The edge of Buttowski";
+	this->subtitle = "Es un barril que da vueltas";
 	this->cooldown = DEFAULT_BOSS_CD;
 
 	this->maxHp = BARRELWOOD_HP;

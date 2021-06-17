@@ -3,8 +3,8 @@
 ArrowItem::ArrowItem(float x, float y, Game* game) :
 	Item("res/items/arrow.png", x, y, game)
 {
-	this->name = "Green Arrow GRP";
-	this->subtitle = "The more, the better";
+	this->name = "Flecha verde GRP";
+	this->subtitle = "Más disparos";
 }
 
 Item* ArrowItem::getCopy(float x, float y)

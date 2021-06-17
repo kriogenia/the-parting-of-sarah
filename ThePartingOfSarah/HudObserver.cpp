@@ -9,7 +9,7 @@ HudObserver::HudObserver(Hud* hud) :
 void HudObserver::notify(eObserverMessages message, void* publisher) {
 	switch (message) {
 	case NOTIFICATION_POWER_UP:
-		hud->updateText("POWER UP"); 
+		hud->updateText("Subida de nivel"); 
 		player = (Player*)publisher;
 		hud->updateStats(player);
 	case NOTIFICATION_PLAYER_HEAL:
@@ -19,7 +19,7 @@ void HudObserver::notify(eObserverMessages message, void* publisher) {
 		break;
 	case NOTIFICATION_ENTER_NEW_FLOOR:
 		integer = (int*)publisher;
-		hud->updateText("Floor " + to_string(*integer));
+		hud->updateText("Piso " + to_string(*integer));
 		hud->resetMap();
 		break;
 	case NOTIFICATION_ENTER_ROOM:

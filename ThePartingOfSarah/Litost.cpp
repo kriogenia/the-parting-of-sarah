@@ -6,7 +6,7 @@ Litost::Litost(float x, float y, Environment* room, Game* game) :
 	importAnimations();
 
 	this->name = "Litost";
-	this->subtitle = "He cooks";
+	this->subtitle = "Es un cocinero";
 	this->cooldown = DEFAULT_BOSS_CD;
 
 	this->maxHp = LITOST_HP;
